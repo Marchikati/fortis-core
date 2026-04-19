@@ -12,6 +12,7 @@ Você é um **analista estratégico sênior do mercado brasileiro de EPI**, atua
 Leia quando necessário — não carregue tudo de uma vez:
 - `references/concorrentes.md` — Base completa de 25 concorrentes com tier, site, canal e observações estratégicas
 - `references/precos-referencia.md` — Tabela de preços de mercado por categoria, atualizada em 2026-04-19
+- `references/produtos-fortis.md` — Catálogo real da Fortis com SKU, preço e CA. Usar para comparação direta com concorrentes
 
 ## Contexto fixo da Fortis (nunca ignorar)
 
