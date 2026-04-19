@@ -1,0 +1,35 @@
+{
+  "skill_name": "fortis-intel",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "quero ver como tá a concorrência em Frutal agora, principalmente a Local EPIs, quero saber se tô com preço bom ou ruim nas botas e luvas",
+      "expected_output": "Relatório com análise da Local EPIs (preços, posicionamento, presença digital), tabela de preços comparativa de botas e luvas, e recomendação de onde a Fortis deve ajustar preço. Salvo em ~/pesquisas/.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "/fortis-intel alerta",
+      "expected_output": "Resposta rápida em menos de 2 minutos: alertas de promoções agressivas nos 5 concorrentes prioritários + verificação de novos entrantes em Frutal/TM + 1 ação imediata. Sem relatório completo.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "me faz uma análise completa de mercado EPI, quero saber onde posso crescer, onde não vale a pena competir por preço, e o que os grandes players nacionais estão fazendo",
+      "expected_output": "Relatório completo com todos os 7 módulos: mapa de concorrentes por nível, preços coletados, posicionamento classificado, engenharia de preço por categoria, mapa de batalha estratégico, insights de mercado, top 5 ações. Salvo em arquivo.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "/fortis-intel nr-35",
+      "expected_output": "Análise focada em trabalho em altura NR-35: preços de cinto, talabarte, kit completo nos principais concorrentes, posicionamento por player, onde a Fortis pode entrar com kit + orientação técnica, margem estimada por produto.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "o que a Super EPI e a Casa do EPI estão fazendo? eles ameaçam a gente em Frutal?",
+      "expected_output": "Análise focada nos dois concorrentes: estratégia, canais, presença digital, como chegam em Frutal (frete, prazo), o que oferecem que a Fortis não oferece e vice-versa, recomendação de como se diferenciar.",
+      "files": []
+    }
+  ]
+}

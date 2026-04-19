@@ -1,0 +1,22 @@
+[
+  {"query": "quero ver como tá a concorrência em Frutal agora, a Local EPIs tá com preço melhor que o meu nas botas?", "should_trigger": true},
+  {"query": "me faz uma análise completa de mercado EPI, onde posso crescer e onde não vale competir por preço", "should_trigger": true},
+  {"query": "/fortis-intel alerta", "should_trigger": true},
+  {"query": "o que a Super EPI e a Casa do EPI estão fazendo? eles chegam a ameaçar a gente aqui em Frutal?", "should_trigger": true},
+  {"query": "quero saber os preços do mercado para bota de segurança, tô cobrando certo?", "should_trigger": true},
+  {"query": "me mostra um relatório de concorrentes de EPI atualizado", "should_trigger": true},
+  {"query": "como tá minha precificação comparada ao mercado? onde eu tô caro ou barato?", "should_trigger": true},
+  {"query": "tem oportunidade no mercado de NR-35 aqui na região? vale a pena entrar mais forte nessa categoria?", "should_trigger": true},
+  {"query": "a BH EPIs tá chegando forte no triângulo mineiro? como eles se posicionam?", "should_trigger": true},
+  {"query": "o que os concorrentes estão fazendo de promoção essa semana?", "should_trigger": true},
+  {"query": "me ajuda a criar um post para o instagram sobre luva de proteção", "should_trigger": false},
+  {"query": "preciso de um roteiro para um reels mostrando como usar capacete corretamente", "should_trigger": false},
+  {"query": "qual é a diferença entre luva de raspa e luva nitrílica? me explica para eu usar num carrossel", "should_trigger": false},
+  {"query": "gera uma imagem de capa para o post de segunda-feira sobre bota de segurança", "should_trigger": false},
+  {"query": "quero fazer um carrossel explicando o que é NR-35 e quando ela se aplica", "should_trigger": false},
+  {"query": "me ajuda a escrever uma narração para o reel de protetor auricular", "should_trigger": false},
+  {"query": "como funciona o certificado de aprovação CA dos EPIs? me explica para um post educativo", "should_trigger": false},
+  {"query": "qual fornecedor de bota vocês recomendam para eu comprar para revender?", "should_trigger": false},
+  {"query": "preciso calcular o frete para enviar um pedido para uberlândia, qual transportadora usar?", "should_trigger": false},
+  {"query": "me ajuda a criar um planejamento de conteúdo para o mês de maio", "should_trigger": false}
+]
