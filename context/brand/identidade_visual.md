@@ -73,3 +73,15 @@ cenas irreais
 REGRA FINAL
 
 Se não transmite confiança e clareza, não representa a Fortis.
+
+---
+
+MODELO DA MARCA — REFERÊNCIA OBRIGATÓRIA
+
+Sempre que o conteúdo exigir um trabalhador/personagem, descrever assim no prompt:
+
+Brazilian male worker, approximately 35-42 years old, short dark stubble beard, short dark hair, white hard hat, orange high-visibility safety vest over black shirt, serious and confident expression, cinematic dramatic industrial lighting
+
+Esse é o modelo oficial da Fortis. Toda imagem com pessoa deve seguir essa descrição para manter consistência no feed.
+
+Lembrete: posts com pessoa → gerar apenas o prompt → usuário executa manualmente.

@@ -70,17 +70,22 @@ disponibilidade   → ex: Em estoque
 
 Entregar sempre na seguinte ordem:
 
-1. **Meta Title** (SEO)
-2. **Meta Description** (SEO)
-3. **Open Graph Tags** (social)
-4. **HTML5 da página de produto:**
+1. **Pacote SEO** (fora do HTML, para uso no painel da loja):
+   - **5 Tags** — pesquisar os termos mais buscados no Google Brasil para a categoria do produto
+   - **Título SEO** — ≤ 60 caracteres
+   - **Descrição SEO** — ≤ 160 caracteres
+   - **URL ideal** — sem acentos, sem maiúsculas, hífens entre palavras
+2. **Meta Title** (SEO, dentro do HTML)
+3. **Meta Description** (SEO, dentro do HTML)
+4. **Open Graph Tags** (social)
+5. **HTML5 da página de produto:**
    - Bloco CA (botão consulta + botão copiar CA)
    - H1
    - Corpo da copy
    - Ficha Técnica (bloco visual destacado)
    - FAQ
-5. **JSON-LD** — Product Schema + FAQPage Schema
-6. **Checklist de qualidade**
+6. **JSON-LD** — Product Schema + FAQPage Schema
+7. **Checklist de qualidade**
 
 ---
 
@@ -198,7 +203,7 @@ Para B2B: WhatsApp + orçamento + nota fiscal. Para B2C: comprar agora + frete.
 **Template de CTA B2B:**
 ```html
 <div style="background:#002b5c; color:#fff; border-radius:8px; padding:16px; margin:20px 0; text-align:center;">
-  <p style="margin:0 0 8px; font-size:14px;">Compra para empresa? Emitimos nota fiscal.</p>
+  <p style="margin:0 0 18px; font-size:14px;">Compra para empresa? Emitimos nota fiscal.</p>
   <a href="https://wa.me/55XXXXXXXXXXX?text=Olá,%20quero%20orçamento%20para%20[nome_produto]%20CA%20[ca]"
      target="_blank"
      style="background:#25D366; color:#fff; padding:10px 20px; border-radius:5px; text-decoration:none; font-weight:bold; font-size:14px;">
@@ -380,6 +385,7 @@ Incluir sempre os dois schemas: **Product** e **FAQPage**.
 - Remover o bloco CA ou a Ficha Técnica
 - Texto corrido na Ficha Técnica
 - Copy igual à de qualquer concorrente
+- Usar travessão (—) em qualquer parte do texto — substituir por ponto, vírgula ou reescrever a frase
 
 ---
 

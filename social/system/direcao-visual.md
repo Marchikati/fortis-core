@@ -123,6 +123,33 @@ texturas leves
 
 O fundo deve destacar o texto, não competir com ele.
 
+ALTERNÂNCIA CLARO / ESCURO — REGRA OBRIGATÓRIA
+
+O feed da Fortis não pode ser todo escuro.
+
+Alternar obrigatoriamente entre posts claros e escuros.
+
+Nunca publicar dois posts escuros seguidos.
+
+Posts claros — quando usar:
+- Domingo (motivacional) — sempre claro ou neutro
+- Posts educativos com muito texto
+- Conteúdo de autoridade técnica
+- Posts de transformação/reflexão
+
+Posts escuros — quando usar:
+- Alertas de risco
+- Conteúdo de impacto emocional
+- Reels de storytelling
+
+Paleta clara permitida:
+- Fundo off-white: #F5F5F0 ou #FAFAF5
+- Fundo concreto claro com textura industrial suave
+- Texto escuro (#0D0D0D ou #365EB5) sobre fundo claro
+- Laranja e azul como acento pontual
+
+A variação visual mantém o feed vivo e aumenta o alcance.
+
 ELEMENTOS VISUAIS
 
 Os slides devem conter construção visual.

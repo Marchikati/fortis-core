@@ -140,18 +140,56 @@ ETAPA 1 — CRIAR PROMPT
 - Prompt sempre em inglês
 - Texto visível na imagem sempre em português do Brasil
 - Incluir: cena realista, iluminação cinematográfica, composição de anúncio
-- Incluir: linha laranja no rodapé, logo Inova Fortis visível
+- NUNCA incluir logo no prompt — o Nano Banana gera logos falsas
+- NUNCA incluir linha laranja no prompt — adicionar via ImageMagick depois
+- NUNCA mencionar cores de marca (#FD7A22, etc.) — gera elementos em posição errada
+- NUNCA colocar dois textos distintos no mesmo prompt — o modelo duplica frases
+- SEMPRE usar apenas UM elemento de texto por prompt
+- SEMPRE incluir ao final: "text appears exactly once, no other text elements, no logos, no orange bar"
+- Para imagens com pessoa: descrever trabalhador completo (tronco visível + ação específica)
+- NUNCA usar "close-up of hands" isolado — gera membros sem contexto
 - Revisar o prompt antes de executar — se estiver fraco, melhorar
 
-ETAPA 2 — EXECUTAR
+ETAPA 2 — VERIFICAR DIMENSÕES APÓS GERAÇÃO
 
-node ~/.claude/mcp/nanobanana/server.js "prompt final"
+Sempre executar antes do pós-processamento:
+magick identify imagem_gerada.png | awk '{print $3}'
+→ Anotar LARGURA e ALTURA para calcular posição da barra
 
-ETAPA 3 — INFORMAR
-- Informar o nome do arquivo gerado
-- Se houver erro de API, reportar o erro e exibir o prompt que seria usado
+ETAPA 3 — VERIFICAR SE HÁ PESSOA NA CENA
 
-REGRA: nunca substituir a execução por uma descrição do que seria gerado.
+Se o post exigir pessoa (modelo da Fortis):
+→ Gerar apenas o prompt em inglês
+→ Enviar o prompt ao usuário para execução manual
+→ Não executar o Nano Banana
+→ Usuário adiciona logo e faz ajustes finais manualmente
+
+Se o post NÃO exigir pessoa:
+→ Executar o Nano Banana normalmente
+→ Verificar imagem gerada antes de prosseguir (texto duplicado? artefatos?)
+→ Pós-processar com ImageMagick para adicionar barra laranja (#FD7A22) no rodapé
+
+ETAPA 4 — PÓS-PROCESSAMENTO (só para posts sem pessoa)
+
+# Verificar dimensões primeiro:
+magick identify imagem_gerada.png | awk '{print $3}'
+# Exemplo resultado: 1856x2304 → LARGURA=1856, ALTURA=2304, Y=2234
+
+magick imagem_gerada.png \
+  \( -size LARGURAx70 xc:"#FD7A22" \) -geometry +0+$(ALTURA-70) -composite \
+  imagem_final.png
+
+ETAPA 5 — INFORMAR
+- Se executou: informar nome do arquivo gerado e pós-processado
+- Se enviou prompt: informar que o prompt está pronto para execução manual
+- Se houver erro de API: reportar o erro e exibir o prompt
+
+REGRA CRÍTICA DE FEED — ALTERNÂNCIA CLARO/ESCURO
+- Nunca dois posts escuros seguidos
+- Domingo (motivacional) → sempre fundo claro ou neutro
+- Verificar o post anterior antes de definir o fundo do próximo
+- Posts claros: fundo #F5F5F0 ou texturas industriais claras
+- Posts escuros: navy #0D1B2A ou preto #0D0D0D
 
 ---
 
