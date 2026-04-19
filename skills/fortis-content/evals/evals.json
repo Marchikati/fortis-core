@@ -1,0 +1,50 @@
+{
+  "skill_name": "fortis-content",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Cria um carrossel completo sobre o erro mais comum no uso de capacete de segurança. Quero gancho forte, slides em HTML prontos para baixar e o prompt da capa.",
+      "expected_output": "HTML completo com 7-10 slides 1080x1350px, botões de download PNG/ZIP, logo base64, linha laranja no rodapé, variação de layout entre slides, prompt de capa em inglês com texto em PT-BR, CTA com pergunta aberta.",
+      "assertions": [
+        {"text": "HTML gerado contém dimensão 1080x1350px"},
+        {"text": "HTML contém botão de download ZIP"},
+        {"text": "Prompt da capa está em inglês"},
+        {"text": "Prompt da capa tem texto visível em português"},
+        {"text": "Prompt NÃO menciona logo, linha laranja ou códigos hex de cor"},
+        {"text": "Prompt finaliza com: text appears exactly once, no other text elements, no logos, no orange bar"},
+        {"text": "CTA do slide final é uma pergunta aberta"},
+        {"text": "Conteúdo não usa a sigla EPI isolada sem contexto técnico"},
+        {"text": "Slides têm variação de layout — não todos iguais"}
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Preciso de um roteiro de Reel para a Fortis sobre o risco de não usar proteção auditiva em ambientes barulhentos. Deve ter gancho de 3 segundos, duração de 30-45s, e já gera a narração.",
+      "expected_output": "Roteiro completo com gancho de impacto nos primeiros 3s, desenvolvimento em blocos curtos, fechamento + CTA, texto de narração otimizado para fala sem a sigla EPI, execução do script ElevenLabs com voz fortis.",
+      "assertions": [
+        {"text": "Roteiro tem gancho explícito nos primeiros 3 segundos"},
+        {"text": "Duração estimada está entre 30-45 segundos"},
+        {"text": "Texto de narração não contém a sigla 'EPI' isolada — substituída por 'equipamentos de proteção'"},
+        {"text": "Script ElevenLabs foi executado: node ~/.claude/mcp/elevenlabs/server.js \"fortis\""},
+        {"text": "CTA do roteiro gera pergunta ou reflexão"},
+        {"text": "Gancho faz o público pensar 'isso pode acontecer comigo'"}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Monta o calendário editorial da semana que vem para a Fortis. Inclui todos os formatos: 2 carrosséis, 2 reels, 2 estáticas e stories diários. Sugere o tema de cada um baseado nos pilares.",
+      "expected_output": "Grade semanal completa com dia, horário, formato, tema específico por pilar, gancho sugerido para cada post, tipo de CTA e observação sobre alternância claro/escuro.",
+      "assertions": [
+        {"text": "Calendário tem exatamente 6 posts fixos (2 carrosséis + 2 reels + 2 estáticas)"},
+        {"text": "Stories aparecem para todos os dias com horários 8h, 12h e 20h"},
+        {"text": "Cada post tem pilar editorial identificado"},
+        {"text": "Terça às 19h tem Reel"},
+        {"text": "Quarta às 12h tem Carrossel"},
+        {"text": "Quinta às 11h tem Carrossel técnico"},
+        {"text": "Sexta às 17h tem Post estático"},
+        {"text": "Calendário menciona alternância claro/escuro ou fundo dos posts"},
+        {"text": "Cada post tem gancho ou tema específico — não genérico"}
+      ]
+    }
+  ]
+}
