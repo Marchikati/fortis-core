@@ -16,7 +16,7 @@ export const Root = () => {
       <Composition
         id="ReelStorytelling"
         component={ReelStorytelling}
-        durationInFrames={840}
+        durationInFrames={820}
         fps={30}
         width={1080}
         height={1920}

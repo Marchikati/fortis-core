@@ -1,254 +1,125 @@
-PROJETO INOVA FORTIS EPIs — SISTEMA DE CARROSSÉIS
+PROJETO INOVA FORTIS EPIs
 
 Você está trabalhando com a marca Inova Fortis EPIs.
 
-Antes de criar qualquer conteúdo, leia sempre:
+---
 
-* 01_marca/01_posicionamento.md
-* 01_marca/02_voz_da_marca.md
-* 01_marca/03_publico.md
-* 01_marca/04_pilares_editoriais.md
-* 01_marca/05_essencia_da_marca.md
-* 01_marca/06_territorio_de_comunicacao.md
-* 01_marca/07_identidade_visual.md
-* 01_marca/08_momento_da_marca.md
+FLUXO OBRIGATÓRIO AO INICIAR QUALQUER TAREFA DE CONTEÚDO
 
-Utilize também:
+1. Identificar o tipo de conteúdo (estático / carrossel / reel / stories)
+2. Ler APENAS o workflow correspondente em context/workflows/
+3. Verificar o calendário do mês em context/calendarios/AAAA-MM.md
+4. Verificar qual foi o último post (alternância claro/escuro)
+5. Executar sem parar entre etapas
 
-* 02_execucao_criativa/01_Estrutura_de_Carrossel.md
-* 02_execucao_criativa/02_ganchos.md
-* 02_execucao_criativa/03_Direção_Visual_de_Carrossel.md
-* 02_execucao_criativa/04_cta.md
-* 02_execucao_criativa/05_conteudo_comercial.md
-* 02_execucao_criativa/06_regras_de_proibicao.md
-* 02_execucao_criativa/07_template_de_entrega.md
+WORKFLOWS DISPONÍVEIS:
+- Post estático → context/workflows/estatico.md
+- Carrossel      → context/workflows/carrossel.md
+- Reel / Vídeo  → context/workflows/reel.md
+- Stories        → context/workflows/stories.md
 
-Referências visuais:
-
-* 03_referencias/
-
-Assets da marca:
-
-* 04_assets/
-
-REGRAS OBRIGATÓRIAS
-
-* Nunca gerar conteúdo genérico
-* Nunca repetir fórmulas de forma óbvia
-* Sempre seguir o posicionamento da marca
-* Sempre manter clareza e utilidade
-* Sempre ensinar algo aplicável
-* Sempre considerar os pilares editoriais
-* Evitar clichês
-* Evitar linguagem vazia
-* Evitar excesso de informação
-* Evitar redundância entre ideia e execução
-
-DIREÇÃO DE CONTEÚDO
-
-Sempre que criar um carrossel:
-
-1. Escolher um pilar editorial
-2. Definir um ângulo claro para o tema
-3. Criar um gancho forte
-4. Garantir valor real no conteúdo
-5. Manter progressão entre os slides
-6. Inserir CTA coerente
-7. Entregar no formato definido em 07_template_de_entrega.md
-
-DIREÇÃO VISUAL
-
-* Seguir 03_Direção_Visual_de_Carrossel.md
-* Garantir contraste e legibilidade
-* Utilizar elementos visuais com função
-* Evitar poluição visual
-* Garantir leitura fácil em mobile
-* Variar composição, tipografia e ritmo visual entre carrosséis
-
-CAPA — REGRA CRÍTICA
-
-* Sempre gerar como prompt completo em inglês
-* Não entregar a capa como layout
-* Incluir cena realista
-* Incluir texto em português
-* Incluir tipografia e composição
-* Incluir linha laranja no rodapé
-* Incluir logo visível e proporcional
-* Evitar repetição de estilo entre capas
-
-OBJETIVO
-
-Criar carrosséis que:
-
-* prendam atenção
-* ensinem algo útil
-* gerem reflexão
-* sejam compartilháveis
-* reforcem autoridade
-* apoiem vendas de forma natural
-
-DIREÇÃO ESTRATÉGICA
-
-A Fortis tem dois objetivos principais:
-
-* construir autoridade
-* gerar vendas de forma natural
-
-O conteúdo deve:
-
-* educar
-* corrigir comportamento
-* gerar consciência
-* preparar o público para compra
-
-Evitar:
-
-* venda direta agressiva
-* conteúdo sem valor
-* propaganda evidente
-* repetição visual
-* repetição de lógica
-* respostas engessadas
-
-REGRA FINAL
-
-O conteúdo da Fortis não existe para preencher feed.
-
-Ele existe para ensinar, gerar confiança e, como consequência, vender.
+Cada workflow é autocontido — tem marca, regras técnicas e checklist completos.
+NÃO é necessário ler os arquivos de context/brand/ separadamente — já estão nos workflows.
 
 ---
 
-FLUXO DE PRODUÇÃO AUTOMÁTICO
+REGRAS TÉCNICAS INVIOLÁVEIS — VÁLIDAS PARA TODO CONTEÚDO
 
-Sempre que o pedido envolver vídeo, Reel, carrossel com imagem ou qualquer conteúdo com assets:
+DIMENSÃO FINAL OBRIGATÓRIA
+- Posts feed Instagram: 1080×1350px (4:5)
+- Reels / Stories: 1080×1920px (9:16)
+- Imagen 4 e Nano Banana geram 896×1280 → converter SEMPRE antes de compor:
+  magick input.png -resize 1080x -gravity center -background '#0D1B2A' -extent 1080x1350 output.png
 
-1. ROTEIRO — Criar estrutura completa antes de qualquer execução
-2. IMAGEM — Gerar via Nano Banana (execução obrigatória)
-3. ÁUDIO — Gerar via ElevenLabs (execução obrigatória)
-4. VÍDEO — Montar via Remotion quando aplicável
+LOGO — REGRA PERMANENTE E INVIOLÁVEL
+- Fundo escuro (navy/preto) → assets/logos/04_logo_branco.png
+- Fundo claro ou faixa laranja → assets/logos/03_logo_preto.png
+- Posição em posts estáticos (ImageMagick): -gravity SouthEast -geometry +24+14 -resize x52
+- Posição em HTML (CSS): position:absolute; bottom:10px; right:24px; height:50px;
+- NUNCA incluir logo em prompts de geração de imagem — gera logo falso
 
-Não parar entre etapas para confirmar.
-Não sugerir ferramentas. Executar.
+FAIXA LARANJA
+- Sempre 80px no rodapé
+- Cor: #FD7A22
+- Logo DENTRO da faixa (não acima)
+- Nunca incluir faixa laranja em prompts — adicionar via ImageMagick
 
----
-
-GERAÇÃO DE IMAGEM — EXECUÇÃO OBRIGATÓRIA
-
-Sempre que o conteúdo exigir imagem (capa de carrossel, capa de Reel, slide visual):
-
-ETAPA 1 — CRIAR PROMPT
-- Prompt sempre em inglês
-- Texto visível na imagem sempre em português do Brasil
-- Incluir: cena realista, iluminação cinematográfica, composição de anúncio
-- NUNCA incluir logo no prompt — o Nano Banana gera logos falsas
-- NUNCA incluir linha laranja no prompt — adicionar via ImageMagick depois
-- NUNCA mencionar cores de marca (#FD7A22, etc.) — gera elementos em posição errada
-- NUNCA colocar dois textos distintos no mesmo prompt — o modelo duplica frases
-- SEMPRE usar apenas UM elemento de texto por prompt
-- SEMPRE incluir ao final: "text appears exactly once, no other text elements, no logos, no orange bar"
-- Para imagens com pessoa: descrever trabalhador completo (tronco visível + ação específica)
-- NUNCA usar "close-up of hands" isolado — gera membros sem contexto
-- Revisar o prompt antes de executar — se estiver fraco, melhorar
-
-ETAPA 2 — VERIFICAR DIMENSÕES APÓS GERAÇÃO
-
-Sempre executar antes do pós-processamento:
-magick identify imagem_gerada.png | awk '{print $3}'
-→ Anotar LARGURA e ALTURA para calcular posição da barra
-
-ETAPA 3 — VERIFICAR SE HÁ PESSOA NA CENA
-
-Se o post exigir pessoa (modelo da Fortis):
-→ Gerar apenas o prompt em inglês
-→ Enviar o prompt ao usuário para execução manual
-→ Não executar o Nano Banana
-→ Usuário adiciona logo e faz ajustes finais manualmente
-
-Se o post NÃO exigir pessoa:
-→ Executar o Nano Banana normalmente
-→ Verificar imagem gerada antes de prosseguir (texto duplicado? artefatos?)
-→ Pós-processar com ImageMagick para adicionar barra laranja (#FD7A22) no rodapé
-
-ETAPA 4 — PÓS-PROCESSAMENTO (só para posts sem pessoa)
-
-# Verificar dimensões primeiro:
-magick identify imagem_gerada.png | awk '{print $3}'
-# Exemplo resultado: 1856x2304 → LARGURA=1856, ALTURA=2304, Y=2234
-
-magick imagem_gerada.png \
-  \( -size LARGURAx70 xc:"#FD7A22" \) -geometry +0+$(ALTURA-70) -composite \
-  imagem_final.png
-
-ETAPA 5 — INFORMAR
-- Se executou: informar nome do arquivo gerado e pós-processado
-- Se enviou prompt: informar que o prompt está pronto para execução manual
-- Se houver erro de API: reportar o erro e exibir o prompt
-
-REGRA CRÍTICA DE FEED — ALTERNÂNCIA CLARO/ESCURO
+ALTERNÂNCIA CLARO/ESCURO
 - Nunca dois posts escuros seguidos
-- Domingo (motivacional) → sempre fundo claro ou neutro
-- Verificar o post anterior antes de definir o fundo do próximo
-- Posts claros: fundo #F5F5F0 ou texturas industriais claras
-- Posts escuros: navy #0D1B2A ou preto #0D0D0D
+- Domingo: sempre fundo claro (#F5F5F0 ou off-white)
+- Verificar o post anterior no calendário antes de definir
+
+IMAGEM × CONTEÚDO
+- A imagem deve retratar EXATAMENTE o tema do post/slide
+- Capacete = foto de capacete. Luvas = foto de luvas.
+- Nunca imagem genérica. Nunca reutilizar entre slides.
+- Fotorrealismo obrigatório
+
+APROVAÇÃO ANTES DE SALVAR
+- Sempre mostrar ao usuário antes de salvar
+- Só salvar após aprovação explícita
+
+ONDE SALVAR
+- Posts estáticos (foto ou tipográfico): assets/posts/AAAA-MM/ESTÁTICOS/
+- Capas brutas de carrossel: assets/posts/AAAA-MM/CAPAS/
+- Carrosseis HTML: assets/posts/AAAA-MM/CARROSSEL/
+- Reels: assets/posts/AAAA-MM/REELS/
+
+GERAÇÃO DE IMAGEM
+- Prompt sempre em inglês
+- Texto na imagem: português do Brasil, máx 8 palavras, 1 único elemento
+- Finalizar prompt com: "text appears exactly once, no other text elements, no logos, no orange bar"
+- Com pessoa: usar modelo oficial abaixo
+- Sem pessoa: executar node ~/.claude/mcp/nanobanana/server.js "prompt" "3:4"
+
+MODELO OFICIAL FORTIS (obrigatório em toda imagem com pessoa):
+Brazilian male worker, approximately 35-42 years old, short dark stubble beard, short dark hair, white hard hat, orange high-visibility safety vest over black shirt, serious and confident expression, cinematic dramatic industrial lighting
+
+NARRAÇÃO (ElevenLabs)
+- Voz Fortis: node ~/.claude/mcp/elevenlabs/server.js "fortis" "texto"
+- NUNCA usar "EPI" → substituir por "equipamentos de proteção" ou "êpêí"
+- Todo reel termina com: CTA adequado + "Inova Fortis. A loja que ensina você a se proteger de verdade."
+
+LEGENDAS EM REELS
+- Zona segura: entre 80px do topo e 280px do rodapé (UI do Instagram/TikTok/Facebook)
+- Nunca abaixo de 280px do rodapé
+
+HTML CARROSSEL
+- html2canvas scale: 2 (exporta 2×)
+- Logo CSS: bottom:10px; right:24px; height:50px (dentro da faixa de 70px)
+- Sem numeração de slides
+- 1 imagem fotorrealista por slide, embarcada como base64
+- Contraste mínimo: rgba(255,255,255,0.85)
+
+EXECUÇÃO
+- Não sugerir ferramentas. Executar.
+- Não parar entre etapas para confirmar.
+- Se API retornar erro: reportar exato. Não fingir sucesso.
 
 ---
 
-GERAÇÃO DE ÁUDIO — EXECUÇÃO OBRIGATÓRIA
+CALENDÁRIO EDITORIAL SEMANAL
 
-Sempre que o conteúdo exigir narração, locução ou voz (Reels, roteiros com fala):
+- Segunda → carrossel ou reel (educativo)
+- Quarta  → carrossel ou reel (técnico / NR)
+- Sexta   → estático ou reel (engajamento / comercial)
+- Domingo → SEMPRE estático motivacional tipográfico, fundo claro
 
-ETAPA 1 — PREPARAR TEXTO
-- Otimizar o texto para fala: frases curtas, ritmo natural, pausas marcadas com ponto
-- Remover formatação visual (bullets, símbolos, emojis)
-- REGRA CRÍTICA DE NARRAÇÃO: nunca usar a sigla "EPI" em narrações
-  - Substituir sempre por "equipamentos de proteção"
-  - Se a sigla for necessária por contexto, escrever como "êpêí" para leitura correta
-  - Essa substituição é obrigatória e deve ser feita antes de executar o script
-
-ETAPA 2 — EXECUTAR
-
-node ~/.claude/mcp/elevenlabs/server.js "fortis" "texto otimizado"
-
-Voz padrão para Fortis: "fortis"
-
-ETAPA 3 — INFORMAR
-- Informar o nome do arquivo de áudio gerado
-- Se houver erro de API, reportar o erro e exibir o texto que seria narrado
-
-REGRA: nunca substituir a execução por uma transcrição sem gerar o arquivo.
+Todos os dias com post: mínimo 5 stories planejados (ver context/workflows/stories.md)
 
 ---
 
-MONTAGEM DE VÍDEO — REMOTION
+IDENTIDADE DA MARCA (resumo)
 
-Quando o pedido for vídeo ou Reel com animação:
+Posicionamento: "A loja que te ensina a se proteger de verdade."
+Crença central: O problema não é a falta de EPI. É a normalização do risco.
+Cores: Laranja #FD7A22 · Azul #365EB5 · Navy #0D1B2A · Verde Abril #2E7D32
+Fontes: Aoboshi One (títulos) · Open Sans (corpo)
+Tom: direto, educador, responsável. Nunca alarmista. Nunca propaganda.
 
-1. Usar os assets gerados nas etapas anteriores (imagem + áudio)
-2. Referenciar o roteiro criado na etapa 1 do fluxo
-3. Montar via Remotion com os arquivos gerados
-4. Entregar o vídeo pronto para exportação
+DATAS COMEMORATIVAS
+- Abril Verde → verde #2E7D32 integrado na tipografia e nos elementos visuais de todos os posts do mês
 
-Remotion é usado apenas quando há roteiro + assets disponíveis.
-Não iniciar a montagem sem ter imagem e áudio gerados.
-
----
-
-REGRA DE EXECUÇÃO — SEM SUGESTÃO
-
-As ferramentas abaixo não são opcionais e não devem ser apenas sugeridas:
-
-- node ~/.claude/mcp/nanobanana/server.js → para imagens
-- node ~/.claude/mcp/elevenlabs/server.js → para áudio
-- Remotion → para vídeos
-
-Se a API retornar erro:
-- Reportar o erro exato
-- Informar o arquivo que seria gerado
-- Não fingir que a execução ocorreu
-
-Se a API funcionar:
-- Informar o nome do arquivo gerado
-- Continuar para a próxima etapa do fluxo sem parar
-
-Nunca descrever o que seria feito no lugar de fazer.
-
+CONTEÚDO
+- Todo post deve ensinar, alertar ou corrigir comportamento
+- Se não faz isso, não é da Fortis

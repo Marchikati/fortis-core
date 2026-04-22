@@ -50,17 +50,25 @@ A dark feed kills reach. A varied feed retains attention.
 
 IMAGE GENERATION WORKFLOW
 
-Posts with people (model/character):
-- Claude generates the prompt only
-- User executes manually to control the brand model
-- User adds logo manually
+CRITICAL — All final posts must be exactly 1080x1350px (Instagram 4:5).
+Imagen 4 generates 896x1280 (3:4). Always convert before compositing:
+  magick input.png -resize 1080x -gravity center -background '#0D1B2A' -extent 1080x1350 output_1080.png
 
-Posts without people (abstract, typographic, geometric):
-- Claude executes Nano Banana
-- Orange bar (#FD7A22) added via ImageMagick post-processing
-- Logo added manually by user OR via ImageMagick for fully automated posts
+Posts with people (model/character):
+- Claude generates the photo via Imagen 4
+- Claude converts to 1080x1350
+- Claude composites overlay + text + orange bar + logo via ImageMagick
+- Claude shows result to user for approval before saving
+
+Posts without people:
+- Claude generates via Nano Banana
+- Claude converts to 1080x1350 if needed
+- Claude adds orange bar and logo via ImageMagick
+- Claude shows result to user for approval before saving
 
 Logo rule:
-- Never include logo in Nano Banana prompts — AI always generates a fake logo
-- Logo is always added in post-processing (manually or ImageMagick)
-- Only apply automatic logo compositing when the post needs no manual intervention
+- Never include logo in generation prompts — AI generates fake logos
+- Logo always added in post-processing via ImageMagick
+- logo preto (03_logo_preto.png) → faixa laranja ou fundo claro
+- logo branco (04_logo_branco.png) → fundo escuro (navy/preto)
+- CSS position in HTML: bottom: 10px; right: 24px; height: 50px (inside 70px orange bar)
