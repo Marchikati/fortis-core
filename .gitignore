@@ -4,3 +4,14 @@
 
 # Claude local settings
 .claude/settings.local.json
+.claude/worktrees/
+
+# Node
+node_modules/
+**/node_modules/
+
+# Imagens temporárias geradas por MCP (nomes com timestamp)
+image-*.png
+imagen4-worker-*.png
+test-billing.png
+video/image-*.png
