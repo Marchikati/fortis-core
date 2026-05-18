@@ -58,7 +58,7 @@
       color:rgba(255,255,255,0.04);line-height:1;user-select:none;
     }
     .cover-body{
-      flex:1;padding:60px 56px;
+      flex:1;padding:60px 56px 90px;
       display:flex;flex-direction:column;justify-content:center;
       position:relative;z-index:1;
     }
@@ -86,8 +86,9 @@
     .cover-logo{margin-bottom:32px}
     .cover-logo img{height:110px;width:auto;filter:drop-shadow(0 4px 24px rgba(0,0,0,0.3))}
     .cover-footer{
+      position:absolute;bottom:0;left:0;right:0;
       border-top:1px solid rgba(255,255,255,0.08);
-      padding:16px 56px;position:relative;z-index:1;
+      padding:16px 56px;z-index:2;
       display:flex;align-items:center;gap:32px;
     }
     .cover-stat{font-size:11px;color:rgba(255,255,255,0.3)}
@@ -183,7 +184,7 @@
 
 
     /* ── MARCAS ──────────────────────────────────── */
-    .brands-page{padding:48px 56px;background:var(--navy);min-height:200px}
+    .brands-page{padding:48px 56px;background:var(--navy);min-height:297mm;display:flex;flex-direction:column}
     .brands-strip-pdf{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
     .brand-chip-pdf{
       background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
@@ -201,7 +202,10 @@
       body{background:#fff}
       .pdf-controls{display:none!important}
       .page{margin:0;box-shadow:none;width:100%}
-      .cover,.about-page,.contact-page{page-break-after:always}
+      .cover{page-break-after:always;page-break-inside:avoid;break-inside:avoid-page}
+      .about-page{page-break-after:always;page-break-inside:avoid}
+      .brands-page{page-break-after:always;page-break-inside:avoid}
+      .contact-page{page-break-after:always;page-break-inside:avoid}
       .cat-page{position:relative;overflow:hidden;page-break-before:always;page-break-after:avoid}
       .products-page{page-break-inside:auto}
       .card{page-break-inside:avoid}
@@ -376,7 +380,7 @@ function renderCard(p){
     ${p.v.c ? `<span class="var-label-pdf" style="margin-top:4px">Cores</span><div class="var-chips-pdf">${p.v.c.map(s=>`<span class="var-chip-pdf">${s}</span>`).join('')}</div>` : ''}
   </div>` : '';
   return `<div class="card">
-    <div class="card-img"><img src="${img}" alt="${p.n}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23F0EEE8%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'"></div>
+    <div class="card-img"><img src="${img}" alt="${p.n}" loading="eager" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23F0EEE8%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'"></div>
     <div class="card-body">
       ${p.brand?`<div class="card-brand">${p.brand}</div>`:''}
       <div class="card-name">${p.n}</div>
@@ -467,12 +471,12 @@ function render(){
 
     // Produtos em grupos de 3 por linha
     const items = [...cat.items].sort((a,b)=>a.n.localeCompare(b.n,'pt-BR'));
-    for(let i=0; i<items.length; i+=3){
-      const group = items.slice(i, i+3);
+    for(let i=0; i<items.length; i+=6){
+      const group = items.slice(i, i+6);
       html += `<div class="products-page">
         <div class="cat-page-label">
           <span>${cat.title}</span>
-          <span>${i+1}–${Math.min(i+3,items.length)} de ${items.length}</span>
+          <span>${i+1}–${Math.min(i+6,items.length)} de ${items.length}</span>
         </div>
         <div class="products-grid-pdf">${group.map(p=>renderCard(p)).join('')}</div>
         <div style="margin-top:14px;padding-top:10px;border-top:1px solid #e2e8f0;display:flex;align-items:center;gap:10px">
@@ -503,11 +507,26 @@ function render(){
 }
 
 function gerarPDF(){
-  // Instrução para o usuário
-  const msg = document.createElement('div');
-  msg.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#fff;border:2px solid #FD7A22;border-radius:10px;padding:20px 28px;z-index:9999;font-family:sans-serif;font-size:14px;max-width:420px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.2)';
-  msg.innerHTML = '<strong style="color:#0D1B2A;font-size:16px">Como salvar o PDF</strong><br><br>1. Na janela que abrir, escolha <strong>"Salvar como PDF"</strong> em Destino<br>2. Marque <strong>"Gráficos de segundo plano"</strong> (ou Background graphics)<br>3. Margens: <strong>Nenhuma</strong> · Papel: <strong>A4</strong><br>4. Clique <strong>Salvar</strong><br><br><button onclick="this.parentNode.remove();window.print()" style="background:#FD7A22;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Entendi, abrir diálogo de impressão</button><br><button onclick="this.parentNode.remove()" style="margin-top:8px;background:none;border:none;color:#64748B;cursor:pointer;font-size:13px">Cancelar</button>';
-  document.body.appendChild(msg);
+  // Preload all CDN images before opening print dialog
+  const cdnImgs = [...document.querySelectorAll('.card-img img')];
+  let pending = cdnImgs.length;
+
+  function showModal(){
+    const msg = document.createElement('div');
+    msg.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#fff;border:2px solid #FD7A22;border-radius:10px;padding:20px 28px;z-index:9999;font-family:sans-serif;font-size:14px;max-width:420px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.2)';
+    msg.innerHTML = '<strong style="color:#0D1B2A;font-size:16px">Como salvar o PDF</strong><br><br>1. Na janela que abrir, escolha <strong>"Salvar como PDF"</strong> em Destino<br>2. Marque <strong>"Gráficos de segundo plano"</strong> (ou Background graphics)<br>3. Margens: <strong>Nenhuma</strong> · Papel: <strong>A4</strong><br>4. Clique <strong>Salvar</strong><br><br><button onclick="this.parentNode.remove();window.print()" style="background:#FD7A22;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Entendi, abrir diálogo de impressão</button><br><button onclick="this.parentNode.remove()" style="margin-top:8px;background:none;border:none;color:#64748B;cursor:pointer;font-size:13px">Cancelar</button>';
+    document.body.appendChild(msg);
+  }
+
+  function onLoad(){ if(--pending <= 0) showModal(); }
+
+  if(pending === 0){ showModal(); return; }
+  cdnImgs.forEach(img => {
+    if(img.complete && img.naturalWidth > 0) onLoad();
+    else { img.addEventListener('load', onLoad); img.addEventListener('error', onLoad); }
+  });
+  // Safety timeout: show modal after 8s regardless
+  setTimeout(() => { if(pending > 0){ pending=0; showModal(); } }, 8000);
 }
 
 render();
