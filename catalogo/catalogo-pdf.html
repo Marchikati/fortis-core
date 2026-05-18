@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo PDF — Inova Fortis EPIs</title>
+  <title>Catálogo PDF · Inova Fortis EPIs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Aoboshi+One&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -212,7 +212,7 @@
 
 <!-- CONTROLES -->
 <div class="pdf-controls">
-  <p>Arquivo para uso interno — <strong>não compartilhe este link.</strong> Abra no Chrome para melhor resultado.</p>
+  <p>Arquivo para uso interno. <strong>Não compartilhe este link.</strong> Abra no Chrome para melhor resultado.</p>
   <button class="btn-gerar" onclick="gerarPDF()">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="1" width="10" height="7" rx="1"/><path d="M3 8H1v5h14V8h-2"/><rect x="4" y="11" width="8" height="4" rx="1"/></svg>
     Gerar PDF
@@ -299,7 +299,7 @@ const CATS_PDF = [
     {n:'Óculos Ampla Visão VVision 400',ca:'CA 42919',brand:'Volk',img:'oculos-volk-transparente-antiemacante-ampla-visao-9cf38792d91a69d68217766262855070',specs:[['Campo visual','210°'],['Tratamento','Antirrisco+Antiemb.']]},
   ]},
   {id:'auditiva',num:'06',title:'Proteção Auditiva',nr:'NR-6 · NR-9',
-   desc:'Protetores auditivos de 16 a 26 dB. A perda auditiva é irreversível — a proteção certa hoje garante qualidade de vida amanhã.',
+   desc:'Protetores auditivos de 16 a 26 dB. A perda auditiva é irreversível. A proteção certa hoje garante qualidade de vida amanhã.',
    items:[
     {n:'Concha Super Max 24 dB',ca:'CA 41949',brand:'Plastcor',img:'protetor-auditivo-super-max-tipo-concha-ca-41949_principal-b25b5be2fe061f6f8817787037514457',specs:[['Tipo','Concha'],['Atenuação','24 dB']]},
     {n:'Concha 17 dB Haste Total',ca:'CA 19079',brand:'Sayro',img:'abafador-profissional-ruido-16db-sayro-b07ec37027c47c3bf217785355104015',specs:[['Tipo','Concha'],['Atenuação','17 dB']]},
@@ -370,7 +370,7 @@ let LOGO_PRETO_B64 = '';
 // ── RENDERIZAÇÃO ────────────────────────────────────────────────────────────
 function renderCard(p){
   const img = CDN + p.img + '-480-0.webp';
-  const specs = (p.specs||[]).map(([k,v])=>`<div class="spec-row-pdf"><span class="spec-key-pdf">${k}</span><span class="spec-val-pdf">${v}</span></div>`).join('');
+  const specs = (p.specs||[]).filter(([k,v])=>v!=='—').map(([k,v])=>`<div class="spec-row-pdf"><span class="spec-key-pdf">${k}</span><span class="spec-val-pdf">${v}</span></div>`).join('');
   const vars = p.v ? `<div class="card-vars-pdf">
     ${p.v.t ? `<span class="var-label-pdf">Tamanhos</span><div class="var-chips-pdf">${(Array.isArray(p.v.t)?p.v.t:[p.v.t]).map(s=>`<span class="var-chip-pdf">${s}</span>`).join('')}</div>` : ''}
     ${p.v.c ? `<span class="var-label-pdf" style="margin-top:4px">Cores</span><div class="var-chips-pdf">${p.v.c.map(s=>`<span class="var-chip-pdf">${s}</span>`).join('')}</div>` : ''}
@@ -506,7 +506,7 @@ function gerarPDF(){
   // Instrução para o usuário
   const msg = document.createElement('div');
   msg.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#fff;border:2px solid #FD7A22;border-radius:10px;padding:20px 28px;z-index:9999;font-family:sans-serif;font-size:14px;max-width:420px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.2)';
-  msg.innerHTML = '<strong style="color:#0D1B2A;font-size:16px">Como salvar o PDF</strong><br><br>1. Na janela que abrir, escolha <strong>"Salvar como PDF"</strong> em Destino<br>2. Marque <strong>"Gráficos de segundo plano"</strong> (ou Background graphics)<br>3. Margens: <strong>Nenhuma</strong> · Papel: <strong>A4</strong><br>4. Clique <strong>Salvar</strong><br><br><button onclick="this.parentNode.remove();window.print()" style="background:#FD7A22;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Entendi — Abrir diálogo de impressão</button><br><button onclick="this.parentNode.remove()" style="margin-top:8px;background:none;border:none;color:#64748B;cursor:pointer;font-size:13px">Cancelar</button>';
+  msg.innerHTML = '<strong style="color:#0D1B2A;font-size:16px">Como salvar o PDF</strong><br><br>1. Na janela que abrir, escolha <strong>"Salvar como PDF"</strong> em Destino<br>2. Marque <strong>"Gráficos de segundo plano"</strong> (ou Background graphics)<br>3. Margens: <strong>Nenhuma</strong> · Papel: <strong>A4</strong><br>4. Clique <strong>Salvar</strong><br><br><button onclick="this.parentNode.remove();window.print()" style="background:#FD7A22;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Entendi, abrir diálogo de impressão</button><br><button onclick="this.parentNode.remove()" style="margin-top:8px;background:none;border:none;color:#64748B;cursor:pointer;font-size:13px">Cancelar</button>';
   document.body.appendChild(msg);
 }
 
