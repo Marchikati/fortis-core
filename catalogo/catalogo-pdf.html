@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo PDF — Inova Fortis EPIs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aoboshi+One&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── RESET ──────────────────────────────────── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#0D1B2A; --orange:#FD7A22; --blue:#365EB5;
+      --white:#FFFFFF; --cream:#F8F7F3; --ink:#1C2434;
+      --muted:#64748B; --border:#E2E8F0;
+    }
+    html{-webkit-font-smoothing:antialiased}
+    body{font-family:'Open Sans',sans-serif;background:#f0f0f0;color:var(--ink)}
+
+    /* ── BOTÃO GERAR PDF ────────────────────────── */
+    .pdf-controls{
+      position:fixed;top:0;left:0;right:0;z-index:999;
+      background:var(--navy);padding:12px 24px;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;
+    }
+    .pdf-controls p{font-size:13px;color:rgba(255,255,255,0.6)}
+    .pdf-controls p strong{color:var(--orange)}
+    .btn-gerar{
+      padding:10px 24px;background:var(--orange);border:none;
+      border-radius:8px;color:#fff;font-size:14px;font-weight:700;
+      cursor:pointer;font-family:inherit;
+      display:flex;align-items:center;gap:8px;
+    }
+    .btn-gerar:hover{background:#E5620A}
+
+    /* ── PÁGINA A4 ──────────────────────────────── */
+    .page{
+      width:210mm;
+      margin:72px auto 16px;
+      background:#fff;
+      box-shadow:0 4px 24px rgba(0,0,0,0.15);
+    }
+
+    /* ── CAPA ───────────────────────────────────── */
+    .cover{
+      height:297mm;
+      background:var(--navy);
+      display:flex;flex-direction:column;
+      position:relative;overflow:hidden;
+    }
+    .cover-stripe{position:absolute;top:0;left:0;right:0;height:5px;background:var(--orange)}
+    .cover-bottom{position:absolute;bottom:0;left:0;right:0;height:5px;background:var(--orange)}
+    .cover-bg-text{
+      position:absolute;right:-20px;bottom:60px;
+      font-family:'Aoboshi One',serif;font-size:180px;
+      color:rgba(255,255,255,0.04);line-height:1;user-select:none;
+    }
+    .cover-body{
+      flex:1;padding:60px 56px;
+      display:flex;flex-direction:column;justify-content:center;
+      position:relative;z-index:1;
+    }
+    .cover-eyebrow{
+      font-size:10px;font-weight:700;letter-spacing:.22em;
+      text-transform:uppercase;color:var(--orange);
+      margin-bottom:24px;display:flex;align-items:center;gap:10px;
+    }
+    .cover-eyebrow::before{content:'';width:32px;height:2px;background:var(--orange)}
+    .cover-title{
+      font-family:'Aoboshi One',serif;
+      font-size:64px;color:#fff;line-height:1.0;letter-spacing:-.02em;
+      margin-bottom:8px;
+    }
+    .cover-title span{color:var(--orange)}
+    .cover-year{
+      font-family:'Aoboshi One',serif;font-size:110px;
+      color:rgba(255,255,255,0.07);line-height:1;margin-bottom:28px;
+    }
+    .cover-tagline{
+      font-size:18px;color:rgba(255,255,255,0.55);
+      border-left:3px solid var(--orange);padding-left:16px;
+      line-height:1.5;max-width:400px;margin-bottom:48px;
+    }
+    .cover-logo{margin-bottom:32px}
+    .cover-logo img{height:110px;width:auto;filter:drop-shadow(0 4px 24px rgba(0,0,0,0.3))}
+    .cover-footer{
+      border-top:1px solid rgba(255,255,255,0.08);
+      padding:16px 56px;position:relative;z-index:1;
+      display:flex;align-items:center;gap:32px;
+    }
+    .cover-stat{font-size:11px;color:rgba(255,255,255,0.3)}
+    .cover-stat strong{color:rgba(255,255,255,0.6);display:block;font-size:12px}
+
+    /* ── SOBRE ──────────────────────────────────── */
+    .about-page{height:297mm;padding:56px;display:flex;flex-direction:column;justify-content:center;background:var(--cream)}
+    .section-label{
+      font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--orange);margin-bottom:10px;
+      display:flex;align-items:center;gap:8px;
+    }
+    .section-label::before{content:'';width:24px;height:2px;background:var(--orange)}
+    .about-title{
+      font-family:'Aoboshi One',serif;font-size:36px;
+      color:var(--navy);margin-bottom:20px;line-height:1.15;
+    }
+    .about-text{font-size:13px;color:var(--muted);line-height:1.8;max-width:520px;margin-bottom:32px}
+    .about-values{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+    .value-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:20px 16px;border-left:3px solid var(--orange)}
+    .value-title{font-family:'Aoboshi One',serif;font-size:14px;color:var(--navy);margin-bottom:6px}
+    .value-text{font-size:11px;color:var(--muted);line-height:1.5}
+    .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .about-stat{background:var(--navy);border-radius:8px;padding:16px;text-align:center}
+    .about-stat-num{font-family:'Aoboshi One',serif;font-size:24px;color:var(--orange)}
+    .about-stat-label{font-size:10px;color:rgba(255,255,255,0.4);margin-top:3px}
+
+    /* ── DIVISOR DE CATEGORIA ───────────────────── */
+    .cat-page{
+      height:180px;background:var(--navy);
+      padding:40px 56px;display:flex;flex-direction:column;justify-content:center;
+      position:relative;overflow:hidden;
+    }
+    .cat-page::before{content:'';position:absolute;right:0;top:0;bottom:0;width:5px;background:var(--orange)}
+    .cat-page-ghost{
+      position:absolute;right:50px;top:50%;transform:translateY(-50%);
+      font-family:'Aoboshi One',serif;font-size:100px;
+      color:rgba(255,255,255,0.04);white-space:nowrap;
+    }
+    .cat-num{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+    .cat-name{font-family:'Aoboshi One',serif;font-size:40px;color:#fff;margin-bottom:8px}
+    .cat-desc-text{font-size:12px;color:rgba(255,255,255,0.4);max-width:480px;line-height:1.6;padding-left:12px;border-left:2px solid rgba(253,122,34,0.3)}
+    .cat-nr-badge{
+      margin-top:12px;display:inline-flex;align-items:center;
+      background:rgba(253,122,34,0.12);border:1px solid rgba(253,122,34,0.25);
+      border-radius:99px;padding:4px 14px;
+      font-size:10px;font-weight:700;color:var(--orange);letter-spacing:.06em;
+    }
+
+    /* ── GRADE DE PRODUTOS ──────────────────────── */
+    .products-page{padding:32px 40px;background:#fff}
+    .cat-page-label{
+      font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:20px;padding-bottom:10px;
+      border-bottom:2px solid var(--orange);display:flex;justify-content:space-between;
+    }
+    .products-grid-pdf{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+    /* ── CARD ───────────────────────────────────── */
+    .card{border:1px solid var(--border);border-radius:8px;overflow:hidden;page-break-inside:avoid}
+    .card-img{aspect-ratio:1/1;background:var(--cream);overflow:hidden}
+    .card-img img{width:100%;height:100%;object-fit:contain;padding:10px}
+    .card-body{padding:12px}
+    .card-brand{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);margin-bottom:3px}
+    .card-name{font-family:'Aoboshi One',serif;font-size:12px;color:var(--navy);line-height:1.3;margin-bottom:6px}
+    .card-ca{font-size:9px;font-weight:700;background:rgba(54,94,181,0.08);border:1px solid rgba(54,94,181,0.2);color:var(--blue);border-radius:4px;padding:1px 6px;display:inline-block;margin-bottom:8px}
+    .card-specs-pdf{border-top:1px solid var(--border);padding-top:8px;display:grid;gap:3px}
+    .spec-row-pdf{display:flex;gap:6px;font-size:9px}
+    .spec-key-pdf{color:var(--muted);font-weight:600;min-width:60px;flex-shrink:0}
+    .spec-val-pdf{color:var(--ink);font-weight:500}
+    .card-vars-pdf{margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+    .var-label-pdf{font-size:8px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:3px}
+    .var-chips-pdf{display:flex;flex-wrap:wrap;gap:2px}
+    .var-chip-pdf{font-size:8px;font-weight:600;border:1px solid var(--border);border-radius:3px;padding:1px 5px;color:var(--ink)}
+
+    /* ── CONTATO ────────────────────────────────── */
+    .contact-page{height:297mm;background:var(--navy);padding:60px 56px;display:flex;flex-direction:column;justify-content:center}
+    .contact-title{font-family:'Aoboshi One',serif;font-size:40px;color:#fff;margin-bottom:12px;margin-top:24px}
+    .contact-sub{font-size:14px;color:rgba(255,255,255,0.4);margin-bottom:40px;line-height:1.7;max-width:440px}
+    .contact-items{display:flex;flex-direction:column;gap:14px}
+    .contact-item{
+      display:flex;align-items:center;gap:16px;
+      background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);
+      border-radius:10px;padding:16px 20px;
+    }
+    .contact-label{font-size:10px;color:rgba(255,255,255,0.35);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    .contact-value{font-size:16px;color:#fff;font-weight:600;margin-top:2px}
+    .contact-footer-pdf{
+      margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .contact-cnpj-pdf{font-size:11px;color:rgba(255,255,255,0.2)}
+
+
+    /* ── MARCAS ──────────────────────────────────── */
+    .brands-page{padding:48px 56px;background:var(--navy);min-height:200px}
+    .brands-strip-pdf{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .brand-chip-pdf{
+      background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+      border-radius:8px;padding:12px 18px;
+      display:flex;align-items:center;justify-content:center;
+      min-width:90px;height:52px;
+    }
+    .brand-chip-pdf img{max-height:26px;max-width:90px;object-fit:contain;filter:brightness(0) invert(1);opacity:.8}
+    .brand-chip-pdf span{font-family:'Aoboshi One',serif;font-size:13px;color:rgba(255,255,255,0.75);letter-spacing:.02em}
+
+    /* ── PRINT ──────────────────────────────────── */
+    @page{size:A4;margin:0}
+    @media print{
+      *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+      body{background:#fff}
+      .pdf-controls{display:none!important}
+      .page{margin:0;box-shadow:none;width:100%}
+      .cover,.about-page,.contact-page{page-break-after:always}
+      .cat-page{page-break-before:always;page-break-after:avoid}
+      .products-page{page-break-inside:auto}
+      .card{page-break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+
+<!-- CONTROLES -->
+<div class="pdf-controls">
+  <p>Arquivo para uso interno — <strong>não compartilhe este link.</strong> Abra no Chrome para melhor resultado.</p>
+  <button class="btn-gerar" onclick="gerarPDF()">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="1" width="10" height="7" rx="1"/><path d="M3 8H1v5h14V8h-2"/><rect x="4" y="11" width="8" height="4" rx="1"/></svg>
+    Gerar PDF
+  </button>
+</div>
+
+<div id="documento"></div>
+
+<script>
+// ── DADOS DOS PRODUTOS (mesmos do catálogo) ─────────────────────────────────
+// Importados do catálogo principal via iframe não funciona, então duplicamos os dados essenciais
+const CDN = 'https://dcdn-us.mitiendanube.com/stores/007/417/011/products/';
+
+const CATS_PDF = [
+  {id:'calcados',num:'01',title:'Calçados de Segurança',nr:'NR-6',
+   desc:'Proteção dos pés contra impactos, perfurações e agentes químicos. Cada modelo selecionado para um contexto específico de trabalho.',
+   items:[
+    {n:'Botina Nobuck Preta Bico PVC',ca:'CA 40102',brand:'Cartom',img:'botina-seguranca-nobuck-couro-cartom-cafad9614d4f47868017790568370321',specs:[['Biqueira','PVC'],['Solado','Bidensidade'],['Norma','NR-6']],v:{t:'34–45'}},
+    {n:'Botina Agro Nobuck Elástico',ca:'CA 40030',brand:'Cartom',img:'botina-seguranca-agro-cartom-54ae4c1c0a3115db2f17790566478182',specs:[['Fixação','Elástico'],['Uso','Agronegócio'],['Norma','NR-6']],v:{t:'33–46'}},
+    {n:'Bota PVC Preta Cano Médio',ca:'CA 32169',brand:'Cartom',img:'bota-seguranca-pvc-cano-medio-3d4e637338272a510917790565066802',specs:[['Material','PVC integral'],['Proteção','Impermeável'],['Norma','NR-6']],v:{t:'37–44'}},
+    {n:'Bota PVC Branca Cano Médio',ca:'CA 32165',brand:'Cartom',img:'bota-pvc-cano-medio-branca-ecb2a8fa491d40a39117790555476545',specs:[['Uso','Alimentos/Hosp.'],['Proteção','Impermeável'],['Norma','NR-6']],v:{t:'35–44'}},
+    {n:'Botina Eletricista Composite',ca:'CA 38753',brand:'Cartom',img:'botina-seguranca-solado-bidensidade-injetado-cartom-d49b1a25bc8cdd89a017790548175358',specs:[['Biqueira','Composite'],['Norma','NR-6, NR-10']],v:{t:'36–45'}},
+    {n:'Botina Couro Elástico Bico Aço',ca:'CA 29390',brand:'Cartom',img:'botina-seguranca-biqueira-aco-cartom-ad52be5a87c9bdf9ec17790541822678',specs:[['Biqueira','Aço'],['Norma','NR-6']],v:{t:'34–46'}},
+    {n:'Botina Couro Elástico Bico PVC',ca:'CA 29391',brand:'Cartom',img:'botina-seguranca-bico-pvc-9a858daa23197a374417790536657834',specs:[['Biqueira','PVC'],['Norma','NR-6']],v:{t:'34–46'}},
+    {n:'Sapato Polimérico Preto',ca:'CA 41773',brand:'Cartom',img:'sapato-servicos-gerais-preto-polimerico-7c1ca611330657d68717790533408441',specs:[['Material','PU Polimérico'],['Norma','NR-6']],v:{t:'34–45'}},
+    {n:'Sapato Polimérico Branco',ca:'CA 41773',brand:'Cartom',img:'sapato-ca-valido-hotelaria-branco-profissional-f7e639cb515223c93317790530113439',specs:[['Uso','Hospitalar/Alim.'],['Norma','NR-6']],v:{t:'34–45'}},
+    {n:'Botina Vaqueira Cor Castor',ca:'CA 52377',brand:'Botina Mineira',img:'botina-agro-resistente-com-ca-ba6a80f95931af699d17782458710355',specs:[['Cor','Castor'],['Solado','Tipo pneu'],['Norma','NR-6']],v:{t:'37–45'}},
+    {n:'Botina Vaqueira Cor Preta',ca:'CA 52377',brand:'Botina Mineira',img:'botina-agro-couro-legitmo-com-ca-1a03e683f0c1c4fd4217782448656287',specs:[['Cor','Preta'],['Solado','Tipo pneu'],['Norma','NR-6']],v:{t:'37–45'}},
+    {n:'Botina Vaqueira Cor Café',ca:'CA 52377',brand:'Botina Mineira',img:'botina-vaqueria-agro-com-ca-0340f6e1faa602673b17779258772980',specs:[['Cor','Café'],['Solado','Tipo pneu'],['Norma','NR-6']],v:{t:'37–45'}},
+  ]},
+  {id:'luvas',num:'02',title:'Luvas de Proteção',nr:'NR-6',
+   desc:'Proteção mecânica, química e térmica para as mãos. A luva certa para cada risco específico.',
+   items:[
+    {n:'Luva Raspa Forrada Solda Longa',ca:'CA 40320',brand:'3Carlos',img:'luva-raspa-longa-3carlos-forro-a7557ec228222f04fa17785328572519',specs:[['Proteção','Solda/Calor'],['Cano','Longo']],v:{t:['M','G','GG']}},
+    {n:'Luva Raspa Petroleira',ca:'CA 40320',brand:'3Carlos',img:'luva-raspa-total-3carlos-28ad7ff57ed729e8d917785331493377',specs:[['Proteção','Mecânica pesada']],v:{t:['M','G','GG']}},
+    {n:'Luva Vaqueta Mista Cano Longo',ca:'CA 40319',brand:'3Carlos',img:'luva-vaqueta-mista-longa-3carlos-protecao-5f9fecad3e8b83642d17785317354103',specs:[['Proteção','Construção/Carga'],['Cano','Longo']],v:{t:['M','G','GG']}},
+    {n:'Luva Vaqueta Total T11',ca:'CA 40318',brand:'3Carlos',img:'luva-vaqueta-total-protecao-epi-0f89d508b830ad29d117785313539735',specs:[['Proteção','Mecânica geral']],v:{t:['T11']}},
+    {n:'Luva Vaqueta Mista P7',ca:'CA 40319',brand:'3Carlos',img:'luva-vaqueta-mista-3carlos-epi-22d3508cff1e43152017785310378499',specs:[['Proteção','Construção civil']],v:{t:['P7']}},
+    {n:'Luva Antivibração Vibrax',ca:'CA 50250',brand:'Handex',img:'luva-handex-antivibracao-hand-vibrax-preta-ca50250_principal-b140d95fc2cf05513f17779854177278',specs:[['Proteção','Vibração mecânica']],v:{t:['P','M','G','GG']}},
+    {n:'Luva Nitrílica Sensinit Azul',ca:'CA 43585',brand:'Handex',img:'luva-nitrilica-sensinit-azul-handex-ca43585_angulo01-91efe6f57242846bc417779860789554',specs:[['Pacote','Cx 100 un'],['Proteção','Biológica/Química']],v:{t:['P','M','G','EG']}},
+    {n:'Luva Nitrílica PRO NITRIL Verde',ca:'CA 43035',brand:'Handex',img:'luva-seguranca-verde-nitrilica-66fd246579713b413217779865180032',specs:[['Proteção','Química']],v:{t:['P','M','G','EG','EEG']}},
+    {n:'Luva Nitrílica Verde',ca:'CA 48761',brand:'Handex',img:'luva-handex-nitril-dfef2bc62b02003adc17779868921726',specs:[['Proteção','Química leve']],v:{t:['P','M','G','GG']}},
+    {n:'Luva Látex Neoprene',ca:'CA 46919',brand:'Handex',img:'luva-neoprene-handex-epi-675eeb532abf6b3d2117779872963410',specs:[['Proteção','Ácidos/Bases']],v:{t:['M','G','GG','XGG']}},
+    {n:'Luva Látex Corrugado Garra',ca:'CA 41627',brand:'Handex',img:'luva-latex-fb5483034e00c4128217779876765838',specs:[['Grip','Máximo antiderrap.']],v:{t:['M','G','GG']}},
+    {n:'Luva Anticorte Flex Cut',ca:'CA 42254',brand:'Handex',img:'luva-anticorti-tamanho-gg-a1bee650efa65e24b817779881107590',specs:[['Nível corte','A2']],v:{t:['P','M','G','EG','EEG']}},
+    {n:'Luva Tricotada Pigmentada',ca:'CA 46128',brand:'Handex',img:'luva-tricotada-handex-a41549c9435f0e189617779886097646',specs:[['Uso','Serviços gerais']],v:{t:['M','G','GG']}},
+    {n:'Luva Térmica Mão de Gato',ca:'CA 50007',brand:'Maicol',img:'luva-termica-mao-de-gato-35cm-maicol-ca-50007-a08cfd39203093ef4417779888933553',specs:[['Proteção','Calor até 250°C'],['Compr.','35 cm']],v:{t:['Único']}},
+    {n:'Luva PU Antiderrapante',ca:'CA 37816',brand:'Supertato',img:'luva-supertato-pu-epi-protecao-e7251cd6b12efdc8ad17779057103486',specs:[['Grip','Máximo']],v:{t:['M','G','GG']}},
+    {n:'Luva Látex Descartável',ca:'CA 15112',brand:'Volk',img:'luva-latex-com-ca-descartavel-volk-df1454493f7390409a17768676684033',specs:[['Tipo','Descartável']],v:{t:['P','M','G','GG']}},
+    {n:'Luva Orange Smart',ca:'CA 46816',brand:'Volk',img:'luva-volk-orange-smart-obra-epi-fe7b44cb3bca86c93e17766273424611',specs:[['Grip','Diamante']],v:{t:['P','M','G','GG']}},
+  ]},
+  {id:'vestimentas',num:'03',title:'Vestimentas de Proteção',nr:'NR-6',
+   desc:'Uniformes, perneiras, coletes e vestimentas que protegem sem sacrificar mobilidade.',
+   items:[
+    {n:'Calça Helanca Light Azul',ca:'CA 52614',brand:'',img:'calca-azul-helanca-leve-uniforme-0c5372e11f6848bcdd17787667820454',specs:[['Uso','Uniforme/Obra']],v:{t:['G','GG']}},
+    {n:'Camisa Helanca Light Reversível',ca:'CA 52635',brand:'',img:'camisa-helanca-obra-azul-pedreiro-2a58c7cc170d7c890217787663013277',specs:[['Reversível','Sim']],v:{t:['M','GG','XGG']}},
+    {n:'Perneira Combate 3 Talas',ca:'CA 52864',brand:'Nexus',img:'perneira-combate-3-talas-velcro-046527ff2443288df517787659571385',specs:[['Fixação','Velcro'],['Talas','3']],v:{t:['M','G']}},
+    {n:'Perneira Nexus Velcro e Fivela',ca:'CA 52864',brand:'Nexus',img:'perneira-nexus-3-talas-velcro-fivela-ddba8bfe63b7e97bdc17787654742161',specs:[['Fixação','Velcro+Fivela']],v:{t:['M','G']}},
+    {n:'Perneira Nexus 3 Talas PVC',ca:'CA 52864',brand:'Nexus',img:'perneira-nexus-3-talas-couro-sintetico-0098caecdd3f2a8d6117787648037190',specs:[['Material','PVC']],v:{t:['M','G']}},
+    {n:'Perneira Integrada 5 Talas Mod 20',ca:'CA 19667',brand:'Nexus',img:'perneira-protecap-nexus-couro-sintetico-9ec5c681c8fd0cc68617787645427659',specs:[['Talas','5']],v:{t:['M','G']}},
+    {n:'Conjunto Defensivo Econômico Mod 5',ca:'CA 16756',brand:'Pronex',img:'conjunto-defensivo-herbicida-246dace65b6eecaad617787042725136',specs:[['Uso','Agroquímicos']],v:{t:['M','G','GG']}},
+    {n:'Balaclava Touca Ninja Helanca',ca:'CA 49397',brand:'Sayro',img:'balaclava-touca-ninja-epi-1ce447a02483692c8917785339124270',specs:[['Proteção','Solar UV']]},
+    {n:'Boné Árabe c/ Proteção Solar',ca:'CA 43073',brand:'Sayro',img:'bone-arabe-helanca-100-pol-azul-ca-43073_principal-459a728f26a9f63a0e17785336316803',specs:[['Proteção','Solar UV']]},
+    {n:'Colete Refletivo Amarelo Classe 2',ca:'',brand:'Plastcor',img:'colete-seguranca-refletivo-amarelo-plastcor-1e583b243a390a9cef17782472655453',specs:[['Classe','2'],['Cor','Amarelo']],v:{t:['G','GG','XGG']}},
+    {n:'Colete Refletivo Laranja Classe 2',ca:'',brand:'Plastcor',img:'colete-refletivo-seguranca-plastcor-3412a45153599c97a417779049738669',specs:[['Classe','2'],['Cor','Laranja']],v:{t:['G','GG','XGG']}},
+    {n:'Avental Raspa Soldador',ca:'CA 42248',brand:'3Carlos',img:'avental-raspa-soldador-3carlos-simples-c4522d74e90add4cf917785307827287',specs:[['Dimensão','1,00×0,60m'],['Uso','Soldagem']]},
+    {n:'Avental Raspa Barbeiro c/ Manga',ca:'CA 42248',brand:'3Carlos',img:'1-4610598efa66d3041b17779242000478',specs:[['Com mangas','Sim'],['Uso','Solda intensa']]},
+    {n:'Perneira Raspa c/ Velcro',ca:'CA 46896',brand:'3Carlos',img:'perneira-raspa-3carlos-epi-72c7708914cc072f6117785322807793',specs:[['Material','Raspa']],v:{t:['M','G']}},
+    {n:'Avental PVC Transparente',ca:'CA 33424',brand:'Maicol',img:'avental-vinil-transparente-maicol-ca-33424-6c1ad7333197e1512817779895214712',specs:[['Uso','Química/Alimentos']]},
+    {n:'Macacão Descartável Covertech 100',ca:'CA 39183',brand:'Volk',img:'macacao-seguranca-risco-quimico-volk-epi-eba16a336c966cfbf117768667316636',specs:[['Tipo','Descartável']],v:{t:['M','G','GG']}},
+  ]},
+  {id:'capacetes',num:'04',title:'Proteção de Cabeça',nr:'NR-6',
+   desc:'Capacetes certificados para obras, indústria e trabalhos com risco elétrico.',
+   items:[
+    {n:'Capacete PLT Plastcor',ca:'CA 31469',brand:'Plastcor',img:'capacete-seguranca-plt-azul-plastcor-7ced10d1f69e2a10b817779074952223',specs:[['Material','ABS'],['Classe','A'],['Suspensão','5 pontos']],v:{c:['Azul','Amarelo']}},
+    {n:'Capacete Diamond V Delta Plus',ca:'CA 39041',brand:'Delta Plus',img:'capacete-seguranca-delta-plus-diamond-amarelo-ca-39041-02e104de604d286b3a17779198789642',specs:[['Sistema','Rotor/Catraca'],['Classe','A']],v:{c:['Amarelo','Azul','Cinza','Branco']}},
+  ]},
+  {id:'oculos',num:'05',title:'Óculos de Segurança',nr:'NR-6',
+   desc:'Proteção ocular contra partículas, respingos e radiação UV.',
+   items:[
+    {n:'Óculos Bravo Handex',ca:'CA 51386',brand:'Handex',img:'oculos-bravo-handex-cinza-protecao-olhos-ab630c9035e8a0023c17779266698721',specs:[['Lente','Policarbonato'],['Tratamento','Antirrisco']],v:{c:['Incolor','Cinza']}},
+    {n:'Óculos Alfa Handex',ca:'CA 51293',brand:'Handex',img:'oculos-de-seguranca-handex-alfa-cinza-ca51293_angulo01-4c85d842a0c281e04617779841189054',specs:[['Lente','Policarbonato'],['Tratamento','Antirrisco']],v:{c:['Incolor','Cinza']}},
+    {n:'Óculos VVision 300 Incolor',ca:'CA 42718',brand:'Volk',img:'oculos-volk-vvision300-transparente-329e2873458a82d47717768636109241',specs:[['Lente','Policarbonato'],['Tratamento','Antirrisco']],v:{c:['Incolor']}},
+    {n:'Óculos Ampla Visão VVision 400',ca:'CA 42919',brand:'Volk',img:'oculos-volk-transparente-antiemacante-ampla-visao-9cf38792d91a69d68217766262855070',specs:[['Campo visual','210°'],['Tratamento','Antirrisco+Antiemb.']]},
+  ]},
+  {id:'auditiva',num:'06',title:'Proteção Auditiva',nr:'NR-6 · NR-9',
+   desc:'Protetores auditivos de 16 a 26 dB. A perda auditiva é irreversível — a proteção certa hoje garante qualidade de vida amanhã.',
+   items:[
+    {n:'Concha Super Max 24 dB',ca:'CA 41949',brand:'Plastcor',img:'protetor-auditivo-super-max-tipo-concha-ca-41949_principal-b25b5be2fe061f6f8817787037514457',specs:[['Tipo','Concha'],['Atenuação','24 dB']]},
+    {n:'Concha 17 dB Haste Total',ca:'CA 19079',brand:'Sayro',img:'abafador-profissional-ruido-16db-sayro-b07ec37027c47c3bf217785355104015',specs:[['Tipo','Concha'],['Atenuação','17 dB']]},
+    {n:'Concha Interlagos Light 26 dB',ca:'CA 34961',brand:'Delta Plus',img:'protetor-auditivo-delta-plus-ca-34961-arco-ajustavel-c5e18f464f79f1916917779212628171',specs:[['Tipo','Concha'],['Atenuação','26 dB']]},
+    {n:'Plug Copolímero c/ Cordão',ca:'CA 51379',brand:'Plastcor',img:'protetor-auricular-plug-copolimero-plastcor-53cf371aa7b26fef4817779061493630',specs:[['Tipo','Plug'],['Atenuação','16 dB']]},
+  ]},
+  {id:'respiradores',num:'07',title:'Proteção Respiratória',nr:'NR-6 · NR-15',
+   desc:'Filtragem de partículas ≥94%. Para obras, indústria química e ambientes com poeira e vapores.',
+   items:[
+    {n:'Respirador PFF2 s/ Válvula Azul',ca:'CA 44305',brand:'Alltec',img:'respirador-descartavel-mastt-classic-pff2-s-sem-valvula-azul-44305_principal-feb4d9ff7112f153fa17779249831387',specs:[['Tipo','PFF2'],['Filtração','≥ 94%'],['Válvula','Sem']]},
+    {n:'Respirador PFF2 c/ Válvula Azul',ca:'CA 45021',brand:'Alltec',img:'mascara-pff2-com-valbvula-azul-9c49503b74393a2a1417779255282697',specs:[['Tipo','PFF2'],['Filtração','≥ 94%'],['Válvula','Com']]},
+    {n:'Filtro Químico VO/GA',ca:'CA 44125',brand:'Plastcor',img:'filtro-respiradores-vo-ga-plastcor-2f25505ac92dddc64617779190795357',specs:[['Tipo','Filtro'],['Classe','VO/GA']]},
+  ]},
+  {id:'facial',num:'08',title:'Proteção Facial',nr:'NR-6',
+   desc:'Proteção completa da face contra respingos, partículas e faíscas.',
+   items:[
+    {n:'Protetor Facial Incolor 10"',ca:'CA 47620',brand:'Delta Plus',img:'protetor-facial-delta-plus-jabre-10-26e876ff021995cb6117779218773296',specs:[['Visor','Policarbonato 10"'],['Tratamento','Antiembaçante']]},
+    {n:'Kit 2 Viseiras Policarbonato',ca:'',brand:'Delta Plus',img:'kit-viseira-visorpc-8438d779df262ce65c17779239063581',specs:[['Material','Policarbonato'],['Kit','2 unidades']]},
+  ]},
+  {id:'altura',num:'09',title:'Trabalho em Altura',nr:'NR-35',
+   desc:'Acima de 2 metros, o equipamento certificado é obrigatório. Nossa linha cobre desde cinturões simples até conjuntos completos.',
+   items:[
+    {n:'Talabarte Y Fita Tubular 1,4m',ca:'',brand:'TOP Cintos',img:'talabarte-y-fita-tubular-55mm-trabalho-altura-66f5086bc93ab43ef017768909461138',specs:[['Tipo','Y c/ absorvedor'],['Comprimento','1,4 m']]},
+    {n:'Talabarte Y Top 6305 1,4m',ca:'',brand:'TOP Cintos',img:'talabarte-fita-lisa-y-top-cinto-epi-f98aee7c1a0f70e64517768904504038',specs:[['Tipo','Y c/ absorvedor'],['Comprimento','1,4 m']]},
+    {n:'Cinturão Paraquedista 6 Pontos',ca:'CA 47931',brand:'TOP Cintos',img:'trabalho-altura-cinturao-abdominal-6-pontos-top-cintos-37738c8dea60d0da8617768893286709',specs:[['Ancoragem','6 pontos']]},
+    {n:'Cinturão Paraquedista 4 Pontos',ca:'CA 47931',brand:'TOP Cintos',img:'cinturao-nr35-trabalho-altura-top-cintos-4-pontos-fea7579c76e98259d817768879652743',specs:[['Ancoragem','4 pontos']]},
+    {n:'Cinturão Paraquedista Top 5000',ca:'CA 47940',brand:'TOP Cintos',img:'cinturao-paraquedista-top5000-trabalho-altura-ee8d2787c10d99e67217768850146613',specs:[['Ancoragem','2 pontos']]},
+  ]},
+  {id:'pele',num:'10',title:'Proteção de Pele',nr:'NR-6',
+   desc:'Exposição solar e química crônica é risco ocupacional real. Linha completa Nutriex para proteção e higiene industrial.',
+   items:[
+    {n:'Creme Protetor Grupo 3 Plus 200g',ca:'CA 43802',brand:'Nutriex',img:'creme-luva-quimica-plus-200g-60522fb25546c69eea17769555241201',specs:[['Volume','200 g']]},
+    {n:'Creme Protetor Grupo 3 Plus 4kg',ca:'CA 43802',brand:'Nutriex',img:'creme-protetor-pele-4kg-7feedeb1f5afcc7ed217769558938715',specs:[['Volume','4 kg']]},
+    {n:'Sabonete Desengraxante 4L',ca:'',brand:'Nutriex',img:'sabonete-citric-power-4l-eco-13617b2dea3ea0713817769550548782',specs:[['Volume','4 L']]},
+    {n:'Repelente 10h Spray 100ml',ca:'',brand:'Nutriex',img:'spray-repelente-10horas-nutriex-bfbc10b0f47da65b3a17769543869211',specs:[['Volume','100 ml'],['Duração','10h']]},
+    {n:'Protetor Solar FPS 60 + Repelente 120ml',ca:'',brand:'Nutriex',img:'protetor-60-repelente-120-ea827c2cb960d1e4f917769532648061',specs:[['FPS','60'],['Volume','120 ml']]},
+    {n:'Protetor Solar FPS 60 + Repelente 1L',ca:'',brand:'Nutriex',img:'protetor-60-repelente-1l-bddb82c81a6f83bf0217769535118366',specs:[['FPS','60'],['Volume','1 L']]},
+    {n:'Protetor Solar FPS 60 4L',ca:'',brand:'Nutriex',img:'creme-protetor-solar-4l-repelente-nutriex-61083180a52640992717769537175812',specs:[['FPS','60'],['Volume','4 L']]},
+    {n:'Protetor Solar FPS 30 + Repelente 120ml',ca:'',brand:'Nutriex',img:'protetor-solar-repelente-120ml-112f8387c9f4ad294617769525941961',specs:[['FPS','30'],['Volume','120 ml']]},
+    {n:'Protetor Solar FPS 30 + Repelente 1L',ca:'',brand:'Nutriex',img:'protetor-solar-repelente-1l-4b72666a0f067b6ebd17769522623452',specs:[['FPS','30'],['Volume','1 L']]},
+    {n:'Protetor Solar FPS 30 + Repelente 4L',ca:'',brand:'Nutriex',img:'protetor-solar-repelente-nutriex-4l-6d7e92136b3d0754a217769542356366',specs:[['FPS','30'],['Volume','4 L']]},
+    {n:'Dispenser 4L Nutriex',ca:'',brand:'Nutriex',img:'dispenser-para-frasco-4l-nutriex-8030c7f59364cbfc8f17769562023845',specs:[['Capacidade','4 L']]},
+  ]},
+  {id:'acessorios',num:'11',title:'Acessórios e Complementos',nr:'NR-6',
+   desc:'Os complementos certos fecham o ciclo de proteção. Cada detalhe tem uma função específica no sistema de segurança.',
+   items:[
+    {n:'Suspensão Harness V Catraca',ca:'',brand:'Delta Plus',img:'carneira-suspensao-v-capacete-diamond-delta-plus-ae7649d73efe825cfa17779231317586',specs:[['Sistema','Catraca'],['Para','Diamond V']]},
+    {n:'Suspensão Harness V Rotor',ca:'',brand:'Delta Plus',img:'2-d31d24e62bbb6ba30f17779246067289',specs:[['Sistema','Rotor giratório'],['Para','Diamond V Rotor']]},
+    {n:'Porta Viseira Visorholder',ca:'CA 40639',brand:'Delta Plus',img:'porta-viseira-delta-plus-visorholder-preto-ca-40639-frontal-769d599b22cd30945817779215972115',specs:[['Para','Diamond V']]},
+    {n:'Suporte Universal Protetor Facial',ca:'',brand:'Delta Plus',img:'suporte-universal-viseira-capcaete-235235d71b36fcdd3117779208542083',specs:[['Universal','Sim']]},
+    {n:'Jugular JUGALPHA 2 Pontos',ca:'',brand:'Delta Plus',img:'jugular-2-pontos-delta-plus-c87f934f596eb7332417780054523385',specs:[['Pontos','2']]},
+    {n:'Jugular A.T. ABF Plastcor',ca:'',brand:'Plastcor',img:'jugular-capacete-plastco-a-t-abf-717684e6a15761514917787024984006',specs:[['Com regulagem','Sim']]},
+    {n:'Mangote Anticorte Aramida',ca:'CA 50477',brand:'Volk',img:'mangote-cut-guard-volk-epi-0450321348638dbfa917768641085186',specs:[['Material','Aramida'],['Corte','Nível C']]},
+    {n:'Calço para Rodas PL5040',ca:'',brand:'Plastcor',img:'calco-caminhao-plastcor-79cbec92e46e4b431217787637788943',specs:[['NBR','9735']]},
+    {n:'Porta Lima c/ Proteção',ca:'',brand:'Plastcor',img:'porta-lima-protecao-preto-epi-c29ece4fda03c282d317787031526498',specs:[]},
+    {n:'Ponteira de Proteção p/ Vergalhão',ca:'',brand:'Sayro',img:'ponteira-vergalhao-sayro-vermelha-c97a7210b03b0e66d117786860835039',specs:[['Reutilizável','Sim']]},
+    {n:'Fita Zebrada Preta/Amarela 200m',ca:'',brand:'',img:'fita-zebrada-seguranca-preta-amarela-256cc2341a07270bb717779081888508',specs:[['Comprimento','200 m']]},
+    {n:'Clipe Prendedor de Luva',ca:'',brand:'Handex',img:'prendedor-clip-luva-seguranca-epi-a84f6f0aa500915da417779892378137',specs:[]},
+    {n:'Protetor Facial Incolor 10"',ca:'CA 47620',brand:'Delta Plus',img:'protetor-facial-delta-plus-jabre-10-26e876ff021995cb6117779218773296',specs:[['Visor','Policarbonato 10"']]},
+  ]},
+];
+
+// ── LOGO (base64 embutida do catálogo) ─────────────────────────────────────
+// Será preenchida via fetch ao arquivo local
+let LOGO_BRANCO_B64 = '';
+let LOGO_PRETO_B64 = '';
+
+// ── RENDERIZAÇÃO ────────────────────────────────────────────────────────────
+function renderCard(p){
+  const img = CDN + p.img + '-480-0.webp';
+  const specs = (p.specs||[]).map(([k,v])=>`<div class="spec-row-pdf"><span class="spec-key-pdf">${k}</span><span class="spec-val-pdf">${v}</span></div>`).join('');
+  const vars = p.v ? `<div class="card-vars-pdf">
+    ${p.v.t ? `<span class="var-label-pdf">Tamanhos</span><div class="var-chips-pdf">${(Array.isArray(p.v.t)?p.v.t:[p.v.t]).map(s=>`<span class="var-chip-pdf">${s}</span>`).join('')}</div>` : ''}
+    ${p.v.c ? `<span class="var-label-pdf" style="margin-top:4px">Cores</span><div class="var-chips-pdf">${p.v.c.map(s=>`<span class="var-chip-pdf">${s}</span>`).join('')}</div>` : ''}
+  </div>` : '';
+  return `<div class="card">
+    <div class="card-img"><img src="${img}" alt="${p.n}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23F0EEE8%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'"></div>
+    <div class="card-body">
+      ${p.brand?`<div class="card-brand">${p.brand}</div>`:''}
+      <div class="card-name">${p.n}</div>
+      ${p.ca?`<div class="card-ca">${p.ca}</div>`:''}
+      ${specs?`<div class="card-specs-pdf">${specs}</div>`:''}
+      ${vars}
+    </div>
+  </div>`;
+}
+
+function render(){
+  const doc = document.getElementById('documento');
+  let html = '';
+
+  // Capa
+  html += `<div class="page"><div class="cover">
+    <div class="cover-stripe"></div>
+    <div class="cover-bottom"></div>
+    <div class="cover-bg-text">2026</div>
+    <div class="cover-body">
+      <div class="cover-logo"><img src="../ASSETS/logos/04_logo_branco.png" alt="Inova Fortis EPIs" onerror="this.style.display='none'"></div>
+      <p class="cover-eyebrow">Equipamentos de Proteção Individual</p>
+      <h1 class="cover-title">CATÁLOGO<br>DE <span>PRODUTOS</span></h1>
+      <div class="cover-year">2026</div>
+      <p class="cover-tagline">A loja que te ensina a se proteger de verdade.</p>
+    </div>
+    <div class="cover-footer">
+      <div class="cover-stat"><strong>88 Produtos</strong>11 categorias</div>
+      <div class="cover-stat"><strong>12 Marcas</strong>nacionais e importadas</div>
+      <div class="cover-stat"><strong>CA Aprovado</strong>certificados MTE</div>
+      <div class="cover-stat"><strong>Maio–Jun/2026</strong>Edição</div>
+    </div>
+  </div></div>`;
+
+  // Sobre
+  html += `<div class="page"><div class="about-page">
+    <p class="section-label">Quem somos</p>
+    <h2 class="about-title">Proteger é mais do que entregar um produto. É orientar e incentivar o uso.</h2>
+    <p class="about-text">A Inova Fortis EPIs nasceu com um propósito claro: combater a normalização do risco nos ambientes de trabalho. Baseados em Frutal, MG, atendemos empresas e trabalhadores de toda a região com um portfólio completo de Equipamentos de Proteção Individual certificados pelo Ministério do Trabalho. Cada produto foi selecionado por critérios técnicos rigorosos: conforto real, desempenho comprovado e certificação ativa.</p>
+    <div class="about-values">
+      <div class="value-card"><div class="value-title">Qualidade Certificada</div><div class="value-text">Apenas produtos com CA ativo emitido pelo MTE. Certificação verificável.</div></div>
+      <div class="value-card"><div class="value-title">Orientação Técnica</div><div class="value-text">Nossa equipe orienta sobre o EPI correto para cada risco específico do seu ambiente.</div></div>
+      <div class="value-card"><div class="value-title">Atendimento Local</div><div class="value-text">Presença real em Frutal e região. Conhecemos as demandas locais da construção civil, agro e indústria.</div></div>
+    </div>
+    <div class="about-stats">
+      <div class="about-stat"><div class="about-stat-num">88+</div><div class="about-stat-label">Produtos certificados</div></div>
+      <div class="about-stat"><div class="about-stat-num">CA</div><div class="about-stat-label">Todos com certificação ativa</div></div>
+      <div class="about-stat"><div class="about-stat-num">NR-6</div><div class="about-stat-label">Conformidade garantida</div></div>
+    </div>
+  </div></div>`;
+
+
+  // Marcas
+  html += `<div class="page"><div class="brands-page">
+    <p class="section-label" style="color:var(--orange);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px"><span style="width:20px;height:2px;background:var(--orange);display:inline-block"></span>Portfólio de marcas</p>
+    <h2 style="font-family:'Aoboshi One',serif;font-size:28px;color:#fff;margin-bottom:8px">Marcas selecionadas com critério técnico</h2>
+    <p style="font-size:12px;color:rgba(255,255,255,0.35);max-width:520px;line-height:1.7;margin-bottom:24px">Cada fabricante foi selecionado por desempenho comprovado, certificação ativa e compromisso com a segurança real do trabalhador.</p>
+    <div class="brands-strip-pdf">
+      <div class="brand-chip-pdf"><img src="logos/deltaplus.svg" alt="Delta Plus"></div>
+      <div class="brand-chip-pdf"><img src="logos/plastcor.png" alt="Plastcor"></div>
+      <div class="brand-chip-pdf"><img src="logos/volk.png" alt="Volk do Brasil"></div>
+      <div class="brand-chip-pdf"><img src="logos/handex.png" alt="Handex"></div>
+      <div class="brand-chip-pdf"><img src="logos/3carlos.png" alt="3Carlos"></div>
+      <div class="brand-chip-pdf"><img src="logos/nutriex.png" alt="Nutriex"></div>
+      <div class="brand-chip-pdf"><img src="logos/topcintos.webp" alt="TOP Cintos"></div>
+      <div class="brand-chip-pdf"><img src="logos/sayro.png" alt="Sayro"></div>
+      <div class="brand-chip-pdf"><img src="logos/nexus.png" alt="Nexus"></div>
+      <div class="brand-chip-pdf"><img src="logos/maicol.png" alt="Maicol"></div>
+      <div class="brand-chip-pdf"><img src="logos/alltec.png" alt="Alltec"></div>
+      <div class="brand-chip-pdf"><img src="logos/cartom.png" alt="Cartom"></div>
+    </div>
+  </div></div>`;
+
+  // Categorias
+  CATS_PDF.forEach(cat => {
+    // Divisor de categoria
+    html += `<div class="page"><div class="cat-page">
+      <div class="cat-page-ghost">${cat.title.toUpperCase()}</div>
+      <div class="cat-num">Categoria ${cat.num}</div>
+      <div class="cat-name">${cat.title}</div>
+      <div class="cat-desc-text">${cat.desc}</div>
+      <div class="cat-nr-badge">${cat.nr}</div>
+    </div>`;
+
+    // Produtos em grupos de 3 por linha
+    const items = [...cat.items].sort((a,b)=>a.n.localeCompare(b.n,'pt-BR'));
+    for(let i=0; i<items.length; i+=3){
+      const group = items.slice(i, i+3);
+      html += `<div class="products-page">
+        <div class="cat-page-label">
+          <span>${cat.title}</span>
+          <span>${i+1}–${Math.min(i+3,items.length)} de ${items.length}</span>
+        </div>
+        <div class="products-grid-pdf">${group.map(p=>renderCard(p)).join('')}</div>
+      </div>`;
+    }
+    html += `</div>`; // close .page
+  });
+
+  // Contato
+  html += `<div class="page"><div class="contact-page">
+    <img src="../ASSETS/logos/04_logo_branco.png" style="height:40px;width:auto" onerror="this.style.display='none'">
+    <h2 class="contact-title">Solicite seu orçamento sem compromisso.</h2>
+    <p class="contact-sub">Atendimento especializado para empresas, construtoras, fazendas e profissionais autônomos. Respondemos em até 2 horas.</p>
+    <div class="contact-items">
+      <div class="contact-item"><div><div class="contact-label">WhatsApp</div><div class="contact-value">(34) 99823-3417</div></div></div>
+      <div class="contact-item"><div><div class="contact-label">Instagram</div><div class="contact-value">@fortisepis</div></div></div>
+      <div class="contact-item"><div><div class="contact-label">Loja Online</div><div class="contact-value">fortisepis.com.br</div></div></div>
+    </div>
+    <div class="contact-footer-pdf">
+      <p class="contact-cnpj-pdf">CNPJ 51.765.524/0001-66 · Frutal, Minas Gerais · Brasil · Edição Maio–Jun/2026</p>
+    </div>
+  </div></div>`;
+
+  doc.innerHTML = html;
+}
+
+function gerarPDF(){
+  // Instrução para o usuário
+  const msg = document.createElement('div');
+  msg.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#fff;border:2px solid #FD7A22;border-radius:10px;padding:20px 28px;z-index:9999;font-family:sans-serif;font-size:14px;max-width:420px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.2)';
+  msg.innerHTML = '<strong style="color:#0D1B2A;font-size:16px">Como salvar o PDF</strong><br><br>1. Na janela que abrir, escolha <strong>"Salvar como PDF"</strong> em Destino<br>2. Marque <strong>"Gráficos de segundo plano"</strong> (ou Background graphics)<br>3. Margens: <strong>Nenhuma</strong> · Papel: <strong>A4</strong><br>4. Clique <strong>Salvar</strong><br><br><button onclick="this.parentNode.remove();window.print()" style="background:#FD7A22;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Entendi — Abrir diálogo de impressão</button><br><button onclick="this.parentNode.remove()" style="margin-top:8px;background:none;border:none;color:#64748B;cursor:pointer;font-size:13px">Cancelar</button>';
+  document.body.appendChild(msg);
+}
+
+render();
+</script>
+</body>
+</html>
