@@ -48,7 +48,7 @@
       white-space:nowrap; cursor:pointer;
     }
     .nav-link:hover,.nav-link.active{color:#fff; border-bottom-color:var(--orange)}
-    .nav-print{
+    .nav-print{display:none!important;
       margin-left:auto; flex-shrink:0;
       padding:7px 16px; border-radius:6px;
       background:var(--orange); color:#fff;
@@ -587,15 +587,81 @@
 
     /* ── PRINT ───────────────────────────────────────── */
     @media print{
-      .nav{display:none!important}
-      .card-cta{display:none!important}
-      .cover,.about{page-break-after:always}
-      .cat-divider{page-break-before:always; page-break-after:avoid}
-      .products-section{page-break-inside:auto}
-      .card{page-break-inside:avoid; box-shadow:none; border:1px solid #ddd}
-      .products-grid{grid-template-columns:repeat(2,1fr); gap:16px}
-      body{background:#fff}
-      .cover-bg::before{display:none}
+      /* ── FORÇA IMPRESSÃO DE FUNDOS E CORES ─────────── */
+      *{
+        -webkit-print-color-adjust:exact!important;
+        print-color-adjust:exact!important;
+      }
+
+      /* ── ELEMENTOS OCULTOS NO PDF ───────────────────── */
+      .nav,.search-bar-wrap,.quote-bar,.card-add,
+      .back-top,.no-results-msg,.nav-print{display:none!important;display:none!important}
+
+      /* ── CONFIGURAÇÃO DA PÁGINA ─────────────────────── */
+      @page{size:A4; margin:0}
+      body{margin:0;padding:0;background:#fff;font-size:11px}
+
+      /* ── CAPA — página inteira ──────────────────────── */
+      .cover{
+        page-break-after:always;
+        min-height:100vh;height:100vh;
+      }
+      .cover-body{padding:60px 60px 80px}
+      .cover-footer{padding:18px 60px}
+
+      /* ── SOBRE — página inteira ─────────────────────── */
+      .about{
+        page-break-after:always;
+        padding:60px 60px;
+      }
+      .about-values{grid-template-columns:repeat(3,1fr)}
+
+      /* ── MARCAS — página inteira ────────────────────── */
+      .brands-section{
+        page-break-after:always;
+        padding:60px 60px;
+      }
+
+      /* ── DIVISOR DE CATEGORIA — inicia nova página ──── */
+      .cat-divider{
+        page-break-before:always;
+        page-break-after:avoid;
+        padding:56px 60px 48px;
+        min-height:200px;
+      }
+
+      /* ── PRODUTOS ───────────────────────────────────── */
+      .products-section{
+        page-break-inside:auto;
+        padding:40px 60px;
+        background:#fff;
+      }
+      .products-grid{
+        grid-template-columns:repeat(3,1fr);
+        gap:16px;
+      }
+      .card{
+        page-break-inside:avoid;
+        box-shadow:none;
+        border:1px solid #e2e8f0;
+      }
+      .card-img-wrap{aspect-ratio:1/1}
+      .card-body{padding:12px}
+      .card-name{font-size:12px}
+      .spec-row{font-size:10px}
+
+      /* ── CONTATO — última página ────────────────────── */
+      .contact{
+        page-break-before:always;
+        padding:60px 60px;
+      }
+      .contact-grid{grid-template-columns:1fr 1fr}
+
+      /* ── TIPOGRAFIA ─────────────────────────────────── */
+      .cover-title{font-size:72px}
+      .cover-year{font-size:100px}
+      .cat-title{font-size:48px}
+      .about-title{font-size:32px}
     }
   </style>
 </head>
@@ -619,10 +685,6 @@
     <a class="nav-link" href="#pele">Pele</a>
     <a class="nav-link" href="#acessorios">Acessórios</a>
     <a class="nav-link" href="#contato">Contato</a>
-    <button class="nav-print" onclick="window.print()">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="1" width="10" height="7" rx="1"/><path d="M3 8H1v5h14V8h-2"/><rect x="4" y="11" width="8" height="4" rx="1"/></svg>
-      Salvar PDF
-    </button>
   </div>
 </nav>
 
