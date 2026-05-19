@@ -38,6 +38,7 @@
     /* ── PÁGINA A4 ──────────────────────────────── */
     .page{
       width:210mm;
+      min-height:297mm;
       margin:72px auto 16px;
       background:#fff;
       box-shadow:0 4px 24px rgba(0,0,0,0.15);
@@ -118,8 +119,8 @@
 
     /* ── DIVISOR DE CATEGORIA ───────────────────── */
     .cat-page{position:relative;overflow:hidden;
-      height:180px;background:var(--navy);
-      padding:40px 56px;display:flex;flex-direction:column;justify-content:center;
+      height:297mm;background:var(--navy);
+      padding:60px 56px;display:flex;flex-direction:column;justify-content:center;
       position:relative;overflow:hidden;
     }
     .cat-page::before{content:'';position:absolute;right:0;top:0;bottom:0;width:5px;background:var(--orange)}
@@ -215,6 +216,8 @@
       .card{page-break-inside:avoid;break-inside:avoid}
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -509,29 +512,66 @@ function render(){
   doc.innerHTML = html;
 }
 
-function gerarPDF(){
-  // Preload all CDN images before opening print dialog
-  const cdnImgs = [...document.querySelectorAll('.card-img img')];
-  let pending = cdnImgs.length;
+async function gerarPDF(){
+  const btn = document.querySelector('.btn-gerar');
+  const orig = btn.innerHTML;
+  btn.disabled = true;
 
-  function showModal(){
-    const msg = document.createElement('div');
-    msg.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#fff;border:2px solid #FD7A22;border-radius:10px;padding:20px 28px;z-index:9999;font-family:sans-serif;font-size:14px;max-width:420px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.2)';
-    msg.innerHTML = '<strong style="color:#0D1B2A;font-size:16px">Como salvar o PDF</strong><br><br>1. Na janela que abrir, escolha <strong>"Salvar como PDF"</strong> em Destino<br>2. Marque <strong>"Gráficos de segundo plano"</strong> (ou Background graphics)<br>3. Margens: <strong>Nenhuma</strong> · Papel: <strong>A4</strong><br>4. Clique <strong>Salvar</strong><br><br><button onclick="this.parentNode.remove();window.print()" style="background:#FD7A22;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Entendi, abrir diálogo de impressão</button><br><button onclick="this.parentNode.remove()" style="margin-top:8px;background:none;border:none;color:#64748B;cursor:pointer;font-size:13px">Cancelar</button>';
-    document.body.appendChild(msg);
+  try {
+    // Passo 1: converter imagens CDN para base64 (evita CORS no canvas)
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Carregando imagens...';
+    const cardImgs = [...document.querySelectorAll('.card-img img')];
+    let done = 0;
+    await Promise.all(cardImgs.map(async img => {
+      if(!img.src.startsWith('http')) return;
+      try {
+        const resp = await fetch(img.src);
+        const blob = await resp.blob();
+        img.src = await new Promise(res => {
+          const fr = new FileReader();
+          fr.onloadend = () => res(fr.result);
+          fr.readAsDataURL(blob);
+        });
+      } catch(e){}
+      btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Imagens: ${++done}/${cardImgs.length}`;
+    }));
+
+    // Passo 2: gerar PDF página a página com html2canvas
+    const {jsPDF} = window.jspdf;
+    const pdf = new jsPDF({orientation:'portrait', unit:'mm', format:'a4'});
+    const pages = [...document.querySelectorAll('#documento .page')];
+
+    for(let i = 0; i < pages.length; i++){
+      btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Página ${i+1} de ${pages.length}...`;
+      await new Promise(r => setTimeout(r, 30));
+
+      const pg = pages[i];
+      const canvas = await html2canvas(pg, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        logging: false,
+        imageTimeout: 15000,
+        backgroundColor: '#ffffff',
+        removeContainer: true,
+      });
+
+      if(i > 0) pdf.addPage();
+      const w = 210;
+      const h = Math.min((canvas.height / canvas.width) * 210, 297);
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.93), 'JPEG', 0, 0, w, h);
+    }
+
+    pdf.save('catalogo-fortis-2026.pdf');
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14 3 6 11 2 7"/></svg> Download concluído!';
+    setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 3000);
+
+  } catch(err){
+    console.error('Erro ao gerar PDF:', err);
+    btn.innerHTML = 'Erro — tente novamente';
+    setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 4000);
   }
-
-  function onLoad(){ if(--pending <= 0) showModal(); }
-
-  if(pending === 0){ showModal(); return; }
-  cdnImgs.forEach(img => {
-    if(img.complete && img.naturalWidth > 0) onLoad();
-    else { img.addEventListener('load', onLoad); img.addEventListener('error', onLoad); }
-  });
-  // Safety timeout: show modal after 8s regardless
-  setTimeout(() => { if(pending > 0){ pending=0; showModal(); } }, 8000);
 }
-
 render();
 </script>
 </body>
