@@ -229,6 +229,110 @@
     .brand-chip-pdf span{font-family:'Aoboshi One',serif;font-size:13px;color:rgba(255,255,255,0.75);letter-spacing:.02em}
 
     /* ── PRINT ──────────────────────────────────── */
+
+    /* ── POR QUE A FORTIS ───────────────────────────────────────────── */
+    .why-page{
+      height:297mm;background:var(--navy);
+      padding:60px 56px;display:flex;flex-direction:column;justify-content:center;
+      position:relative;overflow:hidden;
+    }
+    .why-page-ghost{
+      position:absolute;right:-20px;bottom:40px;
+      font-family:'Aoboshi One',serif;font-size:140px;
+      color:rgba(255,255,255,0.03);line-height:1;user-select:none;
+    }
+    .why-eyebrow{
+      font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--orange);margin-bottom:16px;
+      display:flex;align-items:center;gap:10px;
+    }
+    .why-eyebrow::before{content:'';width:32px;height:2px;background:var(--orange)}
+    .why-title{
+      font-family:'Aoboshi One',serif;font-size:38px;color:#fff;
+      line-height:1.15;margin-bottom:48px;max-width:540px;
+    }
+    .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .why-card{
+      background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+      border-left:3px solid var(--orange);border-radius:8px;padding:24px 20px;
+    }
+    .why-card-num{
+      font-family:'Aoboshi One',serif;font-size:28px;color:var(--orange);
+      line-height:1;margin-bottom:10px;
+    }
+    .why-card-title{
+      font-family:'Aoboshi One',serif;font-size:16px;color:#fff;margin-bottom:8px;
+    }
+    .why-card-text{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.65}
+
+    /* ── SETORES ────────────────────────────────────────────────────── */
+    .setores-page{
+      height:297mm;background:var(--cream);
+      padding:52px 56px;display:flex;flex-direction:column;
+    }
+    .setores-label{
+      font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--orange);margin-bottom:12px;
+      display:flex;align-items:center;gap:10px;
+    }
+    .setores-label::before{content:'';width:32px;height:2px;background:var(--orange)}
+    .setores-title{
+      font-family:'Aoboshi One',serif;font-size:34px;color:var(--navy);
+      margin-bottom:32px;line-height:1.1;
+    }
+    .setores-grid{display:flex;flex-direction:column;gap:14px;flex:1}
+    .setor-card{
+      background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);
+      border-radius:8px;padding:16px 20px;display:flex;align-items:flex-start;gap:16px;
+    }
+    .setor-nome{
+      font-family:'Aoboshi One',serif;font-size:13px;color:var(--navy);
+      min-width:160px;flex-shrink:0;padding-top:1px;
+    }
+    .setor-epis{font-size:10px;color:var(--muted);line-height:1.6}
+    .setor-epi-tag{
+      display:inline-block;background:rgba(13,27,42,0.06);
+      border-radius:4px;padding:1px 7px;margin:1px 2px;
+      font-size:9px;font-weight:600;color:var(--navy);
+    }
+
+    /* ── TABELA NR ──────────────────────────────────────────────────── */
+    .nr-page{
+      height:297mm;background:#fff;
+      padding:52px 56px;display:flex;flex-direction:column;
+    }
+    .nr-label{
+      font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--orange);margin-bottom:12px;
+      display:flex;align-items:center;gap:10px;
+    }
+    .nr-label::before{content:'';width:32px;height:2px;background:var(--orange)}
+    .nr-title{
+      font-family:'Aoboshi One',serif;font-size:34px;color:var(--navy);
+      margin-bottom:8px;
+    }
+    .nr-subtitle{font-size:11px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+    .nr-table{width:100%;border-collapse:collapse;flex:1}
+    .nr-table thead tr{background:var(--navy)}
+    .nr-table thead th{
+      font-family:'Aoboshi One',serif;font-size:10px;color:#fff;
+      padding:12px 14px;text-align:left;letter-spacing:.04em;
+    }
+    .nr-table thead th:first-child{width:80px;border-radius:6px 0 0 0}
+    .nr-table thead th:last-child{border-radius:0 6px 0 0}
+    .nr-table tbody tr{border-bottom:1px solid var(--border)}
+    .nr-table tbody tr:nth-child(even){background:var(--cream)}
+    .nr-table tbody td{font-size:10px;color:var(--ink);padding:11px 14px;line-height:1.5}
+    .nr-table tbody td:first-child{
+      font-family:'Aoboshi One',serif;font-size:12px;
+      color:var(--orange);font-weight:700;
+    }
+    .nr-table tbody td:nth-child(2){color:var(--muted);font-size:10px}
+    .nr-note{
+      margin-top:20px;font-size:9px;color:var(--muted);
+      border-top:1px solid var(--border);padding-top:12px;line-height:1.6;
+    }
+
     @page{size:A4;margin:0}
     @media print{
       *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
@@ -512,6 +616,159 @@ function render(){
       <div class="brand-chip-pdf"><span style="font-family:'Open Sans',sans-serif;font-size:14px;font-weight:700;color:rgba(255,255,255,0.8);letter-spacing:.06em;text-transform:uppercase">CARTOM</span></div>
     </div>
   </div></div>`;
+
+  // Por que a Fortis
+  html += `<div class="page"><div class="why-page">
+    <div class="why-page-ghost">FORTIS</div>
+    <p class="why-eyebrow">Por que escolher a Fortis</p>
+    <h2 class="why-title">Segurança real começa na escolha certa do fornecedor.</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-num">01</div>
+        <div class="why-card-title">Presença Local em Frutal</div>
+        <div class="why-card-text">Loja física em Frutal/MG com estoque disponível. Atendimento presencial, retirada no mesmo dia. Você não compra de um site — compra de pessoas.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">02</div>
+        <div class="why-card-title">CA Ativo Garantido</div>
+        <div class="why-card-text">Todos os produtos com Certificado de Aprovação emitido pelo MTE. Conformidade legal verificável. Nenhum produto sem certificação entra no nosso estoque.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">03</div>
+        <div class="why-card-title">Orientação Técnica</div>
+        <div class="why-card-text">Nossa equipe orienta sobre o EPI correto para cada risco específico. Não vendemos produto. Ajudamos a montar o kit de proteção adequado para cada função.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">04</div>
+        <div class="why-card-title">Atendimento Rápido</div>
+        <div class="why-card-text">Resposta via WhatsApp em até 2 horas. Orçamento para empresas no mesmo dia. Para pedidos recorrentes: reposição programada sem burocracia.</div>
+      </div>
+    </div>
+  </div></div>`;
+
+  // Setores que atendemos
+  html += `<div class="page"><div class="setores-page">
+    <p class="setores-label">Setores atendidos</p>
+    <h2 class="setores-title">Seu setor, os EPIs certos.</h2>
+    <div class="setores-grid">
+      <div class="setor-card">
+        <div class="setor-nome">Construção Civil</div>
+        <div class="setor-epis">
+          <span class="setor-epi-tag">Capacetes</span>
+          <span class="setor-epi-tag">Calçado bico aço</span>
+          <span class="setor-epi-tag">Colete refletivo</span>
+          <span class="setor-epi-tag">Luvas raspa</span>
+          <span class="setor-epi-tag">Óculos de segurança</span>
+          <span class="setor-epi-tag">Protetor auditivo</span>
+        </div>
+      </div>
+      <div class="setor-card">
+        <div class="setor-nome">Agronegócio</div>
+        <div class="setor-epis">
+          <span class="setor-epi-tag">Botina agro</span>
+          <span class="setor-epi-tag">Perneira</span>
+          <span class="setor-epi-tag">Conjunto defensivo</span>
+          <span class="setor-epi-tag">Respirador PFF2</span>
+          <span class="setor-epi-tag">Luvas nitrílicas</span>
+          <span class="setor-epi-tag">Proteção solar</span>
+        </div>
+      </div>
+      <div class="setor-card">
+        <div class="setor-nome">Indústria Metalúrgica</div>
+        <div class="setor-epis">
+          <span class="setor-epi-tag">Capacete</span>
+          <span class="setor-epi-tag">Luvas anticorte</span>
+          <span class="setor-epi-tag">Protetor auditivo</span>
+          <span class="setor-epi-tag">Óculos</span>
+          <span class="setor-epi-tag">Avental raspa</span>
+          <span class="setor-epi-tag">Calçado de segurança</span>
+        </div>
+      </div>
+      <div class="setor-card">
+        <div class="setor-nome">Logística e Transporte</div>
+        <div class="setor-epis">
+          <span class="setor-epi-tag">Colete refletivo</span>
+          <span class="setor-epi-tag">Calçado polimérico</span>
+          <span class="setor-epi-tag">Luvas tricotadas</span>
+          <span class="setor-epi-tag">Óculos de segurança</span>
+          <span class="setor-epi-tag">Cinto de segurança</span>
+        </div>
+      </div>
+      <div class="setor-card">
+        <div class="setor-nome">Saúde e Alimentação</div>
+        <div class="setor-epis">
+          <span class="setor-epi-tag">Luvas nitrílicas</span>
+          <span class="setor-epi-tag">Respirador PFF2</span>
+          <span class="setor-epi-tag">Avental PVC</span>
+          <span class="setor-epi-tag">Calçado branco</span>
+          <span class="setor-epi-tag">Óculos ampla visão</span>
+        </div>
+      </div>
+    </div>
+  </div></div>`;
+
+  // Tabela NR x EPI
+  html += `<div class="page"><div class="nr-page">
+    <p class="nr-label">Referência técnica</p>
+    <h2 class="nr-title">Normas Regulamentadoras e EPIs</h2>
+    <p class="nr-subtitle">Guia de conformidade legal. Cada NR estabelece obrigações específicas de proteção.<br>Use esta tabela para identificar os equipamentos exigidos para cada atividade.</p>
+    <table class="nr-table">
+      <thead>
+        <tr>
+          <th>Norma</th>
+          <th>O que regula</th>
+          <th>EPIs exigidos / recomendados</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>NR-6</td>
+          <td>Equipamentos de Proteção Individual</td>
+          <td>Define obrigatoriedade de uso de todos os EPIs certificados com CA ativo</td>
+        </tr>
+        <tr>
+          <td>NR-9</td>
+          <td>Avaliação e controle de riscos — ruído</td>
+          <td>Protetores auditivos tipo plug e tipo concha conforme nível de exposição</td>
+        </tr>
+        <tr>
+          <td>NR-10</td>
+          <td>Instalações e serviços em eletricidade</td>
+          <td>Capacete classe B ou Composto, luvas isolantes, calçado eletricista com biqueira composite</td>
+        </tr>
+        <tr>
+          <td>NR-15</td>
+          <td>Atividades e operações insalubres</td>
+          <td>Respiradores PFF2/PFF3, protetores auditivos, vestimentas e luvas específicas por agente</td>
+        </tr>
+        <tr>
+          <td>NR-33</td>
+          <td>Trabalho em espaços confinados</td>
+          <td>Respirador de adução de ar ou autônomo, capacete, luvas, calçado de segurança</td>
+        </tr>
+        <tr>
+          <td>NR-35</td>
+          <td>Trabalho em altura (acima de 2 metros)</td>
+          <td>Cinto de segurança tipo paraquedista, talabarte, capacete com jugular, calçado antiderrapante</td>
+        </tr>
+        <tr>
+          <td>NR-12</td>
+          <td>Segurança em máquinas e equipamentos</td>
+          <td>Luvas anticorte, óculos de segurança, protetor facial, calçado com biqueira de aço</td>
+        </tr>
+        <tr>
+          <td>NR-32</td>
+          <td>Segurança em serviços de saúde</td>
+          <td>Luvas nitrílicas descartáveis, respirador PFF2, avental impermeável, óculos de proteção</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="nr-note">
+      Esta tabela é um guia de referência. A determinação exata dos EPIs obrigatórios depende do PPRA/PGR, laudo técnico e avaliação de risco específica da atividade.
+      Para orientação personalizada, consulte nossa equipe: (34) 99823-3417.
+    </p>
+  </div></div>`;
+
 
   // Categorias
   CATS_PDF.forEach(cat => {
