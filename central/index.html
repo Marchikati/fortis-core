@@ -422,6 +422,50 @@ body{
   .gc{min-height:96px;padding:18px 8px}
   .gc-name{font-size:12.5px}
 }
+
+/* ── PORTFOLIO CARD ── */
+.pf-card{
+  display:flex;align-items:center;gap:16px;
+  padding:20px 20px;
+  background:linear-gradient(135deg,#0D1B2A 0%,#152234 100%);
+  border:1.5px solid rgba(253,122,34,.28);
+  border-radius:20px;
+  text-decoration:none;color:#fff;
+  box-shadow:0 4px 24px rgba(13,27,42,.18);
+  position:relative;overflow:hidden;
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+  margin-bottom:14px;
+  -webkit-tap-highlight-color:transparent;
+}
+.pf-card:hover{transform:translateY(-2px);border-color:rgba(253,122,34,.55);box-shadow:0 8px 32px rgba(13,27,42,.28)}
+.pf-card:active{transform:scale(.985)}
+.pf-card::before{
+  content:'';position:absolute;
+  top:0;left:-100%;width:50%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);
+  animation:sheen 4s ease-in-out infinite;
+}
+.pf-ico{
+  width:54px;height:54px;border-radius:14px;flex-shrink:0;
+  background:rgba(253,122,34,.12);
+  border:1px solid rgba(253,122,34,.2);
+  display:flex;align-items:center;justify-content:center;
+}
+.pf-ico svg{width:26px;height:26px;color:#FD7A22;display:block}
+.pf-body{flex:1;min-width:0}
+.pf-badge{
+  display:inline-block;
+  font-size:8.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:#FD7A22;
+  background:rgba(253,122,34,.12);
+  border:1px solid rgba(253,122,34,.2);
+  border-radius:4px;padding:2px 7px;
+  margin-bottom:6px;
+}
+.pf-title{font-size:16px;font-weight:700;margin-bottom:3px;color:#fff}
+.pf-sub{font-size:11.5px;color:rgba(255,255,255,.5);line-height:1.4}
+.pf-arr{width:20px;height:20px;flex-shrink:0;color:rgba(253,122,34,.5);transition:transform .2s,color .2s}
+.pf-card:hover .pf-arr{transform:translateX(4px);color:#FD7A22}
 </style>
 </head>
 <body>
@@ -457,6 +501,25 @@ body{
     <div class="wa-sub">Orientação gratuita &middot; (34) 99823-3417</div>
   </div>
   <svg class="wa-arr" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 10h12M12 5l5 5-5 5"/>
+  </svg>
+</a>
+
+<!-- PORTFOLIO CARD -->
+<a class="pf-card" href="../portfolio/">
+  <div class="pf-ico">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="3" width="20" height="14" rx="2"/>
+      <path d="M8 21h8M12 17v4"/>
+      <path d="M7 8h10M7 11h6"/>
+    </svg>
+  </div>
+  <div class="pf-body">
+    <div class="pf-badge">Material B2B</div>
+    <div class="pf-title">Portfólio Institucional</div>
+    <div class="pf-sub">Apresentação completa para visitas comerciais</div>
+  </div>
+  <svg class="pf-arr" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
     <path d="M4 10h12M12 5l5 5-5 5"/>
   </svg>
 </a>

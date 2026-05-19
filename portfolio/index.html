@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio Institucional 2026 - Inova Fortis EPIs. Distribuidora de equipamentos de proteção individual em Frutal/MG. A loja que te ajuda a se proteger de verdade.">
+  <title>Portfólio Institucional · Inova Fortis EPIs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aoboshi+One&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ─── RESET ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── TOKENS ─────────────────────────────────────── */
+    :root {
+      --navy:      #0D1B2A;
+      --navy2:     #08121D;
+      --navy3:     #152030;
+      --orange:    #FD7A22;
+      --orange2:   #E5620A;
+      --orange-lo: rgba(253,122,34,0.10);
+      --orange-md: rgba(253,122,34,0.18);
+      --blue:      #365EB5;
+      --blue-lo:   rgba(54,94,181,0.12);
+      --cream:     #F8F7F3;
+      --cream2:    #EEEDe8;
+      --white:     #FFFFFF;
+      --ink:       #1C2434;
+      --muted:     #5A6478;
+      --border:    rgba(0,0,0,0.08);
+      --border-lt: rgba(255,255,255,0.07);
+
+      --f-display: 'Aoboshi One', serif;
+      --f-body:    'Open Sans', sans-serif;
+
+      --max-w: 1280px;
+      --gutter: clamp(20px, 5vw, 88px);
+
+      --r-xs: 4px;
+      --r:    10px;
+      --r-lg: 18px;
+
+      --ease: cubic-bezier(.4,0,.2,1);
+      --ease-out: cubic-bezier(0,0,.2,1);
+    }
+
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--f-body);
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img  { display: block; max-width: 100%; }
+    a    { color: inherit; text-decoration: none; }
+    svg  { display: block; }
+
+    /* ─── NAV ────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(13,27,42,.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 2px solid var(--orange);
+    }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 0 var(--gutter);
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .nav-logo img { height: 28px; width: auto; }
+    .nav-links { display: flex; align-items: center; list-style: none; }
+    .nav-links a {
+      display: flex; align-items: center; height: 56px; padding: 0 13px;
+      font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.38);
+      border-bottom: 2px solid transparent;
+      transition: color .18s, border-color .18s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; border-bottom-color: var(--orange); }
+    .nav-cta {
+      flex-shrink: 0; padding: 8px 20px;
+      background: var(--orange); color: #fff;
+      font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+      border-radius: var(--r-xs);
+      transition: background .18s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--orange2); }
+
+    /* ─── SECTION SYSTEM ─────────────────────────────── */
+    .s-dark  { background: var(--navy);  color: #fff; }
+    .s-light { background: var(--cream); color: var(--ink); }
+
+    .s-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: clamp(64px, 8vw, 120px) var(--gutter);
+      position: relative;
+    }
+
+    .s-label {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 10px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 20px;
+    }
+    .s-label::before {
+      content: ''; width: 32px; height: 2px; background: var(--orange); flex-shrink: 0;
+    }
+
+    .s-title {
+      font-family: var(--f-display);
+      font-size: clamp(28px, 4.5vw, 56px);
+      line-height: 1.05; letter-spacing: -.02em;
+    }
+    .s-title--dark  { color: #fff; }
+    .s-title--light { color: var(--navy); }
+    .s-title .hi    { color: var(--orange); }
+
+    /* ─── GHOST BG NUMBERS ───────────────────────────── */
+    .ghost-num {
+      position: absolute; right: var(--gutter); top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--f-display);
+      font-size: clamp(80px, 16vw, 200px);
+      line-height: 1; pointer-events: none; user-select: none;
+      letter-spacing: -.04em;
+    }
+    .ghost-num--dark  { color: rgba(255,255,255,.025); }
+    .ghost-num--light { color: rgba(13,27,42,.04); }
+
+    /* ─── SYMBOL WATERMARK ───────────────────────────── */
+    .symbol-watermark {
+      position: absolute;
+      pointer-events: none; user-select: none;
+    }
+    .symbol-watermark img { width: 100%; height: 100%; object-fit: contain; }
+
+    /* Ensure all logos/symbols never show white box */
+    .nav-logo img,
+    .hero-logo-display img,
+    .loja-photo-logo img,
+    .cta-logo img,
+    .footer-logo img { background: transparent; }
+
+    /* ─── BUTTONS ────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 13px 28px;
+      font-family: var(--f-body); font-size: 12.5px; font-weight: 700;
+      letter-spacing: .07em; text-transform: uppercase;
+      border-radius: var(--r-xs); cursor: pointer;
+      transition: background .18s, transform .18s, border-color .18s, color .18s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn--primary   { background: var(--orange); color: #fff; border: none; }
+    .btn--primary:hover { background: var(--orange2); }
+    .btn--outline   { border: 1.5px solid rgba(255,255,255,.18); color: rgba(255,255,255,.7); background: transparent; }
+    .btn--outline:hover { border-color: var(--orange); color: #fff; }
+    .btn--whatsapp  { background: #25D366; color: #fff; padding: 15px 32px; font-size: 13px; border: none; }
+    .btn--whatsapp:hover { background: #128C7E; }
+    .btn--ghost     { border: 1.5px solid rgba(255,255,255,.12); color: rgba(255,255,255,.6); background: transparent; padding: 15px 32px; font-size: 13px; }
+    .btn--ghost:hover   { border-color: var(--orange); color: #fff; }
+
+    /* ─── HERO ───────────────────────────────────────── */
+    .hero {
+      min-height: 100dvh;
+      background: var(--navy);
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(54,94,181,.038) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(54,94,181,.038) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(ellipse 80% 80% at 30% 50%, black 10%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 30% 50%, black 10%, transparent 75%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 45% at 15% 50%, rgba(54,94,181,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 35% at 80% 15%, rgba(253,122,34,.06) 0%, transparent 55%);
+    }
+    .hero-stripe-top { height: 4px; background: var(--orange); flex-shrink: 0; }
+    .hero-body {
+      flex: 1;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 72px var(--gutter) 56px;
+      max-width: var(--max-w); width: 100%; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+
+    /* Symbol watermark in hero */
+    .hero-symbol {
+      position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+      width: clamp(220px, 38vw, 520px); height: auto;
+      opacity: .06; pointer-events: none; user-select: none;
+      background: transparent; mix-blend-mode: screen;
+    }
+
+    /* Logo display inside hero */
+    .hero-logo-display {
+      margin-bottom: 40px;
+    }
+    .hero-logo-display img {
+      height: clamp(40px, 5vw, 64px);
+      width: auto;
+    }
+
+    .hero-chapter {
+      font-size: 10px; font-weight: 700; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .hero-chapter::before { content: ''; width: 52px; height: 2px; background: var(--orange); }
+    .hero-title {
+      font-family: var(--f-display);
+      font-size: clamp(44px, 7.8vw, 100px);
+      color: #fff; line-height: 1.0; letter-spacing: -.03em;
+      max-width: 860px; margin-bottom: 30px;
+    }
+    .hero-title .accent { color: var(--orange); }
+    .hero-tagline {
+      font-size: clamp(14px, 1.8vw, 17px);
+      color: rgba(255,255,255,.5);
+      border-left: 3px solid var(--orange); padding-left: 18px;
+      max-width: 460px; line-height: 1.65; margin-bottom: 52px;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+
+    /* Hero stat bar */
+    .hero-stats {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 0 var(--gutter);
+      position: relative; z-index: 1;
+      background: rgba(0,0,0,.12);
+    }
+    .hero-stats-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .hero-stat {
+      padding: 22px 28px;
+      border-right: 1px solid rgba(255,255,255,.06);
+    }
+    .hero-stat:first-child { padding-left: 0; }
+    .hero-stat:last-child  { border-right: none; }
+    .hero-stat-num {
+      font-family: var(--f-display);
+      font-size: clamp(22px, 3vw, 34px);
+      color: var(--orange); line-height: 1; margin-bottom: 4px;
+    }
+    .hero-stat-label {
+      font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+    }
+
+    /* ─── FLAG ICONS ─────────────────────────────────── */
+    .flag {
+      display: inline-flex; align-items: center; vertical-align: middle;
+      border-radius: 2px; overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,.3);
+      flex-shrink: 0;
+    }
+    .flag-br { width: 22px; height: 15px; }
+    .flag-mg { width: 22px; height: 15px; }
+
+    /* Coverage inline row */
+    .coverage-row {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .coverage-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+    }
+
+    /* ─── QUEM SOMOS ─────────────────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 360px; gap: 80px; align-items: start;
+      margin-top: 48px;
+    }
+    .body-text { font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 540px; }
+    .body-text + .body-text { margin-top: 16px; }
+    .body-text strong { color: var(--ink); font-weight: 700; }
+    .body-text--dark  { color: rgba(255,255,255,.5); }
+    .body-text--dark strong { color: rgba(255,255,255,.88); }
+
+    .stat-stack { display: flex; flex-direction: column; gap: 14px; }
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--orange);
+      border-radius: var(--r);
+      padding: 22px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+    }
+    .stat-card-num {
+      font-family: var(--f-display); font-size: 38px;
+      color: var(--orange); line-height: 1; margin-bottom: 4px;
+    }
+    .stat-card-label { font-size: 12.5px; font-weight: 600; color: var(--muted); }
+
+    /* ─── LOJA ───────────────────────────────────────── */
+
+    /* Photo header strip */
+    .loja-photo-header {
+      position: relative; overflow: hidden;
+      height: clamp(180px, 28vw, 340px);
+      margin-bottom: 32px;
+      border-radius: var(--r-lg);
+    }
+    .loja-photo-header img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center 60%;
+      display: block;
+    }
+    .loja-photo-header::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(13,27,42,.88) 0%,
+        rgba(13,27,42,.55) 50%,
+        rgba(13,27,42,.30) 100%
+      );
+    }
+    .loja-photo-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      display: flex; align-items: flex-end; padding: 28px 36px;
+    }
+    .loja-photo-logo img {
+      height: clamp(36px, 5vw, 56px);
+      width: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,.4));
+    }
+    .loja-photo-badge {
+      margin-left: auto;
+      background: var(--orange);
+      color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: var(--r-xs);
+    }
+
+    /* Address bar */
+    .loja-address-bar {
+      display: flex; align-items: center; gap: 20px;
+      background: var(--orange); border-radius: var(--r-lg);
+      padding: 24px 32px; margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .loja-pin {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,.2); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .loja-pin svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .loja-address-name { font-family: var(--f-display); font-size: 17px; color: #fff; margin-bottom: 3px; }
+    .loja-address-sub  { font-size: 12.5px; color: rgba(255,255,255,.82); font-weight: 600; }
+    .loja-address-right { margin-left: auto; flex-shrink: 0; }
+    .loja-address-cta {
+      padding: 9px 20px;
+      background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.3);
+      border-radius: var(--r-xs); color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      transition: background .18s;
+    }
+    .loja-address-cta:hover { background: rgba(255,255,255,.28); }
+
+    .loja-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .loja-card {
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--border-lt);
+      border-radius: var(--r-lg); padding: 28px 26px;
+    }
+    .loja-card-icon {
+      width: 44px; height: 44px;
+      background: var(--orange-lo); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    }
+    .loja-card-icon svg { width: 22px; height: 22px; color: var(--orange); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .loja-card-title { font-family: var(--f-display); font-size: 17px; color: #fff; margin-bottom: 14px; }
+    .loja-card-body  { font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.7; }
+    .loja-card-body strong { color: rgba(255,255,255,.84); display: block; margin-bottom: 2px; }
+    .loja-card-body .wpp-note {
+      font-size: 12px; color: var(--orange); font-weight: 600;
+      display: flex; align-items: center; gap: 6px; margin-top: 6px;
+    }
+
+    /* Coverage row with flags */
+    .coverage-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px;
+    }
+    .coverage-card {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border-lt); border-radius: var(--r);
+      padding: 16px 20px;
+    }
+    .coverage-card-flag { flex-shrink: 0; }
+    .coverage-card-text {}
+    .coverage-card-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .coverage-card-sub  { font-size: 11px; color: rgba(255,255,255,.35); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+
+    /* ─── CRENÇA ─────────────────────────────────────── */
+    .crenca-intro { max-width: 580px; margin-bottom: 64px; }
+    .crenca-grid  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .crenca-card  { border-top: 3px solid var(--orange); padding-top: 26px; }
+    .crenca-num   {
+      font-family: var(--f-display); font-size: 11px;
+      color: var(--orange); letter-spacing: .2em; margin-bottom: 14px;
+    }
+    .crenca-title { font-family: var(--f-display); font-size: 22px; color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
+    .crenca-text  { font-size: 14px; color: var(--muted); line-height: 1.75; }
+
+    /* ─── CATEGORIAS ─────────────────────────────────── */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 56px;
+    }
+    /* Last row of 11 items (4+4+3): center the 3 orphans */
+    .cat-card:nth-child(9)  { grid-column: 1; }
+    .cat-card:nth-child(10) { grid-column: 2; }
+    .cat-card:nth-child(11) { grid-column: 3; }
+    .cat-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border-lt);
+      border-radius: var(--r); padding: 26px 22px;
+      transition: background .2s, border-color .2s, transform .2s;
+      cursor: default;
+    }
+    .cat-card:hover {
+      background: var(--orange-lo); border-color: var(--orange-md);
+      transform: translateY(-3px);
+    }
+    .cat-icon {
+      width: 44px; height: 44px;
+      background: var(--orange-lo); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    }
+    .cat-icon svg { width: 22px; height: 22px; stroke: var(--orange); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .cat-name     { font-family: var(--f-display); font-size: 15px; color: #fff; margin-bottom: 10px; line-height: 1.25; }
+    .cat-nr {
+      display: inline-block;
+      background: var(--blue-lo); border: 1px solid rgba(54,94,181,.22);
+      border-radius: var(--r-xs); padding: 3px 8px;
+      font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+      color: rgba(120,160,255,.85);
+    }
+
+    /* ─── MARCAS ─────────────────────────────────────── */
+    .marcas-header { max-width: 600px; margin-bottom: 52px; }
+    .marcas-grid   { display: flex; flex-wrap: wrap; gap: 10px; }
+    .marca-chip {
+      display: flex; align-items: center;
+      padding: 12px 22px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--r);
+      font-size: 12.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--ink);
+      transition: border-color .18s, box-shadow .18s;
+    }
+    .marca-chip:hover {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(253,122,34,.08);
+    }
+    .curadoria-note {
+      margin-top: 36px; padding: 20px 24px;
+      background: rgba(253,122,34,.05);
+      border: 1px solid rgba(253,122,34,.14); border-left: 3px solid var(--orange);
+      border-radius: 0 var(--r) var(--r) 0;
+      font-size: 13.5px; color: var(--muted); line-height: 1.65; max-width: 700px;
+    }
+
+    /* ─── COMPARATIVO ────────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto; margin-top: 56px;
+      border-radius: var(--r-lg); border: 1px solid var(--border-lt);
+    }
+    .cmp-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 540px; }
+    .cmp-table thead tr { border-bottom: 1px solid var(--border-lt); }
+    .cmp-table th {
+      padding: 16px 24px; text-align: left;
+      font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .cmp-table th:first-child   { color: rgba(255,255,255,.35); }
+    .cmp-table th.col-f { color: var(--orange); background: rgba(253,122,34,.05); }
+    .cmp-table th.col-g { color: rgba(255,255,255,.25); }
+    .cmp-table td {
+      padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,.04);
+      color: rgba(255,255,255,.55); vertical-align: middle;
+    }
+    .cmp-table td:first-child { color: rgba(255,255,255,.78); font-weight: 600; }
+    .cmp-table td.col-f       { background: rgba(253,122,34,.04); }
+    .cmp-table tr:last-child td { border-bottom: none; }
+    .cmp-table tr:hover td { background: rgba(255,255,255,.02); }
+
+    .chk-yes {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px;
+      background: rgba(46,125,50,.2); border: 1px solid rgba(76,175,80,.3);
+      border-radius: 50%; color: #4caf50;
+    }
+    .chk-no {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px;
+      background: rgba(183,28,28,.12); border: 1px solid rgba(183,28,28,.18);
+      border-radius: 50%; color: rgba(255,255,255,.25);
+    }
+    .chk-partial {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px;
+      background: rgba(255,152,0,.12); border: 1px solid rgba(255,152,0,.2);
+      border-radius: 50%;
+      font-size: 12px; font-weight: 700; color: rgba(255,152,0,.7);
+    }
+
+    /* ─── CTA FINAL ──────────────────────────────────── */
+    .cta-s {
+      background: var(--navy2); position: relative; overflow: hidden;
+      padding: clamp(80px,10vw,140px) var(--gutter);
+    }
+    .cta-s::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 65% 50% at 50% 0%, rgba(253,122,34,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 40% at 50% 100%, rgba(54,94,181,.08) 0%, transparent 60%);
+    }
+
+    /* Symbol watermark in CTA */
+    .cta-symbol {
+      position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+      width: clamp(200px, 32vw, 460px); opacity: .05;
+      pointer-events: none; user-select: none;
+    }
+
+    .cta-inner   { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; text-align: center; }
+    .cta-logo    { margin-bottom: 32px; display: flex; justify-content: center; }
+    .cta-logo img { height: clamp(44px, 5vw, 64px); width: auto; }
+    .cta-kicker  { font-size: 10px; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; }
+    .cta-title   { font-family: var(--f-display); font-size: clamp(32px, 5.5vw, 58px); color: #fff; line-height: 1.08; margin-bottom: 20px; }
+    .cta-text    { font-size: 16px; color: rgba(255,255,255,.45); line-height: 1.7; margin-bottom: 40px; }
+    .cta-actions { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    .footer { background: var(--navy2); border-top: 1px solid rgba(255,255,255,.05); padding: 40px var(--gutter) 28px; }
+    .footer-inner {
+      max-width: var(--max-w); margin: 0 auto;
+    }
+    .footer-top {
+      display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      margin-bottom: 24px;
+    }
+    .footer-logo img { height: 56px; width: auto; }
+    .footer-contact {
+      display: flex; flex-direction: column; gap: 6px;
+      font-size: 12px; color: rgba(255,255,255,.35);
+    }
+    .footer-contact strong { color: rgba(255,255,255,.65); font-size: 13px; }
+    .footer-contact a { color: rgba(255,255,255,.5); transition: color .15s; }
+    .footer-contact a:hover { color: var(--orange); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-cnpj  { font-size: 11px; color: rgba(255,255,255,.18); }
+    .footer-copy  { font-size: 11px; color: rgba(255,255,255,.18); }
+    .footer-stripe { height: 4px; background: var(--orange); }
+
+    /* ─── ANIMATIONS ─────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .65s var(--ease-out), transform .65s var(--ease-out);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .10s; }
+    .d2 { transition-delay: .20s; }
+    .d3 { transition-delay: .30s; }
+    .d4 { transition-delay: .40s; }
+
+    .hero-chapter, .hero-title, .hero-tagline, .hero-actions { opacity: 0; transform: translateY(18px); }
+    .hero-logo-display { opacity: 0; transform: translateY(12px); }
+    .hero-logo-display { transition: opacity .55s .08s var(--ease-out), transform .55s .08s var(--ease-out); }
+    .hero-chapter { transition: opacity .6s .22s var(--ease-out), transform .6s .22s var(--ease-out); }
+    .hero-title   { transition: opacity .7s .38s var(--ease-out), transform .7s .38s var(--ease-out); }
+    .hero-tagline { transition: opacity .6s .58s var(--ease-out), transform .6s .58s var(--ease-out); }
+    .hero-actions { transition: opacity .6s .74s var(--ease-out), transform .6s .74s var(--ease-out); }
+    .hero-stats   { opacity: 0; transition: opacity .5s .92s var(--ease-out); }
+    body.loaded .hero-logo-display,
+    body.loaded .hero-chapter,
+    body.loaded .hero-title,
+    body.loaded .hero-tagline,
+    body.loaded .hero-actions { opacity: 1; transform: translateY(0); }
+    body.loaded .hero-stats   { opacity: 1; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 980px) {
+      .about-grid   { grid-template-columns: 1fr; gap: 48px; }
+      .crenca-grid  { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .cat-grid     { grid-template-columns: repeat(2, 1fr); }
+      .cat-card:nth-child(9),
+      .cat-card:nth-child(10),
+      .cat-card:nth-child(11) { grid-column: auto; }
+      .loja-cards   { grid-template-columns: 1fr; }
+      .coverage-cards { grid-template-columns: 1fr; }
+      .nav-links    { display: none; }
+    }
+    @media (max-width: 640px) {
+      .crenca-grid  { grid-template-columns: 1fr; }
+      .hero-stats-inner { grid-template-columns: 1fr; }
+      .hero-stat    { border-right: none; border-bottom: 1px solid var(--border-lt); }
+      .hero-stat:last-child { border-bottom: none; }
+      .loja-address-bar { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .loja-address-right { margin-left: 0; }
+      .cta-symbol { display: none; }
+    }
+
+    /* ─── PRINT ──────────────────────────────────────── */
+    @media print {
+      .nav { display: none; }
+      .hero { min-height: auto; page-break-after: always; }
+      .s-inner { padding: 40px 0; }
+      .s-dark, .s-light, .cta-s { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hero-logo-display, .hero-chapter, .hero-title, .hero-tagline, .hero-actions, .hero-stats { opacity: 1 !important; transform: none !important; }
+      .about-grid, .crenca-grid, .cat-grid, .loja-cards { page-break-inside: avoid; }
+      .cta-s { page-break-before: always; }
+      @page { margin: 15mm; size: A4; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────── -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="#inicio" class="nav-logo" aria-label="Inova Fortis EPIs">
+      <img src="assets/logo-branca.png" alt="Inova Fortis EPIs">
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#sobre">Quem somos</a></li>
+      <li><a href="#loja">Nossa loja</a></li>
+      <li><a href="#crenca">Crença</a></li>
+      <li><a href="#categorias">Categorias</a></li>
+      <li><a href="#marcas">Marcas</a></li>
+      <li><a href="#comparativo">Por que Fortis</a></li>
+    </ul>
+    <a href="https://wa.me/553498233417?text=Ol%C3%A1%2C%20vim%20pelo%20portf%C3%B3lio%20e%20gostaria%20de%20solicitar%20uma%20proposta." class="nav-cta">
+      Falar conosco
+    </a>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="hero" id="inicio">
+  <div class="hero-stripe-top"></div>
+
+  <!-- Symbol watermark (transparent version) -->
+  <img src="assets/simbolo-transparente.png" alt="" class="hero-symbol" aria-hidden="true">
+
+  <div class="hero-body">
+    <!-- Logo display in hero -->
+    <div class="hero-logo-display">
+      <img src="assets/logo-branca.png" alt="Inova Fortis EPIs">
+    </div>
+
+    <p class="hero-chapter">Portfólio Institucional · 2026</p>
+
+    <h1 class="hero-title">
+      A empresa que<br>
+      te ajuda a proteger<br>
+      <span class="accent">quem trabalha</span><br>
+      para você.
+    </h1>
+
+    <p class="hero-tagline">
+      A loja que te ajuda a se proteger de verdade.<br>
+      Equipamentos certificados. Orientação técnica real.<br>
+      Presença local no Triângulo Mineiro.
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://wa.me/553498233417?text=Ol%C3%A1%21%20Vi%20o%20portf%C3%B3lio%20da%20Fortis%20e%20gostaria%20de%20solicitar%20uma%20proposta%20para%20minha%20empresa." class="btn btn--primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.139.565 4.143 1.543 5.881L.057 23.929l6.195-1.623C7.857 23.436 9.886 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.956 0-3.786-.548-5.35-1.494l-.383-.228-3.678.964.98-3.583-.249-.392A9.934 9.934 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        Solicitar proposta
+      </a>
+      <a href="../catalogo/index.html" class="btn btn--outline">
+        Ver catálogo completo
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-stats" role="region" aria-label="Números da Fortis">
+    <div class="hero-stats-inner">
+      <div class="hero-stat">
+        <div class="hero-stat-num" data-count="12" data-suffix="+">12+</div>
+        <div class="hero-stat-label">Marcas certificadas</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">CA válido em todo estoque</div>
+      </div>
+      <div class="hero-stat">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:5px">
+          <div class="hero-stat-num" style="font-size:clamp(13px,2vw,20px);padding-top:4px">Frutal/MG</div>
+        </div>
+        <div class="coverage-row">
+          <div class="coverage-item">
+            <img src="assets/bandeira-mg.png" alt="MG"
+                 style="width:22px;height:auto;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,.4)">
+            Triângulo Mineiro
+          </div>
+          <div class="coverage-item">
+            <!-- BR flag -->
+            <svg class="flag flag-br" viewBox="0 0 22 15" aria-label="Brasil">
+              <rect width="22" height="15" fill="#009B3A"/>
+              <polygon points="11,2 20,7.5 11,13 2,7.5" fill="#FEDF00"/>
+              <circle cx="11" cy="7.5" r="3.2" fill="#002776"/>
+            </svg>
+            Todo Brasil
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUEM SOMOS ─────────────────────────────────────── -->
+<section class="s-light" id="sobre">
+  <div class="s-inner">
+    <div class="ghost-num ghost-num--light" aria-hidden="true">01</div>
+    <div class="s-label">01 · Quem somos</div>
+
+    <div class="about-grid">
+      <div>
+        <h2 class="s-title s-title--light reveal" style="margin-bottom:28px">
+          A Inova Fortis não é<br>
+          só uma loja de EPI.<br>
+          É uma <span class="hi">responsabilidade</span>.
+        </h2>
+
+        <p class="body-text reveal d1">
+          A Inova Fortis nasceu de um desejo simples: proteger pessoas.
+          Por trás de cada capacete, luva ou calçado de segurança, existe alguém voltando para casa
+          ao final do dia. <strong>Acreditamos que segurança não é apenas um produto: é cuidado, atenção e responsabilidade.</strong>
+        </p>
+        <p class="body-text reveal d2">
+          Atendemos empresas de todos os portes que precisam de equipamentos com CA válido,
+          orientação técnica real e um parceiro que entenda o negócio delas. Nosso propósito é
+          participar da rotina de quem constrói, produz e movimenta o Brasil, com proteção séria
+          e compromisso verdadeiro.
+        </p>
+        <p class="body-text reveal d3">
+          É por isso que acreditamos: <strong>vender equipamentos de proteção sem orientar sobre
+          o uso correto é negligência disfarçada de comércio.</strong> Cada produto que sai daqui
+          tem CA válido, rastreabilidade de lote e o respaldo de uma equipe que sabe exatamente
+          para qual risco aquele equipamento foi homologado.
+        </p>
+      </div>
+
+      <div class="stat-stack">
+        <div class="stat-card reveal">
+          <div class="stat-card-num" data-count="12" data-suffix="+">12+</div>
+          <div class="stat-card-label">Marcas parceiras ativas</div>
+        </div>
+        <div class="stat-card reveal d1">
+          <div class="stat-card-num">100%</div>
+          <div class="stat-card-label">Produtos com CA válido</div>
+        </div>
+        <div class="stat-card reveal d2">
+          <div class="stat-card-num">+150</div>
+          <div class="stat-card-label">EPIs certificados disponíveis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NOSSA LOJA ─────────────────────────────────────── -->
+<section class="s-dark" id="loja">
+  <div class="s-inner">
+    <div class="ghost-num ghost-num--dark" aria-hidden="true">02</div>
+    <div class="s-label">02 · Nossa loja</div>
+
+    <h2 class="s-title s-title--dark reveal" style="margin-bottom:32px">
+      Estamos em Frutal.<br>
+      Atendemos o <span class="hi">Triângulo Mineiro</span><br>
+      e todo o Brasil.
+    </h2>
+
+    <!-- Store photo -->
+    <div class="loja-photo-header reveal d1">
+      <img src="assets/loja.jpg" alt="Projeto da loja Inova Fortis EPIs">
+      <div class="loja-photo-overlay">
+        <div class="loja-photo-logo">
+          <img src="assets/logo-branca.png" alt="Inova Fortis EPIs">
+        </div>
+        <div class="loja-photo-badge">Frutal / MG</div>
+      </div>
+    </div>
+
+    <div class="loja-address-bar reveal">
+      <div class="loja-pin">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="loja-address-name">Inova Fortis EPIs</div>
+        <div class="loja-address-sub">Av. Euvaldo Lodi, 113, Centro, Frutal/MG</div>
+      </div>
+      <div class="loja-address-right">
+        <a href="https://wa.me/553498233417?text=Quero%20visitar%20a%20loja%20Fortis.%20Podem%20me%20ajudar%3F" class="loja-address-cta">Como chegar</a>
+      </div>
+    </div>
+
+    <div class="loja-cards reveal">
+      <div class="loja-card">
+        <div class="loja-card-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div class="loja-card-title">Horário de Atendimento</div>
+        <div class="loja-card-body">
+          <strong>Segunda a Sexta</strong>
+          08h às 18h
+          <br><br>
+          <strong>Sábado</strong>
+          Apenas pelo WhatsApp até 12h
+          <span class="wpp-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.139.565 4.143 1.543 5.881L.057 23.929l6.195-1.623C7.857 23.436 9.886 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.956 0-3.786-.548-5.35-1.494l-.383-.228-3.678.964.98-3.583-.249-.392A9.934 9.934 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Loja física fechada aos sábados
+          </span>
+        </div>
+      </div>
+
+      <div class="loja-card reveal d1">
+        <div class="loja-card-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="loja-card-title">Atendimento Empresarial</div>
+        <div class="loja-card-body">
+          Construtoras, fazendas, indústrias e prestadores de serviço.
+          Visitas técnicas sob agendamento.
+          <br><br>
+          <strong>Proposta sob medida</strong>
+          Contato direto pelo WhatsApp.
+        </div>
+      </div>
+    </div>
+
+    <!-- Coverage cards with flags -->
+    <div class="coverage-cards reveal d2">
+      <div class="coverage-card">
+        <div class="coverage-card-flag">
+          <img src="assets/bandeira-mg.png" alt="Bandeira de Minas Gerais"
+               style="width:52px;height:auto;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.35)">
+        </div>
+        <div class="coverage-card-text">
+          <div class="coverage-card-name">Triângulo Mineiro</div>
+          <div class="coverage-card-sub">Minas Gerais · Atendimento presencial</div>
+        </div>
+      </div>
+      <div class="coverage-card">
+        <div class="coverage-card-flag">
+          <svg viewBox="0 0 52 35" width="52" height="35" aria-label="Brasil"
+               style="border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.35);display:block">
+            <rect width="52" height="35" fill="#009B3A"/>
+            <polygon points="26,4 48,17.5 26,31 4,17.5" fill="#FEDF00"/>
+            <circle cx="26" cy="17.5" r="7.5" fill="#002776"/>
+            <path d="M19.5,16.5 Q26,20.5 32.5,16.5" stroke="white" stroke-width=".9" fill="none"/>
+          </svg>
+        </div>
+        <div class="coverage-card-text">
+          <div class="coverage-card-name">Todo o Brasil</div>
+          <div class="coverage-card-sub">Loja online:
+            <a href="https://fortisepis.com.br" target="_blank" rel="noopener"
+               style="color:var(--orange);font-weight:700;text-decoration:none">
+              fortisepis.com.br
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NOSSA CRENÇA ───────────────────────────────────── -->
+<section class="s-light" id="crenca">
+  <div class="s-inner">
+    <div class="ghost-num ghost-num--light" aria-hidden="true">03</div>
+    <div class="s-label">03 · Nossa crença</div>
+
+    <div class="crenca-intro">
+      <h2 class="s-title s-title--light reveal" style="margin-bottom:20px">
+        EPI sem orientação<br>
+        <span class="hi">não protege.</span>
+      </h2>
+      <p class="body-text reveal d1">
+        O problema não é falta de equipamento. É a normalização do risco: o hábito de comprar
+        equipamentos de proteção como se compra caneta, pelo preço, sem entender a função.
+      </p>
+    </div>
+
+    <div class="crenca-grid">
+      <div class="crenca-card reveal">
+        <div class="crenca-num">01</div>
+        <div class="crenca-title">Conhecimento Técnico</div>
+        <div class="crenca-text">
+          Sabemos qual equipamento atende qual NR, para qual risco, em qual ambiente.
+          Não vendemos capacete: indicamos o capacete certo para a atividade certa.
+        </div>
+      </div>
+      <div class="crenca-card reveal d1">
+        <div class="crenca-num">02</div>
+        <div class="crenca-title">Orientação Antes da Compra</div>
+        <div class="crenca-text">
+          Nosso atendimento começa com perguntas, não com prateleira. Qual o risco? Qual NR
+          se aplica? Quantos funcionários? Só depois apresentamos as opções.
+        </div>
+      </div>
+      <div class="crenca-card reveal d2">
+        <div class="crenca-num">03</div>
+        <div class="crenca-title">Pós-venda de Verdade</div>
+        <div class="crenca-text">
+          CA, garantia, substituição, dúvida técnica meses depois da compra. Se o equipamento
+          não está sendo usado corretamente, queremos saber.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CATEGORIAS ─────────────────────────────────────── -->
+<section class="s-dark" id="categorias">
+  <div class="s-inner">
+    <div class="ghost-num ghost-num--dark" aria-hidden="true">04</div>
+    <div class="s-label">04 · Categorias</div>
+
+    <h2 class="s-title s-title--dark reveal">
+      Proteção completa,<br>
+      cabeça aos pés.
+    </h2>
+
+    <div class="cat-grid">
+
+      <!-- 1. Calçados de Segurança -->
+      <div class="cat-card reveal">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 20h18v-2H3z"/>
+            <path d="M5 18v-7l5-4 3 5h1l3-6 1.5 12"/>
+          </svg>
+        </div>
+        <div class="cat-name">Calçados de Segurança</div>
+        <span class="cat-nr">NR-6</span>
+      </div>
+
+      <!-- 2. Luvas de Proteção -->
+      <div class="cat-card reveal d1">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 11V6a2 2 0 0 0-4 0v5"/>
+            <path d="M14 10V4a2 2 0 0 0-4 0v6"/>
+            <path d="M10 10.5V6a2 2 0 0 0-4 0v8c0 3.3 2.7 6 6 6s6-2.7 6-6v-3.5a2 2 0 0 0-4 0V11"/>
+          </svg>
+        </div>
+        <div class="cat-name">Luvas de Proteção</div>
+        <span class="cat-nr">NR-6</span>
+      </div>
+
+      <!-- 3. Vestimentas de Proteção -->
+      <div class="cat-card reveal d2">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 5l4-2 5 3 5-3 4 2-2 5H5z"/>
+            <path d="M5 10l-1 11h16L19 10"/>
+          </svg>
+        </div>
+        <div class="cat-name">Vestimentas de Proteção</div>
+        <span class="cat-nr">NR-6</span>
+      </div>
+
+      <!-- 4. Proteção de Cabeça -->
+      <div class="cat-card reveal d3">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2C8.5 2 5.5 4.5 5 8H3v3h18v-3h-2C18.5 4.5 15.5 2 12 2z"/>
+            <path d="M5 11v2a1 1 0 001 1h12a1 1 0 001-1v-2"/>
+          </svg>
+        </div>
+        <div class="cat-name">Proteção de Cabeça</div>
+        <span class="cat-nr">NR-6</span>
+      </div>
+
+      <!-- 5. Óculos de Segurança -->
+      <div class="cat-card reveal">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="7" cy="13" r="3"/>
+            <circle cx="17" cy="13" r="3"/>
+            <path d="M4 13c0-4 2.5-7 5-7m6 0c2.5 0 5 3 5 7"/>
+            <line x1="10" y1="13" x2="14" y2="13"/>
+          </svg>
+        </div>
+        <div class="cat-name">Óculos de Segurança</div>
+        <span class="cat-nr">NR-6</span>
+      </div>
+
+      <!-- 6. Proteção Auditiva -->
+      <div class="cat-card reveal d1">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9a6 6 0 0 1 12 0c0 3-1.5 5.5-3.5 7L14 19H10l-.5-3C7.5 14.5 6 12 6 9z"/>
+          </svg>
+        </div>
+        <div class="cat-name">Proteção Auditiva</div>
+        <span class="cat-nr">NR-6 · NR-9</span>
+      </div>
+
+      <!-- 7. Proteção Respiratória -->
+      <div class="cat-card reveal d2">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 8c0-2.2 1.8-4 4-4h8c2.2 0 4 1.8 4 4v2c0 4.4-3.6 8-8 8S4 14.4 4 10V8z"/>
+            <path d="M4 10h16"/>
+            <line x1="12" y1="10" x2="12" y2="17"/>
+          </svg>
+        </div>
+        <div class="cat-name">Proteção Respiratória</div>
+        <span class="cat-nr">NR-6 · NR-15</span>
+      </div>
+
+      <!-- 8. Proteção Facial -->
+      <div class="cat-card reveal d3">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        </div>
+        <div class="cat-name">Proteção Facial</div>
+        <span class="cat-nr">NR-6</span>
+      </div>
+
+      <!-- 9. Trabalho em Altura -->
+      <div class="cat-card reveal">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="4" r="2"/>
+            <path d="M12 6v7"/>
+            <path d="M8 9l4-3 4 3"/>
+            <path d="M7 13l-2 7h14l-2-7"/>
+            <line x1="6" y1="20" x2="18" y2="20"/>
+          </svg>
+        </div>
+        <div class="cat-name">Trabalho em Altura</div>
+        <span class="cat-nr">NR-35</span>
+      </div>
+
+      <!-- 10. Proteção de Pele -->
+      <div class="cat-card reveal d1">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+        </div>
+        <div class="cat-name">Proteção de Pele</div>
+        <span class="cat-nr">NR-6</span>
+      </div>
+
+      <!-- 11. Acessórios e Complementos -->
+      <div class="cat-card reveal d2">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            <line x1="12" y1="12" x2="12" y2="16"/>
+            <line x1="10" y1="14" x2="14" y2="14"/>
+          </svg>
+        </div>
+        <div class="cat-name">Acessórios e Complementos</div>
+        <span class="cat-nr">NR-6</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── MARCAS ─────────────────────────────────────────── -->
+<section class="s-light" id="marcas">
+  <div class="s-inner">
+    <div class="ghost-num ghost-num--light" aria-hidden="true">05</div>
+    <div class="s-label">05 · Marcas parceiras</div>
+
+    <div class="marcas-header">
+      <h2 class="s-title s-title--light reveal" style="margin-bottom:20px">
+        Trabalhamos com marcas que<br>
+        a gente <span class="hi">escolheria</span> para a família.
+      </h2>
+      <p class="body-text reveal d1">
+        Todo produto no nosso estoque passou por um critério simples: CA válido, rastreabilidade de
+        lote e histórico de conformidade com as NRs aplicáveis. Não vendemos o que não recomendaríamos.
+      </p>
+    </div>
+
+    <div class="marcas-grid">
+      <div class="marca-chip reveal">Delta Plus</div>
+      <div class="marca-chip reveal d1">Plastcor</div>
+      <div class="marca-chip reveal d2">Volk do Brasil</div>
+      <div class="marca-chip reveal d3">Handex</div>
+      <div class="marca-chip reveal">3Carlos</div>
+      <div class="marca-chip reveal d1">Nutriex</div>
+      <div class="marca-chip reveal d2">TOP Cintos</div>
+      <div class="marca-chip reveal d3">Sayro</div>
+      <div class="marca-chip reveal">Nexus</div>
+      <div class="marca-chip reveal d1">Maicol</div>
+      <div class="marca-chip reveal d2">Alltec</div>
+      <div class="marca-chip reveal d3">Cartom</div>
+    </div>
+
+    <div class="curadoria-note reveal">
+      <strong style="color:var(--ink)">Critério de curadoria:</strong> CA com validade verificada, suporte técnico ativo do
+      fabricante, rastreabilidade de lote confirmada e aderência às NRs aplicáveis. Não trabalhamos
+      com marcas sem CA válido ou sem suporte técnico nacional.
+    </div>
+  </div>
+</section>
+
+<!-- ── COMPARATIVO ────────────────────────────────────── -->
+<section class="s-dark" id="comparativo">
+  <div class="s-inner">
+    <div class="ghost-num ghost-num--dark" aria-hidden="true">06</div>
+    <div class="s-label">06 · Por que a Fortis</div>
+
+    <h2 class="s-title s-title--dark reveal">
+      O que nos separa de<br>
+      qualquer <span class="hi">alternativa</span>.
+    </h2>
+
+    <div class="table-wrap reveal d1">
+      <table class="cmp-table" role="table">
+        <thead>
+          <tr>
+            <th scope="col">Critério</th>
+            <th scope="col" class="col-f">Inova Fortis</th>
+            <th scope="col" class="col-g">Distribuidor Genérico</th>
+            <th scope="col" class="col-g">Marketplace</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Orientação técnica antes da compra</td>
+            <td class="col-f"><span class="chk-yes" aria-label="Sim"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+            <td><span class="chk-no" aria-label="Não"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+            <td><span class="chk-no" aria-label="Não"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+          </tr>
+          <tr>
+            <td>100% dos produtos com CA válido</td>
+            <td class="col-f"><span class="chk-yes" aria-label="Sim"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+            <td><span class="chk-partial" aria-label="Parcial">~</span></td>
+            <td><span class="chk-partial" aria-label="Parcial">~</span></td>
+          </tr>
+          <tr>
+            <td>Atendimento pós-venda especializado</td>
+            <td class="col-f"><span class="chk-yes" aria-label="Sim"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+            <td><span class="chk-no" aria-label="Não"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+            <td><span class="chk-no" aria-label="Não"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+          </tr>
+          <tr>
+            <td>Estoque físico para retirada imediata</td>
+            <td class="col-f"><span class="chk-yes" aria-label="Sim"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+            <td><span class="chk-no" aria-label="Não"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+            <td><span class="chk-no" aria-label="Não"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+          </tr>
+          <tr>
+            <td>Conhecimento das NRs aplicáveis ao setor</td>
+            <td class="col-f"><span class="chk-yes" aria-label="Sim"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+            <td><span class="chk-partial" aria-label="Parcial">~</span></td>
+            <td><span class="chk-no" aria-label="Não"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+          </tr>
+          <tr>
+            <td>Presença física local no Triângulo Mineiro</td>
+            <td class="col-f"><span class="chk-yes" aria-label="Sim"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+            <td><span class="chk-no" aria-label="Não"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+            <td><span class="chk-no" aria-label="Não"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ──────────────────────────────────────── -->
+<section class="cta-s" id="contato">
+  <!-- Symbol watermark (transparent version) -->
+  <img src="assets/simbolo-transparente.png" alt="" class="cta-symbol" aria-hidden="true">
+
+  <div class="cta-inner">
+    <div class="cta-logo reveal">
+      <img src="assets/logo-branca.png" alt="Inova Fortis EPIs">
+    </div>
+    <p class="cta-kicker">07 · Próximo passo</p>
+    <h2 class="cta-title reveal">
+      Vamos proteger seus<br>
+      trabalhadores<br>
+      <span style="color:var(--orange)">de verdade.</span>
+    </h2>
+    <p class="cta-text reveal d1">
+      Fale com a nossa equipe. Nos conte o setor, a atividade e o risco.
+      Nós cuidamos do resto: equipamento certo, CA válido, orientação técnica incluída.
+    </p>
+    <div class="cta-actions reveal d2">
+      <a href="https://wa.me/553498233417?text=Ol%C3%A1%21%20Vi%20o%20portf%C3%B3lio%20da%20Fortis%20e%20gostaria%20de%20solicitar%20uma%20proposta%20para%20minha%20empresa." class="btn btn--whatsapp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.139.565 4.143 1.543 5.881L.057 23.929l6.195-1.623C7.857 23.436 9.886 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.956 0-3.786-.548-5.35-1.494l-.383-.228-3.678.964.98-3.583-.249-.392A9.934 9.934 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        (34) 9823-3417
+      </a>
+      <a href="../catalogo/index.html" class="btn btn--ghost">
+        Ver catálogo de produtos
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="assets/logo-branca.png" alt="Inova Fortis EPIs">
+      </div>
+      <div class="footer-contact">
+        <strong>Inova Fortis EPIs</strong>
+        Av. Euvaldo Lodi, 113, Centro, Frutal/MG<br>
+        <a href="https://wa.me/553498233417">(34) 9823-3417</a><br>
+        Seg. a Sex.: 08h às 18h &nbsp;·&nbsp; Sáb.: WhatsApp até 12h
+      </div>
+      <div>
+        <img src="assets/simbolo-transparente.png" alt="" style="height:64px;width:auto;opacity:.25" aria-hidden="true">
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-cnpj">CNPJ 59.105.786/0001-54</div>
+      <div class="footer-copy">&copy; 2026 Inova Fortis EPIs. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+<div class="footer-stripe"></div>
+
+<!-- ── JS ────────────────────────────────────────────── -->
+<script>
+  window.addEventListener('load', () => document.body.classList.add('loaded'));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  revealEls.forEach(el => revealIO.observe(el));
+
+  function countUp(el) {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1400;
+    const start = performance.now();
+    function frame(now) {
+      const t = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.floor(ease * target) + suffix;
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  const countEls = document.querySelectorAll('[data-count]');
+  const countIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { countUp(e.target); countIO.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  countEls.forEach(el => countIO.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => navIO.observe(s));
+</script>
+
+</body>
+</html>
