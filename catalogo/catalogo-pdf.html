@@ -256,10 +256,16 @@
 <!-- CONTROLES -->
 <div class="pdf-controls">
   <p>Arquivo para uso interno. <strong>Não compartilhe este link.</strong> Abra no Chrome para melhor resultado.</p>
-  <button class="btn-gerar" onclick="gerarPDF()">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="1" width="10" height="7" rx="1"/><path d="M3 8H1v5h14V8h-2"/><rect x="4" y="11" width="8" height="4" rx="1"/></svg>
-    Gerar PDF
-  </button>
+  <div style="display:flex;gap:10px">
+    <button class="btn-gerar" onclick="gerarPDF(2)">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="1" width="10" height="7" rx="1"/><path d="M3 8H1v5h14V8h-2"/><rect x="4" y="11" width="8" height="4" rx="1"/></svg>
+      WhatsApp / Email
+    </button>
+    <button class="btn-gerar" style="background:#2E7D32" onclick="gerarPDF(4)">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="1" width="10" height="7" rx="1"/><path d="M3 8H1v5h14V8h-2"/><rect x="4" y="11" width="8" height="4" rx="1"/></svg>
+      Impressão Gráfica
+    </button>
+  </div>
 </div>
 
 <div id="documento"></div>
@@ -559,7 +565,7 @@ function render(){
   doc.innerHTML = html;
 }
 
-async function gerarPDF(){
+async function gerarPDF(escala=2){
   const btn = document.querySelector('.btn-gerar');
   const orig = btn.innerHTML;
   btn.disabled = true;
@@ -601,7 +607,7 @@ async function gerarPDF(){
 
       const pg = pages[i];
       const canvas = await html2canvas(pg, {
-        scale: 2,
+        scale: escala,
         useCORS: true,
         allowTaint: false,
         logging: false,
@@ -613,10 +619,11 @@ async function gerarPDF(){
       if(i > 0) pdf.addPage();
       const w = 210;
       const h = Math.min((canvas.height / canvas.width) * 210, 297);
-      pdf.addImage(canvas.toDataURL('image/jpeg', 0.93), 'JPEG', 0, 0, w, h);
+      pdf.addImage(canvas.toDataURL('image/jpeg', escala >= 4 ? 0.97 : 0.93), 'JPEG', 0, 0, w, h);
     }
 
-    pdf.save('catalogo-fortis-2026.pdf');
+    const nome = escala >= 4 ? 'catalogo-fortis-2026-IMPRESSAO.pdf' : 'catalogo-fortis-2026.pdf';
+    pdf.save(nome);
     btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14 3 6 11 2 7"/></svg> Download concluído!';
     setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 3000);
 
