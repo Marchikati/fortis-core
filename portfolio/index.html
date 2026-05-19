@@ -592,20 +592,20 @@
     .d3 { transition-delay: .30s; }
     .d4 { transition-delay: .40s; }
 
-    .hero-chapter, .hero-title, .hero-tagline, .hero-actions { opacity: 0; transform: translateY(18px); }
-    .hero-logo-display { opacity: 0; transform: translateY(12px); }
-    .hero-logo-display { transition: opacity .55s .08s var(--ease-out), transform .55s .08s var(--ease-out); }
-    .hero-chapter { transition: opacity .6s .22s var(--ease-out), transform .6s .22s var(--ease-out); }
-    .hero-title   { transition: opacity .7s .38s var(--ease-out), transform .7s .38s var(--ease-out); }
-    .hero-tagline { transition: opacity .6s .58s var(--ease-out), transform .6s .58s var(--ease-out); }
-    .hero-actions { transition: opacity .6s .74s var(--ease-out), transform .6s .74s var(--ease-out); }
-    .hero-stats   { opacity: 0; transition: opacity .5s .92s var(--ease-out); }
-    body.loaded .hero-logo-display,
-    body.loaded .hero-chapter,
-    body.loaded .hero-title,
-    body.loaded .hero-tagline,
-    body.loaded .hero-actions { opacity: 1; transform: translateY(0); }
-    body.loaded .hero-stats   { opacity: 1; }
+    @keyframes heroFade {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroFadeStats {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .hero-logo-display { animation: heroFade .55s .08s var(--ease-out) both; }
+    .hero-chapter      { animation: heroFade .60s .22s var(--ease-out) both; }
+    .hero-title        { animation: heroFade .70s .38s var(--ease-out) both; }
+    .hero-tagline      { animation: heroFade .60s .58s var(--ease-out) both; }
+    .hero-actions      { animation: heroFade .60s .74s var(--ease-out) both; }
+    .hero-stats        { animation: heroFadeStats .50s .92s var(--ease-out) both; }
 
     /* ─── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 980px) {
@@ -638,7 +638,7 @@
       .s-inner { padding: 40px 0; }
       .s-dark, .s-light, .cta-s { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .reveal { opacity: 1 !important; transform: none !important; }
-      .hero-logo-display, .hero-chapter, .hero-title, .hero-tagline, .hero-actions, .hero-stats { opacity: 1 !important; transform: none !important; }
+      .hero-logo-display, .hero-chapter, .hero-title, .hero-tagline, .hero-actions, .hero-stats { animation: none !important; opacity: 1 !important; transform: none !important; }
       .about-grid, .crenca-grid, .cat-grid, .loja-cards { page-break-inside: avoid; }
       .cta-s { page-break-before: always; }
       @page { margin: 15mm; size: A4; }
@@ -1284,8 +1284,6 @@
 
 <!-- ── JS ────────────────────────────────────────────── -->
 <script>
-  window.addEventListener('load', () => document.body.classList.add('loaded'));
-
   const revealEls = document.querySelectorAll('.reveal');
   const revealIO = new IntersectionObserver((entries) => {
     entries.forEach(e => {
