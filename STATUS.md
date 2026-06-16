@@ -2,7 +2,7 @@
 
 > Ler no início de toda sessão. Atualizar a cada entrega. Substitui re-exploração do repo.
 
-**Última atualização:** 2026-06-15
+**Última atualização:** 2026-06-16
 
 ## ONDE ESTAMOS
 
@@ -11,7 +11,8 @@
 - **Decisão da usuária (15/06):** reels postergados (pipeline de geração será reconfigurado). Foco total em fechar conteúdo de feed (estáticos/carrosséis/produto) a partir de hoje.
 - **Pendentes da semana 2:** 08/06 Reel PROBLEMA ⬜ (postergado), 12/06 Namorados ⬜
 - **Entregue hoje (15/06):** Carrossel 7 slides Protetor Auditivo CA 41949 (cobre pauta atrasada 10/06 SPECS) — aprovado pela usuária, salvo em `ASSETS/posts/2026-06/CARROSSEL/seg-15-protetor-specs-carrossel/` (HTML + 7 PNGs 1080x1350 + legenda.txt), capa em `CAPAS/seg-15-protetor-specs-capa.png`
-- **Pendente semana 3:** 15/06 Reel Óculos ⬜ (postergado) · 16/06 EM USO ⬜ · 17/06 Carrossel SPECS ⬜ · 18/06 Engajamento ⬜ · 20/06 Fundo branco ⬜
+- **Entregue 16/06:** EM USO Óculos VVision 300 CA 42718 (trocado: 400 esgotado) — LOJA REAL fundo escuro — salvo em PRODUTOS/
+- **Pendente semana 3:** 15/06 Reel Óculos ⬜ (postergado) · 17/06 Carrossel SPECS ⬜ · 18/06 Engajamento ⬜ · 20/06 Fundo branco ⬜
 - **Aprovados aguardando publicação:** 09/06 EM USO (v4, salvo em PRODUTOS/), 11/06 Copa, 13/06 Jogo 1, 14/06 Motivacional, 10/06 Carrossel Protetor (produzido 15/06)
 - **Último estilo visual usado:** 15/06 LOJA REAL (nanobanana, 7 fotos cruas) + tipografia HTML overlay alternado claro/escuro
 - **Último fundo:** alternado (carrossel 7 slides: escuro/escuro/claro/escuro/claro/escuro/escuro)
