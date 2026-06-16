@@ -14,7 +14,9 @@
 - **Entregue 16/06:** EM USO Óculos VVision 300 CA 42718 — LOJA REAL fundo escuro — salvo em PRODUTOS/
 - **Entregue 17/06:** Carrossel 5 slides SPECS VVision 300 CA 42718 — salvo em CARROSSEL/qua-17-oculos-vvision300-specs/
 - **Entregue 18/06:** Engajamento tipográfico "certo x errado" óculos CA — TIPOGRÁFICO fundo navy — salvo em ESTÁTICOS/
-- **Pendente semana 3:** 15/06 Reel ⬜ (postergado) · 20/06 Fundo branco ⬜
+- **Entregue 20/06:** Fundo Branco Óculos VVision 300 CA 42718 — split off-white/navy, produto gigante — salvo em ESTÁTICOS/
+- **Semana 3 completa** (feed): 16/06 EM USO + 17/06 Carrossel SPECS + 18/06 Engajamento + 20/06 Fundo Branco — todos 🟡 Aprovado
+- **Pendente semana 3:** 15/06 Reel ⬜ (postergado)
 - **Último estilo:** 18/06 TIPOGRÁFICO fundo escuro
 - **Último estilo visual:** 17/06 LOJA REAL + HTML overlay — fundo alternado (4× escuro, 1× claro)
 - **Aprovados aguardando publicação:** 09/06 EM USO (v4, salvo em PRODUTOS/), 11/06 Copa, 13/06 Jogo 1, 14/06 Motivacional, 10/06 Carrossel Protetor (produzido 15/06)
