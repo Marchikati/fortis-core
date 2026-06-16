@@ -13,7 +13,9 @@
 - **Entregue hoje (15/06):** Carrossel 7 slides Protetor Auditivo CA 41949 (cobre pauta atrasada 10/06 SPECS) — aprovado pela usuária, salvo em `ASSETS/posts/2026-06/CARROSSEL/seg-15-protetor-specs-carrossel/` (HTML + 7 PNGs 1080x1350 + legenda.txt), capa em `CAPAS/seg-15-protetor-specs-capa.png`
 - **Entregue 16/06:** EM USO Óculos VVision 300 CA 42718 — LOJA REAL fundo escuro — salvo em PRODUTOS/
 - **Entregue 17/06:** Carrossel 5 slides SPECS VVision 300 CA 42718 — salvo em CARROSSEL/qua-17-oculos-vvision300-specs/
-- **Pendente semana 3:** 15/06 Reel ⬜ (postergado) · 18/06 Engajamento ⬜ · 20/06 Fundo branco ⬜
+- **Entregue 18/06:** Engajamento tipográfico "certo x errado" óculos CA — TIPOGRÁFICO fundo navy — salvo em ESTÁTICOS/
+- **Pendente semana 3:** 15/06 Reel ⬜ (postergado) · 20/06 Fundo branco ⬜
+- **Último estilo:** 18/06 TIPOGRÁFICO fundo escuro
 - **Último estilo visual:** 17/06 LOJA REAL + HTML overlay — fundo alternado (4× escuro, 1× claro)
 - **Aprovados aguardando publicação:** 09/06 EM USO (v4, salvo em PRODUTOS/), 11/06 Copa, 13/06 Jogo 1, 14/06 Motivacional, 10/06 Carrossel Protetor (produzido 15/06)
 - **Último estilo visual usado:** 15/06 LOJA REAL (nanobanana, 7 fotos cruas) + tipografia HTML overlay alternado claro/escuro
