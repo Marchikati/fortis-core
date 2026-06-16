@@ -7,21 +7,15 @@
 ## ONDE ESTAMOS
 
 - **Mês ativo:** Junho 2026 — "Um produto por semana" (`CONTEXT/calendarios/2026-06.md`)
-- **Semana atual:** Semana 3 (15-21/06) — Óculos VVision 400 CA 42919, mas hoje (15/06) entregamos pauta atrasada do Protetor Auditivo (Semana 2)
-- **Decisão da usuária (15/06):** reels postergados (pipeline de geração será reconfigurado). Foco total em fechar conteúdo de feed (estáticos/carrosséis/produto) a partir de hoje.
-- **Pendentes da semana 2:** 08/06 Reel PROBLEMA ⬜ (postergado), 12/06 Namorados ⬜
-- **Entregue hoje (15/06):** Carrossel 7 slides Protetor Auditivo CA 41949 (cobre pauta atrasada 10/06 SPECS) — aprovado pela usuária, salvo em `ASSETS/posts/2026-06/CARROSSEL/seg-15-protetor-specs-carrossel/` (HTML + 7 PNGs 1080x1350 + legenda.txt), capa em `CAPAS/seg-15-protetor-specs-capa.png`
-- **Entregue 16/06:** EM USO Óculos VVision 300 CA 42718 — LOJA REAL fundo escuro — salvo em PRODUTOS/
-- **Entregue 17/06:** Carrossel 5 slides SPECS VVision 300 CA 42718 — salvo em CARROSSEL/qua-17-oculos-vvision300-specs/
-- **Entregue 18/06:** Engajamento tipográfico "certo x errado" óculos CA — TIPOGRÁFICO fundo navy — salvo em ESTÁTICOS/
-- **Entregue 20/06:** Fundo Branco Óculos VVision 300 CA 42718 — split off-white/navy, produto gigante — salvo em ESTÁTICOS/
-- **Semana 3 completa** (feed): 16/06 EM USO + 17/06 Carrossel SPECS + 18/06 Engajamento + 20/06 Fundo Branco — todos 🟡 Aprovado
-- **Pendente semana 3:** 15/06 Reel ⬜ (postergado)
-- **Último estilo:** 18/06 TIPOGRÁFICO fundo escuro
-- **Último estilo visual:** 17/06 LOJA REAL + HTML overlay — fundo alternado (4× escuro, 1× claro)
-- **Aprovados aguardando publicação:** 09/06 EM USO (v4, salvo em PRODUTOS/), 11/06 Copa, 13/06 Jogo 1, 14/06 Motivacional, 10/06 Carrossel Protetor (produzido 15/06)
-- **Último estilo visual usado:** 15/06 LOJA REAL (nanobanana, 7 fotos cruas) + tipografia HTML overlay alternado claro/escuro
-- **Último fundo:** alternado (carrossel 7 slides: escuro/escuro/claro/escuro/claro/escuro/escuro)
+- **Semana atual:** Semana 4 (22-28/06) — Luva Nitrílica Sensinit CA 43585 (Handex)
+- **Decisão da usuária (15/06):** reels postergados (pipeline de geração será reconfigurado). Foco total em fechar conteúdo de feed (estáticos/carrosséis/produto).
+- **Pendentes da semana 2:** 08/06 Reel ⬜ (postergado), 12/06 Namorados ⬜
+- **Semana 3 completa** (feed): 16/06 EM USO + 17/06 Carrossel SPECS + 18/06 Engajamento + 20/06 Fundo Branco — todos 🟡 Aprovado. Reel 15/06 ⬜ postergado.
+- **Entregue 23/06:** EM USO Luva Nitrílica Sensinit CA 43585 — LOJA REAL fundo claro (lavoura soja) + overlay navy — salvo em PRODUTOS/ter-23-luva-sensinit-emuso.png — 🟡 Aprovado
+- **Último estilo visual:** 23/06 LOJA REAL (nanobanana subject-ref mão enluvada) + HTML overlay navy — fundo claro
+- **Último fundo:** claro (campo dia)
+- **Aprovados aguardando publicação:** 09/06 EM USO, 11/06 Copa, 13/06 Jogo 1, 14/06 Motivacional, 10/06 Carrossel Protetor, 16/06 EM USO Óculos, 17/06 Carrossel SPECS Óculos, 18/06 Engajamento, 20/06 Fundo Branco Óculos, 21/06 Motivacional Inverno, 23/06 EM USO Luva Sensinit
+- **Próximos (semana 4):** 24/06 Copa São João 🟡 (pré-aprovado), 25/06 Engajamento Luva ⬜, 26/06 Urgência B2B Luva ⬜, 27/06 Fundo Branco Luva ⬜, 28/06 Motivacional 🟡
 
 ## TESTES DA MÁQUINA (13-15/06/2026) — pipeline completo
 
