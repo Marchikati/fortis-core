@@ -445,6 +445,7 @@ const CATS_PDF = [
     {n:'Macacão Descartável Covertech 100',ca:'CA 39183',brand:'Volk',img:'macacao-seguranca-risco-quimico-volk-epi-eba16a336c966cfbf117768667316636',specs:[['Tipo','Descartável']],v:{t:['M','G','GG']}},
     {n:'Meia Térmica Napoli Algodão Cru',ca:'CA 13663',brand:'Napoli',img:'meia-termica-algodao-cru-527d1ea94fd53b30d817815491628855',specs:[['Material','Algodão cru'],['Uso','Câmara fria']]},
     {n:'Avental Malha de Aço MAILLINOX',ca:'CA 42146',brand:'Leal',img:'avental-malha-de-aco-inox-protecao-corte-65751a3a391ba6eaed17816402690846',specs:[['Material','Aço inox'],['Uso','Açougue/Corte']]},
+    {n:'Mangote Anticorte Aramida',ca:'CA 50477',brand:'Volk',img:'mangote-cut-guard-volk-epi-0450321348638dbfa917768641085186',specs:[['Material','Aramida'],['Corte','Nível C']]},
   ]},
   {id:'capacetes',num:'04',title:'Proteção de Cabeça',nr:'NR-6',
    desc:'Capacetes certificados para obras, indústria e trabalhos com risco elétrico.',
@@ -483,6 +484,8 @@ const CATS_PDF = [
     {n:'Filtro Químico VO/GA',ca:'CA 44125',brand:'Plastcor',img:'filtro-respiradores-vo-ga-plastcor-2f25505ac92dddc64617779190795357',specs:[['Tipo','Filtro'],['Classe','VO/GA']]},
     {n:'Respirador 1/4 Facial c/ Filtro VO/GA',ca:'CA 39428',brand:'Plastcor',img:'respirador-semifacial-plastico-voga-ca-39428-bd97d1654df3e310da17804943309259',specs:[['Tipo','1/4 Facial'],['Filtro','VO/GA']]},
     {n:'Respirador Semifacial Duplo Filtro',ca:'CA 39429',brand:'Plastcor',img:'respirador-semifacial-2-filtros-plastico-ca-39429-e1b98c9af5e9c7685817804295263096',specs:[['Tipo','Semifacial'],['Filtros','2 unidades']]},
+    {n:'Filtro Mecânico P2',ca:'',brand:'Plastcor',img:'filtro-p2-respirador-manta-plastcor-f69e736015559c53ae17804931738993',specs:[['Classe','P2'],['Filtração','≥ 94%']]},
+    {n:'Retentor para Filtro P2',ca:'',brand:'Plastcor',img:'retentor-filtro-respirador-p2-plastcor-ba4e6f8849d88af5f617804289158343',specs:[['Tipo','Retentor/Persiana'],['Para','Filtros P2']]},
   ]},
   {id:'facial',num:'08',title:'Proteção Facial',nr:'NR-6',
    desc:'Proteção completa da face contra respingos, partículas e faíscas.',
@@ -528,7 +531,6 @@ const CATS_PDF = [
     {n:'Suporte Universal Protetor Facial',ca:'',brand:'Delta Plus',img:'suporte-universal-viseira-capcaete-235235d71b36fcdd3117779208542083',specs:[['Universal','Sim']]},
     {n:'Jugular JUGALPHA 2 Pontos',ca:'',brand:'Delta Plus',img:'jugular-2-pontos-delta-plus-c87f934f596eb7332417780054523385',specs:[['Pontos','2']]},
     {n:'Jugular A.T. ABF Plastcor',ca:'',brand:'Plastcor',img:'jugular-capacete-plastco-a-t-abf-717684e6a15761514917787024984006',specs:[['Com regulagem','Sim']]},
-    {n:'Mangote Anticorte Aramida',ca:'CA 50477',brand:'Volk',img:'mangote-cut-guard-volk-epi-0450321348638dbfa917768641085186',specs:[['Material','Aramida'],['Corte','Nível C']]},
     {n:'Calço para Rodas PL5040',ca:'',brand:'Plastcor',img:'calco-caminhao-plastcor-79cbec92e46e4b431217787637788943',specs:[['NBR','9735']]},
     {n:'Porta Lima c/ Proteção',ca:'',brand:'Plastcor',img:'porta-lima-protecao-preto-epi-c29ece4fda03c282d317787031526498',specs:[]},
     {n:'Ponteira de Proteção p/ Vergalhão',ca:'',brand:'Sayro',img:'ponteira-vergalhao-sayro-vermelha-c97a7210b03b0e66d117786860835039',specs:[['Reutilizável','Sim']]},
@@ -537,6 +539,7 @@ const CATS_PDF = [
     {n:'Cone de Sinalização 75cm',ca:'',brand:'Plastcor',img:'cone-sinalizacao-75cm-polipropileno-faixa-refletiva-4d486fe41e9cf9f48e17804921901918',specs:[['Altura','75 cm'],['Faixa','Refletiva']]},
     {n:'Cone de Sinalização Refletivo 75cm',ca:'',brand:'Plastcor',img:'cone-sinalizacao-75cm-refletivo-microprisma-plastcor-4f327b2d0fce48ad4617804925608627',specs:[['Altura','75 cm'],['Microprisma','Sim']]},
     {n:'Cinta Ergonômica Lombar Soft SF411',ca:'',brand:'Soft',img:'cinta-ergonomica-soft-tamanho-g-preta-7de0c70f929fa1616517816162578737',specs:[['Uso','Lombar'],['Modelo','SF411']]},
+    {n:'Fita Refletiva Adesiva 5×30cm',ca:'',brand:'Plastcor',img:'fita-refletiva-5cm-30m-branca-vermelha-denatran-k2-7fce861431ca08dc3317804936233037',specs:[['Kit','2 unidades'],['Aprovação','DENATRAN']]},
 
   ]},
 ];
@@ -585,7 +588,7 @@ function render(){
       <p class="cover-tagline">A loja que te ensina a se proteger de verdade.</p>
     </div>
     <div class="cover-footer">
-      <div class="cover-stat"><strong>103 Produtos</strong>11 categorias</div>
+      <div class="cover-stat"><strong>106 Produtos</strong>11 categorias</div>
       <div class="cover-stat"><strong>22 Marcas</strong>nacionais e importadas</div>
       <div class="cover-stat"><strong>CA Aprovado</strong>certificados MTE</div>
       <div class="cover-stat"><strong>2026</strong>Edição</div>
@@ -603,7 +606,7 @@ function render(){
       <div class="value-card"><div class="value-title">Atendimento Local</div><div class="value-text">Presença real em Frutal e região. Conhecemos as demandas locais da construção civil, agro e indústria.</div></div>
     </div>
     <div class="about-stats">
-      <div class="about-stat"><div class="about-stat-num">103+</div><div class="about-stat-label">Produtos certificados</div></div>
+      <div class="about-stat"><div class="about-stat-num">106+</div><div class="about-stat-label">Produtos certificados</div></div>
       <div class="about-stat"><div class="about-stat-num">CA</div><div class="about-stat-label">Todos com certificação ativa</div></div>
       <div class="about-stat"><div class="about-stat-num">NR-6</div><div class="about-stat-label">Conformidade garantida</div></div>
     </div>
