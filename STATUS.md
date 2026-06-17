@@ -14,7 +14,7 @@
 - **Entregue 23/06:** EM USO Luva Nitrílica Sensinit CA 43585 — LOJA REAL fundo claro (lavoura soja) + overlay navy — salvo em PRODUTOS/ter-23-luva-sensinit-emuso.png — 🟡 Aprovado
 - **Último estilo visual:** 23/06 LOJA REAL (nanobanana subject-ref mão enluvada) + HTML overlay navy — fundo claro
 - **Último fundo:** claro (campo dia)
-- **Última faixa laranja:** sim (19/06 Copa — faixa 80px rodapé) — próximo post PODE ser sem faixa
+- **Última faixa laranja:** não (20/06 Fundo Branco — logo solto sem faixa) — próximo post DEVE ter faixa
 - **Aprovados aguardando publicação:** 09/06 EM USO, 11/06 Copa, 13/06 Jogo 1, 14/06 Motivacional, 10/06 Carrossel Protetor, 16/06 EM USO Óculos, 17/06 Carrossel SPECS Óculos, 18/06 Engajamento, 20/06 Fundo Branco Óculos, 21/06 Motivacional Inverno, 23/06 EM USO Luva Sensinit
 - **Próximos (semana 4):** 24/06 Copa São João 🟡 (pré-aprovado), 25/06 Engajamento Luva ⬜, 26/06 Urgência B2B Luva ⬜, 27/06 Fundo Branco Luva ⬜, 28/06 Motivacional 🟡
 

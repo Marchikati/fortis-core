@@ -221,6 +221,25 @@ magick post.png ASSETS/logos/04_logo_branco.png -gravity SouthEast -geometry +24
 
 ---
 
+## PADRÃO DE QUALIDADE OBRIGATÓRIO — POSTS DE PRODUTO
+
+Referência aprovada pela dona da marca: **Pneus de Alta Performance** (anúncio enviado em 17/06/2026).
+
+**O que é obrigatório em todo post de produto:**
+1. **Hero fotográfico SEMPRE** — trabalhador usando o EPI em cena real atmosférica. Nunca split HTML básico sem foto.
+2. **Fundo claro com atmosfera** — textura real (concreto, luz lateral, terra, madeira). Nunca branco puro de estúdio.
+3. **Tipografia enorme** — Montserrat 800-900, mínimo 90px, ocupa a metade esquerda ou superior.
+4. **Uma palavra em laranja #FD7A22** no headline — só uma, não três.
+5. **Feature list limpa** — ícone + 3-4 palavras, 3 itens max.
+6. **CTA como botão real** — retângulo colorido com seta, não texto solto.
+7. **Breathing room** — espaço negativo intencional, canvas não pode estar cheio.
+
+**REPROVADO automaticamente:**
+- Split HTML off-white/navy sem elemento fotográfico (hero)
+- Produto isolado sem contexto ou pessoa
+- Mais de uma palavra em destaque no headline
+- Features com specs não verificadas no site
+
 ## REGRAS INVIOLÁVEIS
 
 - NUNCA reutilizar imagem de post anterior ou de sessão anterior
