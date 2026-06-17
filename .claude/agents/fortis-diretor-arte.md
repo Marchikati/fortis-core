@@ -217,7 +217,14 @@ magick identify [arquivo-final].png
 magick post.png ASSETS/logos/04_logo_branco.png -gravity SouthEast -geometry +24+24 -resize x52 -composite output.png
 ```
 
-**Após decidir:** registrar no OUTPUT OBRIGATÓRIO → "Faixa laranja: sim | não". O orquestrador atualiza STATUS.md com o novo estado.
+**Regra anti-laranjão — COR DE ACENTO vinculada à faixa:**
+```
+POST COM FAIXA → cor de acento = laranja #FD7A22 (headline destaque + CTA + elementos)
+POST SEM FAIXA → cor de acento = azul #365EB5 (headline destaque + CTA + elementos)
+```
+Nunca laranja dominante em post sem faixa. O azul substitui o laranja em todos os destaques quando a faixa está ausente.
+
+**Após decidir:** registrar no OUTPUT OBRIGATÓRIO → "Faixa laranja: sim | não" e "Cor de acento: laranja | azul". O orquestrador atualiza STATUS.md com ambos os estados.
 
 ---
 
