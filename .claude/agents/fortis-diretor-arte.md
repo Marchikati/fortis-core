@@ -193,15 +193,31 @@ magick identify [arquivo-final].png
 - Fundo escuro: `ASSETS/logos/04_logo_branco.png`
 - Fundo claro ou fundo laranja: `ASSETS/logos/03_logo_preto.png`
 
-**Faixa laranja (regra por mood/estilo):**
-- AUTORIDADE TÉCNICA / COMERCIAL LIMPO: faixa 70px #FD7A22 obrigatória + logo dentro
-- PROTEÇÃO REAL / LOJA REAL: dispensável → logo solto `-gravity SouthEast -geometry +24+24 -resize x52`
-- URGÊNCIA INDUSTRIAL (fundo laranja): sem faixa (o fundo já é laranja) → logo preto solto
+**Faixa laranja — DECISÃO DE ALTERNÂNCIA (ler STATUS.md antes de decidir):**
 
-**ImageMagick para logo solto:**
+```
+1. Ler STATUS.md → linha "Última faixa laranja: sim | não"
+2. Se último post teve faixa → este post PODE ir sem faixa (logo solto)
+3. Se último post foi sem faixa → este post DEVE ter faixa
+4. Exceção: URGÊNCIA INDUSTRIAL (fundo laranja) → sempre sem faixa (fundo já é laranja)
+5. Máx 50% da semana sem faixa — contar posts da semana atual
+```
+
+**Com faixa (COMERCIAL LIMPO / Autoridade Técnica):**
+```html
+<!-- Faixa 80px, logo dentro, gravity SouthEast -->
+<div style="position:absolute;bottom:0;left:0;width:1080px;height:80px;background:#FD7A22;z-index:10;">
+  <img src="[logo_branco_b64]" style="position:absolute;bottom:10px;right:24px;height:52px;">
+</div>
+```
+
+**Sem faixa (LOJA REAL / quando alternância permite):**
 ```bash
+# Logo solto, canto inferior direito, sobre a imagem
 magick post.png ASSETS/logos/04_logo_branco.png -gravity SouthEast -geometry +24+24 -resize x52 -composite output.png
 ```
+
+**Após decidir:** registrar no OUTPUT OBRIGATÓRIO → "Faixa laranja: sim | não". O orquestrador atualiza STATUS.md com o novo estado.
 
 ---
 
@@ -238,7 +254,7 @@ magick post.png ASSETS/logos/04_logo_branco.png -gravity SouthEast -geometry +24
 - Método: [HTML | HTML+Nanobanana | Higgsfield | gpt-image-2 | combinação]
 - Higgsfield usou: [remove_bg | upscale | outpaint | generate_image | generate_video | não]
 - Prompt(s) usado(s): [prompt completo — crítico para aprendizado]
-- Faixa laranja: sim | não
+- Faixa laranja: sim | não (último post tinha: sim | não → alternância respeitada: sim | não)
 - Fundo: claro | escuro
 - Logo: branco | preto
 
