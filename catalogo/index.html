@@ -286,6 +286,13 @@
       transition:opacity .3s;
     }
     .card-img-wrap:hover .img-hint,.card-img-wrap.img-active .img-hint{opacity:0}
+    .card-img-wrap.has-hover{cursor:pointer}
+    @media(hover:none){
+      .card-img-wrap.has-hover .img-hint{
+        font-size:9px; color:rgba(0,0,0,0.35); bottom:10px;
+        content:'toque';
+      }
+    }
     .card-brand{
       position:absolute; top:10px; left:10px;
       background:var(--navy);
@@ -1218,14 +1225,14 @@ function buildCatalog(){
   });
 }
 
-// ── HOVER SWAP MOBILE (touch) ─────────────────────────────────
+// ── HOVER SWAP MOBILE (tap/click) ────────────────────────────
 function initImgSwap(){
   document.querySelectorAll('.card-img-wrap').forEach(wrap=>{
     if(!wrap.querySelector('.img-hover')) return;
-    wrap.addEventListener('touchstart',e=>{
-      e.preventDefault();
+    wrap.classList.add('has-hover');
+    wrap.addEventListener('click',e=>{
       wrap.classList.toggle('img-active');
-    },{passive:false});
+    });
   });
 }
 
