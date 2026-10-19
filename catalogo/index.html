@@ -595,6 +595,16 @@
     }
 
     /* ── QR CODE ─────────────────────────────────────── */
+    .seller-picker{position:fixed;inset:0;z-index:300;background:rgba(13,27,42,.6);display:none;align-items:center;justify-content:center;padding:16px}
+    .seller-picker.open{display:flex}
+    .seller-box{background:var(--navy);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;width:100%;max-width:340px}
+    .seller-title{color:#fff;font-weight:700;font-size:15px;margin-bottom:16px;text-align:center}
+    .seller-list{display:flex;flex-direction:column;gap:10px}
+    .seller-btn{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-radius:10px;background:var(--orange);color:#fff;text-decoration:none;font-size:14px}
+    .seller-btn span{font-size:13px;opacity:.9}
+    .seller-btn:hover{filter:brightness(1.08)}
+    .seller-cancel{margin-top:12px;width:100%;background:none;border:none;color:rgba(255,255,255,.5);font-size:13px;cursor:pointer;padding:8px}
+    @media print{.seller-picker{display:none!important}}
     .contact-qr{display:flex;flex-direction:column;align-items:center;gap:10px}
     .contact-qr img{border-radius:10px;border:3px solid rgba(253,122,34,0.25)}
     .contact-qr p{font-size:10px;color:rgba(255,255,255,0.3);text-align:center;letter-spacing:.08em;text-transform:uppercase}
@@ -904,6 +914,14 @@
   </button>
 </div>
 
+<div class="seller-picker" id="seller-picker" onclick="if(event.target===this)closeSellerPicker()">
+  <div class="seller-box" role="dialog" aria-modal="true" aria-labelledby="seller-title">
+    <p class="seller-title" id="seller-title">Enviar orçamento para</p>
+    <div class="seller-list"></div>
+    <button class="seller-cancel" onclick="closeSellerPicker()">Cancelar</button>
+  </div>
+</div>
+
 <!-- ── CONTATO ────────────────────────────────────────────── -->
 <section class="contact" id="contato">
   <div class="contact-inner">
@@ -916,7 +934,11 @@
       <div class="contact-links">
         <a class="contact-link" href="https://wa.me/5534998233417" target="_blank" rel="noopener">
           <div class="contact-link-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
-          <div><div class="contact-link-label">WhatsApp</div><div class="contact-link-value">(34) 99823-3417</div></div>
+          <div><div class="contact-link-label">WhatsApp · João</div><div class="contact-link-value">(34) 99823-3417</div></div>
+        </a>
+        <a class="contact-link" href="https://wa.me/5534999133940" target="_blank" rel="noopener">
+          <div class="contact-link-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <div><div class="contact-link-label">WhatsApp · Beatriz Libanio</div><div class="contact-link-value">(34) 99913-3940</div></div>
         </a>
         <a class="contact-link" href="https://instagram.com/fortisepis" target="_blank" rel="noopener">
           <div class="contact-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
@@ -926,11 +948,15 @@
     </div>
     <div style="margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;gap:20px">
       <div class="contact-qr">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://wa.me/5534998233417&bgcolor=0D1B2A&color=FD7A22&margin=8" width="110" height="110" alt="QR Code WhatsApp Fortis EPIs">
-        <p>Fale no WhatsApp</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://wa.me/5534998233417&bgcolor=0D1B2A&color=FD7A22&margin=8" width="110" height="110" alt="QR Code WhatsApp João, Fortis EPIs">
+        <p>João</p>
+      </div>
+      <div class="contact-qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://wa.me/5534999133940&bgcolor=0D1B2A&color=FD7A22&margin=8" width="110" height="110" alt="QR Code WhatsApp Beatriz, Fortis EPIs">
+        <p>Beatriz</p>
       </div>
       <div style="color:rgba(255,255,255,0.25);font-size:12px;line-height:1.8;max-width:200px">
-        Aponte a câmera do celular e fale direto com a gente para pedir sua cotação.
+        Aponte a câmera do celular e fale direto com o João ou a Beatriz para pedir sua cotação.
       </div>
     </div>
     <div class="contact-footer">
@@ -945,6 +971,10 @@
 <script>
 const CDN = 'https://dcdn-us.mitiendanube.com/stores/007/417/011/products/';
 const WA  = 'https://wa.me/5534998233417';
+const SELLERS = [
+  {n:'João', wa:'https://wa.me/5534998233417', tel:'(34) 99823-3417'},
+  {n:'Beatriz', wa:'https://wa.me/5534999133940', tel:'(34) 99913-3940'},
+];
 
 function imgUrl(h){ return CDN + h + '-480-0.webp'; }
 function waLink(name,ca){ return WA+'?text='+encodeURIComponent('Olá! Tenho interesse no produto: '+name+(ca?' ('+ca+')':'')+'. Vi no catálogo Fortis.'); }
@@ -1213,8 +1243,18 @@ function sendQuote(){
   if(selected.size===0) return;
   const list = [...selected].map(i=>`• ${allProducts[i].n}${allProducts[i].ca?' ('+allProducts[i].ca+')':''}`).join('\n');
   const msg = `Olá! Gostaria de orçamento para os seguintes produtos:\n\n${list}\n\nAguardo o retorno. Vi no catálogo Fortis.`;
-  window.open(WA+'?text='+encodeURIComponent(msg),'_blank');
+  openSellerPicker(msg);
 }
+
+// ── ESCOLHA DO VENDEDOR NO WHATSAPP ──────────────────────────
+function openSellerPicker(msg){
+  const box = document.getElementById('seller-picker');
+  box.querySelector('.seller-list').innerHTML = SELLERS.map(s=>
+    `<a class="seller-btn" href="${s.wa}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener" onclick="closeSellerPicker()"><strong>${s.n}</strong><span>${s.tel}</span></a>`
+  ).join('');
+  box.classList.add('open');
+}
+function closeSellerPicker(){ document.getElementById('seller-picker').classList.remove('open'); }
 
 // ── RENDERIZAÇÃO DO CATÁLOGO ──────────────────────────────────
 function buildCatalog(){
