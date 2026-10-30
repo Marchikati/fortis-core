@@ -646,6 +646,45 @@
       @page { margin: 15mm; size: A4; }
     }
   </style>
+<!-- MEDICAO-FORTIS: GA4 + Meta Pixel (mesmos IDs da loja). Instalar UMA vez por página; não somar com Tag Manager. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-43JDJD7ZS8"></script>
+<script>
+(function(){
+  if(window.__fortisMedicao)return;window.__fortisMedicao=1;
+  var teste=/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments)};
+  if(teste){window['ga-disable-G-43JDJD7ZS8']=true;window.fbq=function(){};}
+  else{
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1532992031085432');
+    fbq('track','PageView');
+  }
+  gtag('js',new Date());
+  gtag('config','G-43JDJD7ZS8');
+
+  var pagina=(location.pathname.match(/\/(central|catalogo|portfolio)\//)||[0,'raiz'])[1];
+  var wa={'5534998233417':'joao','5534999133940':'beatriz'};
+  function ev(nome,p){
+    p=p||{};p.pagina=pagina;p.transport_type='beacon';
+    gtag('event',nome,p);
+    if(nome==='whatsapp_click')fbq('track','Contact',{contato:p.contato,pagina:pagina});
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;
+    var h=a.getAttribute('href')||'',m=h.match(/wa\.me\/(\d+)/);
+    if(m)return ev('whatsapp_click',{contato:wa[m[1]]||'outro'});
+    if(/instagram\.com\/fortisepis/.test(h))return ev('click_instagram');
+    if(/youtube\.com/.test(h))return ev('click_youtube');
+    if(/tiktok\.com/.test(h))return ev('click_tiktok');
+    if(/google\.com\/maps/.test(h))return ev('click_mapa');
+    if(/(^|\/\/)(www\.)?fortisepis\.com\.br/.test(h))return ev('click_loja');
+    if(/\.\.\/catalogo\//.test(h))return ev('click_catalogo');
+    if(/\.\.\/portfolio\//.test(h))return ev('click_portfolio');
+    if(/\.\.\/central\//.test(h))return ev('click_central');
+  },true);
+})();
+</script>
 </head>
 <body>
 
