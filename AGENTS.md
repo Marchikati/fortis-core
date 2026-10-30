@@ -10,3 +10,9 @@ Leia `CLAUDE.md` (mesma pasta): é a fonte das regras do projeto. Resumo do que 
 - Links entre as páginas usam `../central/`, `../catalogo/`, `../portfolio/`.
 - Não fazer commit/push sem a usuária pedir. Antes de push: `git ls-files -s central catalogo portfolio CNAME index.html` não pode mostrar modo 120000 (atalho).
 - Pastas organizadas por assunto (`SITE-E-LOJA/`, `REDES-SOCIAIS/`, etc.) e prefixos `01-` a `99-` são atalhos/organização local; não são publicadas.
+
+## Redes sociais (Instagram @fortisepis) — onde salvar
+- Existe um único lugar: `REDES-SOCIAIS/Programacao/AAAA-MM/Semana DD a DD/DD DIA - HHh Tipo título/`. Reel, carrossel, estático e story: cada um na pasta do seu dia, sem separar por formato.
+- Dentro da pasta do dia: arquivos finais e `LEGENDA.txt` no topo; tudo que foi usado para criar (post.json, fotos, projeto Remotion com src/public/originais/revisão, roteiro) em `_trabalho/`. O vídeo final fica no topo.
+- Não existem mais `Conteudos/` nem `Oficina/`. Não recriar. Publicado → mover a pasta do dia para `postados/` da semana.
+- Detalhes: `REDES-SOCIAIS/Programacao/LEIA-ME.txt`.

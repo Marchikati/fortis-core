@@ -21,8 +21,7 @@ Organização física por assunto realizada em 29/10/2026, a pedido da usuária.
 | Figurinhas, selos e destaques | `IDENTIDADE-VISUAL/Elementos/Figurinhas/`, `Selos/` e `Destaques/` |
 | Mascote, personagens e vinhetas | `Mascote-Fortao/`, `Personagens/` e `Vinhetas/` dentro da Identidade |
 | Calendários e roteiros de redes sociais | `REDES-SOCIAIS/Planejamento/` |
-| Peças novas | `REDES-SOCIAIS/Conteudos/AAAA-MM-DD-assunto/` |
-| Entregas prontas e publicadas | `REDES-SOCIAIS/Programacao/AAAA-MM/` |
+| Peças novas, em produção, prontas e publicadas (reel, carrossel, estático, story) | `REDES-SOCIAIS/Programacao/AAAA-MM/Semana DD a DD/DD DIA - HHh Tipo título/` (finais e `LEGENDA.txt` no topo; fontes em `_trabalho/`; publicado vai para `postados/` da semana). Não existe `Conteudos/` nem `Oficina/`. |
 | Vídeos e motion existentes | `REDES-SOCIAIS/Projetos-de-video/` e `Projetos-de-motion/` |
 | Fotos oficiais e referências de produtos | `PRODUTOS/` |
 | Catálogos, apresentações, panfletos e impressos | `COMERCIAL-E-IMPRESSOS/`, na subpasta do formato |
