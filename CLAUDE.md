@@ -48,9 +48,9 @@ A usuária pediu uma estrutura simples: arquivos diretamente na pasta do assunto
 
 ## Compatibilidade e pendência
 
-O calendário de mesa de 2027 está fisicamente em `COMERCIAL-E-IMPRESSOS/Calendarios-de-mesa/2027/`. A usuária concluiu a edição e a transferência foi conferida em 29/10/2026. O caminho antigo é um atalho de compatibilidade. Fontes e imagens externas do gerador apontam para os destinos organizados; o PDF final foi preservado.
+O calendário de mesa de 2027 está fisicamente em `COMERCIAL-E-IMPRESSOS/Calendarios-de-mesa/2027/`. A usuária concluiu a edição e a transferência foi conferida em 29/10/2026. Fontes e imagens externas do gerador apontam para os destinos organizados; o PDF final foi preservado.
 
-Há atalhos técnicos ocultos para caminhos antigos; não são destinos de novas entregas. Não remover essa compatibilidade automaticamente. As ferramentas de marca, site e vídeo foram ajustadas; a organização não publica alterações no site nem no CRM.
+Os atalhos técnicos para caminhos antigos foram removidos (ver “Estrutura antiga”). As ferramentas de marca, site e vídeo foram ajustadas; a organização não publica alterações no site nem no CRM.
 
 Nenhum arquivo deve ser apagado nesta organização. Cópias e versões antigas continuam preservadas. O relatório e os registros de verificação estão em `ORGANIZACAO/`.
 
@@ -58,9 +58,9 @@ Nenhum arquivo deve ser apagado nesta organização. Cópias e versões antigas 
 
 `CLAUDE.md`, `CNAME`, `index.html`, `package.json`, `package-lock.json` e `node_modules` permanecem na raiz por compatibilidade e estão ocultos no Finder. Não mudar seus nomes nem publicar a organização automaticamente. README e STATUS estão fisicamente em `SISTEMAS/Operacao`, com acessos antigos preservados. A usuária navega pelos assuntos e pelo painel, sem precisar lidar com esses arquivos.
 
-## Estrutura antiga centralizada
+## Estrutura antiga
 
-A antiga pasta fortis-core está fisicamente em `.compat/fortis-core`, dentro desta FORTIS. `~/Desktop/fortis-core` é somente um atalho oculto para compatibilidade. Para novos trabalhos, abrir e usar `~/Desktop/FORTIS` e os nomes de assuntos sem prefixos numéricos. Não criar uma segunda pasta de trabalho na Mesa.
+A pasta `fortis-core` antiga, os atalhos numerados (`01-` a `99-`) e a pasta `.compat` foram removidos em 29/10/2026 (estão na Lixeira). Tudo agora está fisicamente nas pastas por assunto desta FORTIS. Trabalhar somente em `~/Desktop/FORTIS`. Rascunhos antigos do projeto de setembro ficam em `HISTORICO/`.
 
 ## Páginas publicadas (GitHub Pages) — NÃO QUEBRAR
 
