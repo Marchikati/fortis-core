@@ -16,5 +16,5 @@ Leia `CLAUDE.md` (mesma pasta): é a fonte das regras do projeto. Resumo do que 
 - Dentro da pasta do dia: arquivos finais e `LEGENDA.txt` no topo; tudo que foi usado para criar (post.json, fotos, projeto Remotion com src/public/originais/revisão, roteiro) em `_trabalho/`. O vídeo final fica no topo.
 - Não existem mais `Conteudos/` nem `Oficina/`. Não recriar. Publicado → mover a pasta do dia para `postados/` da semana.
 - Detalhes: `REDES-SOCIAIS/Programacao/LEIA-ME.txt`.
-- A usuária sempre informa a data de cada reel. Ele fica na semana e no dia dessa data, junto do carrossel/post programado para aquele dia (mesmo prefixo "DD DIA", uma pasta por conteúdo). Sem data no pedido: perguntar antes de salvar.
+- A usuária sempre informa a data de cada reel. Ele fica na semana e no dia dessa data, DENTRO da pasta do carrossel/post programado para aquele dia, em subpasta própria ("DD DIA - HHh Reel título") com vídeo, `LEGENDA.txt` e `_trabalho`. Dia só com reel: a pasta do dia é do reel. Sem data no pedido: perguntar antes de salvar.
 - Todo conteúdo tem `LEGENDA.txt` no topo da pasta do dia. Sem legenda não está pronto.
