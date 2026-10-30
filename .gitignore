@@ -1,3 +1,16 @@
+# LISTA BRANCA — repositório PÚBLICO que publica o site. Tudo é ignorado, exceto o que o site usa.
+# Por isso 'git add -A' / 'git add .' só enxergam as páginas publicadas. Não afrouxe sem pensar.
+/*
+!/.gitignore
+!/CNAME
+!/index.html
+!/central/
+!/catalogo/
+!/portfolio/
+!/CLAUDE.md
+!/AGENTS.md
+!/.githooks/
+
 # macOS
 .DS_Store
 **/.DS_Store
@@ -15,3 +28,28 @@ image-*.png
 imagen4-worker-*.png
 test-billing.png
 video/image-*.png
+tasks/scratch/
+
+# Organização local Fortis: não publicar dados administrativos, auditoria ou aliases
+/.compat/
+/99-ORGANIZACAO/
+/06-ADMINISTRATIVO/
+/90-HISTORICO/
+/08-SISTEMAS/CRM-Fortis/
+/00-PAINEL-FORTIS.html
+
+/ADMINISTRATIVO/
+
+/SISTEMAS/CRM-Fortis/
+
+/HISTORICO/
+
+/ORGANIZACAO/
+
+# Repositório PÚBLICO: nunca publicar dados privados nem atalhos de organização (atalhos sem barra final)
+/ATAS
+/SERASA-FORTIS
+/06-ADMINISTRATIVO
+/90-HISTORICO
+/99-ORGANIZACAO
+/08-SISTEMAS

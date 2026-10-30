@@ -1,125 +1,80 @@
-PROJETO INOVA FORTIS EPIs
+# FORTIS — projeto de trabalho
 
-Você está trabalhando com a marca Inova Fortis EPIs.
+Raiz oficial: `/Users/katiucemarchi/Desktop/FORTIS`.
+Organização física por assunto realizada em 29/10/2026, a pedido da usuária. Os caminhos antigos são compatibilidade; novas entregas devem usar esta estrutura.
 
----
+## Antes de trabalhar
 
-FLUXO OBRIGATÓRIO AO INICIAR QUALQUER TAREFA DE CONTEÚDO
+1. Leia `STATUS.md` para o estado da produção.
+2. Leia `IDENTIDADE-VISUAL/Guia-da-marca/Marca-em-uso.md` para a marca e o padrão visual atual.
+3. Conteúdo de redes sociais usa `.claude/skills/fortis-social/SKILL.md`; copy de produto usa a skill fortis-copy instalada. As ferramentas existentes foram preservadas.
+4. Consulte o histórico somente para uma necessidade específica. Não carregue todos os guias antigos como regras vigentes.
 
-1. Identificar o tipo de conteúdo (estático / carrossel / reel / stories)
-2. Ler APENAS o workflow correspondente em context/workflows/
-3. Verificar o calendário do mês em context/calendarios/AAAA-MM.md
-4. Verificar qual foi o último post (alternância claro/escuro)
-5. Executar sem parar entre etapas
+## Onde salvar
 
-WORKFLOWS DISPONÍVEIS:
-- Post estático → context/workflows/estatico.md
-- Carrossel      → context/workflows/carrossel.md
-- Reel / Vídeo  → context/workflows/reel.md
-- Stories        → context/workflows/stories.md
+| Assunto | Local |
+|---|---|
+| Logos | `IDENTIDADE-VISUAL/Logos/` (somente arquivos de logo) |
+| Símbolos | `IDENTIDADE-VISUAL/Logos/`, com nomes começando por Simbolo |
+| Guia, cores, fontes e prancha | `IDENTIDADE-VISUAL/Guia-da-marca/` |
+| Fotos da equipe e loja | `IDENTIDADE-VISUAL/Fotos-da-equipe-e-loja/` |
+| Figurinhas, selos e destaques | `IDENTIDADE-VISUAL/Elementos/Figurinhas/`, `Selos/` e `Destaques/` |
+| Mascote, personagens e vinhetas | `Mascote-Fortao/`, `Personagens/` e `Vinhetas/` dentro da Identidade |
+| Calendários e roteiros de redes sociais | `REDES-SOCIAIS/Planejamento/` |
+| Peças novas | `REDES-SOCIAIS/Conteudos/AAAA-MM-DD-assunto/` |
+| Entregas prontas e publicadas | `REDES-SOCIAIS/Programacao/AAAA-MM/` |
+| Vídeos e motion existentes | `REDES-SOCIAIS/Projetos-de-video/` e `Projetos-de-motion/` |
+| Fotos oficiais e referências de produtos | `PRODUTOS/` |
+| Catálogos, apresentações, panfletos e impressos | `COMERCIAL-E-IMPRESSOS/`, na subpasta do formato |
+| Site, catálogo online, central, banners e auditorias | `SITE-E-LOJA/` (as 3 páginas publicadas ficam em `central/`, `catalogo/` e `portfolio/` na raiz; ver “Páginas publicadas”) |
+| Notas, atas, equipe e documentos cadastrais | `ADMINISTRATIVO/` |
+| Estratégia, pesquisas e campanhas | `PLANEJAMENTO-E-PESQUISAS/` |
+| CRM, protótipos e aprendizados técnicos | `SISTEMAS/` |
+| Versões anteriores e cópias identificadas | `HISTORICO/`, por assunto e motivo |
+| Inventários e registros de organização | `ORGANIZACAO/` |
 
-Cada workflow é autocontido — tem marca, regras técnicas e checklist completos.
-NÃO é necessário ler os arquivos de context/brand/ separadamente — já estão nos workflows.
+A usuária pediu uma estrutura simples: arquivos diretamente na pasta do assunto. Não criar pastas repetidas, divisões pela origem (acervo/central/downloads), nem camadas ano/mês/dia sem necessidade. Antes de criar uma pasta ou copiar uma referência, conferir se já existe destino e exemplar adequado. Logos e símbolos têm um único acervo visível; usar `01-Logo-horizontal-branco.png` e `02-Logo-horizontal-preto.png` como referências de uso. Dentro de projetos que realmente precisam de estrutura técnica, manter fontes e entregas identificadas. Preserve a estrutura interna de projetos existentes que dependem dela. Não invente aprovação: uma pasta chamada final não é prova suficiente. Não salvar posts, storyboards ou apresentações em Logos. Não criar novas centrais concorrentes, pastas soltas na Mesa ou depósitos chamados diversos/arquivos.
 
----
+## Regras de conteúdo preservadas
 
-REGRAS TÉCNICAS INVIOLÁVEIS — VÁLIDAS PARA TODO CONTEÚDO
+- Produto real: conferir catálogo e foto oficial. Não inventar produtos.
+- Feed 1080×1350; reels/stories 1080×1920.
+- Não gerar a logo com IA: aplicar os arquivos oficiais. Preto em fundo claro; branco em fundo escuro.
+- Seguir a voz, as cores, a tipografia e as restrições atualizadas no guia da marca.
+- Usar “Siga @fortisepis” e “Central Fortis, link na bio”; CTA não deve soar como brinde.
+- Mostrar peças à usuária e obter aprovação conforme o fluxo de produção; não publicar sem autorização.
+- Reportar erros de ferramentas com clareza; não declarar sucesso sem verificar.
+- Registrar aprendizados em `SISTEMAS/Operacao/lessons.md`.
 
-DIMENSÃO FINAL OBRIGATÓRIA
-- Posts feed Instagram: 1080×1350px (4:5)
-- Reels / Stories: 1080×1920px (9:16)
-- Imagen 4 e Nano Banana geram 896×1280 → converter SEMPRE antes de compor:
-  magick input.png -resize 1080x -gravity center -background '#0D1B2A' -extent 1080x1350 output.png
+## Compatibilidade e pendência
 
-LOGO — REGRA PERMANENTE E INVIOLÁVEL
-- Fundo escuro (navy/preto) → assets/logos/04_logo_branco.png
-- Fundo claro ou faixa laranja → assets/logos/03_logo_preto.png
-- Posição em posts estáticos (ImageMagick): -gravity SouthEast -geometry +24+14 -resize x52
-- Posição em HTML (CSS): position:absolute; bottom:10px; right:24px; height:50px;
-- NUNCA incluir logo em prompts de geração de imagem — gera logo falso
+O calendário de mesa de 2027 está fisicamente em `COMERCIAL-E-IMPRESSOS/Calendarios-de-mesa/2027/`. A usuária concluiu a edição e a transferência foi conferida em 29/10/2026. O caminho antigo é um atalho de compatibilidade. Fontes e imagens externas do gerador apontam para os destinos organizados; o PDF final foi preservado.
 
-FAIXA LARANJA
-- Sempre 80px no rodapé
-- Cor: #FD7A22
-- Logo DENTRO da faixa (não acima)
-- Nunca incluir faixa laranja em prompts — adicionar via ImageMagick
+Há atalhos técnicos ocultos para caminhos antigos; não são destinos de novas entregas. Não remover essa compatibilidade automaticamente. As ferramentas de marca, site e vídeo foram ajustadas; a organização não publica alterações no site nem no CRM.
 
-ALTERNÂNCIA CLARO/ESCURO
-- Nunca dois posts escuros seguidos
-- Domingo: sempre fundo claro (#F5F5F0 ou off-white)
-- Verificar o post anterior no calendário antes de definir
+Nenhum arquivo deve ser apagado nesta organização. Cópias e versões antigas continuam preservadas. O relatório e os registros de verificação estão em `ORGANIZACAO/`.
 
-IMAGEM × CONTEÚDO
-- A imagem deve retratar EXATAMENTE o tema do post/slide
-- Capacete = foto de capacete. Luvas = foto de luvas.
-- Nunca imagem genérica. Nunca reutilizar entre slides.
-- Fotorrealismo obrigatório
+## Arquivos técnicos na raiz
 
-APROVAÇÃO ANTES DE SALVAR
-- Sempre mostrar ao usuário antes de salvar
-- Só salvar após aprovação explícita
+`CLAUDE.md`, `CNAME`, `index.html`, `package.json`, `package-lock.json` e `node_modules` permanecem na raiz por compatibilidade e estão ocultos no Finder. Não mudar seus nomes nem publicar a organização automaticamente. README e STATUS estão fisicamente em `SISTEMAS/Operacao`, com acessos antigos preservados. A usuária navega pelos assuntos e pelo painel, sem precisar lidar com esses arquivos.
 
-ONDE SALVAR
-- Posts estáticos (foto ou tipográfico): assets/posts/AAAA-MM/ESTÁTICOS/
-- Capas brutas de carrossel: assets/posts/AAAA-MM/CAPAS/
-- Carrosseis HTML: assets/posts/AAAA-MM/CARROSSEL/
-- Reels: assets/posts/AAAA-MM/REELS/
+## Estrutura antiga centralizada
 
-GERAÇÃO DE IMAGEM
-- Prompt sempre em inglês
-- Texto na imagem: português do Brasil, máx 8 palavras, 1 único elemento
-- Finalizar prompt com: "text appears exactly once, no other text elements, no logos, no orange bar"
-- Com pessoa: usar modelo oficial abaixo
-- Sem pessoa: executar node ~/.claude/mcp/nanobanana/server.js "prompt" "3:4"
+A antiga pasta fortis-core está fisicamente em `.compat/fortis-core`, dentro desta FORTIS. `~/Desktop/fortis-core` é somente um atalho oculto para compatibilidade. Para novos trabalhos, abrir e usar `~/Desktop/FORTIS` e os nomes de assuntos sem prefixos numéricos. Não criar uma segunda pasta de trabalho na Mesa.
 
-MODELO OFICIAL FORTIS (obrigatório em toda imagem com pessoa):
-Brazilian male worker, approximately 35-42 years old, short dark stubble beard, short dark hair, white hard hat, orange high-visibility safety vest over black shirt, serious and confident expression, cinematic dramatic industrial lighting
+## Páginas publicadas (GitHub Pages) — NÃO QUEBRAR
 
-NARRAÇÃO (ElevenLabs)
-- Voz Fortis: node ~/.claude/mcp/elevenlabs/server.js "fortis" "texto"
-- NUNCA usar "EPI" → substituir por "equipamentos de proteção" ou "êpêí"
-- Todo reel termina com: CTA adequado + "Inova Fortis. A loja que ensina você a se proteger de verdade."
+O repositório `Marchikati/fortis-core` publica a branch `main`, pasta raiz `/`, em `https://central.fortisepis.com.br` (arquivo `CNAME`). As URLs dependem dos nomes das pastas da raiz.
 
-LEGENDAS EM REELS
-- Zona segura: entre 80px do topo e 280px do rodapé (UI do Instagram/TikTok/Facebook)
-- Nunca abaixo de 280px do rodapé
+| Página | Pasta REAL (editar aqui) | URL | Atalho organizado |
+|---|---|---|---|
+| Central Fortis (link na bio) | `central/` | `/central/` | `SITE-E-LOJA/Central-link-na-bio` |
+| Catálogo online | `catalogo/` | `/catalogo/` | `SITE-E-LOJA/Catalogo-online` |
+| Portfólio B2B | `portfolio/` | `/portfolio/` | `SITE-E-LOJA/Portfolio` |
 
-HTML CARROSSEL
-- html2canvas scale: 2 (exporta 2×)
-- Logo CSS: bottom:10px; right:24px; height:50px (dentro da faixa de 70px)
-- Sem numeração de slides
-- 1 imagem fotorrealista por slide, embarcada como base64
-- Contraste mínimo: rgba(255,255,255,0.85)
-
-EXECUÇÃO
-- Não sugerir ferramentas. Executar.
-- Não parar entre etapas para confirmar.
-- Se API retornar erro: reportar exato. Não fingir sucesso.
-
----
-
-CALENDÁRIO EDITORIAL SEMANAL
-
-- Segunda → carrossel ou reel (educativo)
-- Quarta  → carrossel ou reel (técnico / NR)
-- Sexta   → estático ou reel (engajamento / comercial)
-- Domingo → SEMPRE estático motivacional tipográfico, fundo claro
-
-Todos os dias com post: mínimo 5 stories planejados (ver context/workflows/stories.md)
-
----
-
-IDENTIDADE DA MARCA (resumo)
-
-Posicionamento: "A loja que te ensina a se proteger de verdade."
-Crença central: O problema não é a falta de EPI. É a normalização do risco.
-Cores: Laranja #FD7A22 · Azul #365EB5 · Navy #0D1B2A · Verde Abril #2E7D32
-Fontes: Aoboshi One (títulos) · Open Sans (corpo)
-Tom: direto, educador, responsável. Nunca alarmista. Nunca propaganda.
-
-DATAS COMEMORATIVAS
-- Abril Verde → verde #2E7D32 integrado na tipografia e nos elementos visuais de todos os posts do mês
-
-CONTEÚDO
-- Todo post deve ensinar, alertar ou corrigir comportamento
-- Se não faz isso, não é da Fortis
+Regras:
+- Editar sempre por `central/`, `catalogo/`, `portfolio/` ou pelo atalho em `SITE-E-LOJA/` (é a mesma pasta). Os atalhos em `SITE-E-LOJA/` são relativos; não substituir por cópia.
+- Nunca renomear nem transformar em atalho `central/`, `catalogo/`, `portfolio/`, `CNAME` e `index.html` (redireciona para `central/`). O Pages não segue atalhos: o site sairia do ar.
+- Links entre as páginas usam as URLs públicas (`../catalogo/`, `../central/`, `../portfolio/`), nunca os nomes de `SITE-E-LOJA/`.
+- Não publicar (commit/push) sem a usuária autorizar. Antes de qualquer push, rodar `git status` e conferir que nenhuma dessas pastas virou atalho (`git ls-files -s central catalogo portfolio CNAME index.html` não pode mostrar modo 120000).
+- O repositório `fortis-flow` (CRM, Cloudflare Workers) é separado; esta organização não o afeta.
